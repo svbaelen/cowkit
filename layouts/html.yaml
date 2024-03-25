@@ -1,7 +1,7 @@
 # data-dir = src
 filters:
   - pandoc-crossref
-  - src/filters/multiple-bibliographies.lua # comment out for quick build (no refs)
+  #- src/filters/multiple-bibliographies.lua # comment out for quick build (no refs)
   #- src/filters/pandoc-quotes.lua
   #- citeproc
 input-files:

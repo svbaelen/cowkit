@@ -6,7 +6,7 @@ Comfortable, that is:
 - standardized <b>open formats</b>: Markdown, plain HTML, and/or LateX
 - zero setup, no framework dependencies (only requires docker)
 - fully customizable
-- <b>focus</b> on writing <b>productivity</b> (auto watch and re-render)
+- <b>focus on productivity</b> (auto watch and re-render)
 - not mature, not well tested, and far from perfect
 
 Built on top of [Pandoc](https://pandoc.org/) (file format converter), and inspired by this [pandoc book template](https://github.com/wikiti/pandoc-book-template).

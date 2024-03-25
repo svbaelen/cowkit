@@ -123,7 +123,7 @@ do
         LAST_EVENT_TIME=$EVENT_TIME
         echo "[INFO - watcher] running pandoc (in docker)"
         run
-        echo "[INFO - watcher] pandoc finished"
+        echo "[INFO - watcher] pandoc rebuild finished"
 
         # reload
         # first arg, or default to firefox if not set
