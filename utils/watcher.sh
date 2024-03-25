@@ -98,7 +98,7 @@ done
 
 run_docker () {
     docker run --rm --volume "$(pwd):/data" \
-      --user $(id -u):$(id -g)  pandoc/latex:latest-ubuntu \
+      --user $(id -u):$(id -g)  pandoc/latex:latest \
       --defaults=./config.yaml \
       --defaults=./layouts/html.yaml --template ./src/templates/default.html
 }
@@ -106,8 +106,6 @@ run_docker () {
 reload_browser() {
     # find all visible browser windows
     browser_windows="$(xdotool search --sync --all --onlyvisible --name ${BROWSER})"
-
-    echo $browser_windows
 
     # Send keystroke
     for bw in $browser_windows; do

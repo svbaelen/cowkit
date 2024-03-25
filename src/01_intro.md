@@ -1,7 +1,5 @@
 # Introduction {#sec:introduction label="Introduction"}
 
-Hi there, my name is Senne
-
 All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights. All human beings are
 born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights.
 

@@ -1,16 +1,23 @@
 # Cow kit
 
-Comfortable {Open Online}  Writing Kit
+Comfortable Open Writing Kit
 
-- zero platform dependencies, only a well established document converter (https://pandoc.org/)
-- zero setup costs (runs in docker)
-- standardized writing formats: plain HTML5, Markdown, and/or LateX.
+- standardized open writing formats: plain HTML5, Markdown, and/or LateX
+- zero platform dependencies (except for docker)
+- zero setup costs or dependency issues (docker container)
+
+## More comfort
+
+If re-running build process is too slow for you, open `./layouts/html.yaml` and comment out stuff. Start with the filters (which will skip
+bibliography rebuilds). If still too slow, uncomment sections/chapters etc.
+
+With the `utils/watcher.sh` you can update this at runtime.
 
 ## Dev
 
 ```sh
 docker run --rm --volume "$(pwd):/data" \
-  --user $(id -u):$(id -g)  pandoc/latex:latest-ubuntu \
+  --user $(id -u):$(id -g)  pandoc/latex:latest \
   --defaults=./config.yaml \
   --defaults=./layouts/html.yaml --template ./src/templates/default.html
 ```
