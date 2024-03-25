@@ -6,8 +6,8 @@ Comfortable, that is:
 - standardized <b>open formats</b>: Markdown, plain HTML, and/or LateX
 - zero setup, no framework dependencies (only requires docker)
 - fully customizable
-- <b>focus on productivity</b> (auto watch and re-render)
-- not mature, not well tested, and far from perfect
+- <b>focus on productivity</b> (auto watch and auto reload)
+- not mature, not well tested, and [far from perfect](#caveats-and-known-limitations)
 
 Built on top of [Pandoc](https://pandoc.org/) (file format converter), and inspired by this [pandoc book template](https://github.com/wikiti/pandoc-book-template).
 
@@ -41,6 +41,13 @@ If re-running build process is too slow for you, open `./layouts/html.yaml` and 
 bibliography rebuilds). If still too slow, uncomment sections/chapters etc.
 
 With the `watcher` utility you can update this at runtime.
+
+## Caveats and known limitations
+
+### HTML output
+
+- browser auto-reload after rebuild is based on [LiveJS](https://livejs.com/), however, sometimes a manual refresh is necessary on the browser tab
+  to re-initialize this script. This seems to occur on layout changes (not always). Need to inspect!
 
 ## Development
 

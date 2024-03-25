@@ -16,6 +16,7 @@ INIT=0
 RUN_ONCE=0
 HTTP_SERVE=1
 HTTP_PORT=8000
+OUTPUT_DIR="./build"
 
 #=========================================================
 # Options and positional arugments
@@ -81,6 +82,7 @@ run_pandoc () {
 
 # make build dir
 mkdir -p /app/build/
+echo "[INFO - main] set output directory to '$OUTPUT_DIR'"
 
 if [ $INIT = 1 ];then
     echo "Initializing new project..."
@@ -105,8 +107,8 @@ else
     run_pandoc
     # serve
     if [ $HTTP_SERVE = 1 ];then
-        echo "[INFO - main] serving at http://localhost:$HTTP_PORT"
-        cd /app/build
+        cd /app/$OUTPUT_DIR
+        echo "[INFO - main] serving at http://localhost:$HTTP_PORT (in $OUTPUT_DIR)"
         python3 -m http.server $HTTP_PORT > /dev/null 2>&1 &
     fi
     # watch

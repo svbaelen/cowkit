@@ -85,7 +85,7 @@ set -o nounset
 
 # Main program
 IS_WAITING=0
-echo "[INFO - watcher] watching files for pandoc re-run"
+echo "[INFO - watcher] watching files for pandoc rebuild"
 
 inotifywait -m -r -e ${EVENT} -q \
    --timefmt "%s" --format '%f##@@##%e##@@##%w##T%T' "${MONITORDIR}" | while read line
