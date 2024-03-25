@@ -12,7 +12,11 @@ WORKDIR /app
 RUN apt-get update && apt-get upgrade -y
 # <https://github.com/krallin/tini>
 # apt-get install tini
-RUN apt-get install -y inotify-tools tini
+RUN apt-get install -y \
+    inotify-tools \
+    tini \
+    python3
+
 RUN rm -rf /var/lib/apt/lists/*
 
 RUN mkdir example

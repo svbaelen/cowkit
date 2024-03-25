@@ -25,7 +25,6 @@ urlcolor: blue
 # HTML
 header-includes:
     <script src="./scripts/live_reload.js"></script>
-    <meta name="description" content="My description"/>
 
 include-after: # contents specified by -A/--include-after-body (may have multiple values)
 indent: # if true, pandoc will use document class settings for indentation (the default LaTeX template otherwise removes indentation and adds space between paragraphs)

@@ -5,7 +5,7 @@
 # Contact:      senne@svbaelen.me
 # Date created: 2024-03-25
 #---------------------------------------------------------
-# Short:        Entrypoint for dockerfile
+# Short:        Cowkit entrypoint for dockerfile
 #---------------------------------------------------------
 
 #=========================================================
@@ -14,6 +14,7 @@
 
 INIT=0
 RUN_ONCE=0
+HTTP_PORT=8000
 
 #=========================================================
 # Options and positional arugments
@@ -82,12 +83,21 @@ if [ $INIT = 1 ];then
     echo "OOSP: not yet implementend"
     #mv build/index.html /app/newfile.html
 elif [ $RUN_ONCE = 1 ];then
+    python3 -V
     echo "[INFO - main] running pandoc once..."
     run_pandoc
 else
     # assumes -v "$(pwd):/app" in docker run
-    echo "[INFO - main] running cowkit with watcher..."
+    # run once
     cd /app
-    # run
+    echo "[INFO - main] running pandoc (first time)..."
+    run_pandoc
+    # serve
+    echo "[INFO - main] serving at http://localhost:$HTTP_PORT"
+    cd /app/build
+    python3 -m http.server $HTTP_PORT > /dev/null 2>&1 &
+    # watch
+    cd /app
+    echo "[INFO - main] launcher file watcher..."
     watcher.sh
 fi
