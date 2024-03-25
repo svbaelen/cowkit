@@ -22,11 +22,10 @@ urlcolor: blue
 #nocite: |
 #  @brown2016
 
-
 # HTML
-#header-includes:
-#    <meta name="keywords" content="Foo,Bar" />
-#    <meta name="description" content="My description" />
+header-includes:
+    <script src="./scripts/live_reload.js"></script>
+    <meta name="description" content="My description"/>
 
 include-after: # contents specified by -A/--include-after-body (may have multiple values)
 indent: # if true, pandoc will use document class settings for indentation (the default LaTeX template otherwise removes indentation and adds space between paragraphs)

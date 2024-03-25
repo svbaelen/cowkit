@@ -14,3 +14,5 @@ top-level-division: default # part, chapter, section, or default
 toc: true
 number-sections: true
 verbosity: WARNING # ERROR, WARNING, or INFO
+
+# MORE: output-specific configs (and outline) found in layouts subdirectory

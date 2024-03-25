@@ -5,7 +5,7 @@
 # Contact:      senne@svbaelen.me
 # Date created: 2024-03-25
 #---------------------------------------------------------
-# Short:        .
+# Short:        File watcher for pandoc conversion
 #---------------------------------------------------------
 
 # Refs
@@ -21,6 +21,12 @@ LAST_EVENT=
 LAST_EVENT_TIME=0
 VIM_FILE="4913"
 TIME_UNTIL_RERUN=3
+
+# reload
+#DO_BROWSER_RELOAD=1             # choose 1 or 0
+#RELOAD_KEYS="CTRL+R"            # can also be F5 or something
+#DEFAULT_BROWSER="firefox"
+#BROWSER=${DEFAULT_BROWSER}      # set to 0 to disable browser reload
 
 #=========================================================
 # Options and positional arugments
@@ -64,13 +70,11 @@ done
 # Functions
 #=========================================================
 
-run_docker () {
-    docker run --rm --volume "$(pwd):/data" \
-      --user $(id -u):$(id -g)  pandoc/latex:latest \
+run () {
+    pandoc \
       --defaults=./config.yaml \
       --defaults=./layouts/html.yaml --template ./src/templates/default.html
 }
-
 
 #=========================================================
 # Main
@@ -79,11 +83,9 @@ run_docker () {
 set -o errexit
 set -o nounset
 
-mkdir -p ./build/
-
 # Main program
 IS_WAITING=0
-echo "[INFO - watcher] watching files for pandoc re-run (docker)"
+echo "[INFO - watcher] watching files for pandoc re-run"
 
 inotifywait -m -r -e ${EVENT} -q \
    --timefmt "%s" --format '%f##@@##%e##@@##%w##T%T' "${MONITORDIR}" | while read line
@@ -119,12 +121,15 @@ do
         echo "[INFO - watcher] updated ${FILE}"
 
         LAST_EVENT_TIME=$EVENT_TIME
-        echo "[INFO - watcher] running pandoc in docker"
-        run_docker
+        echo "[INFO - watcher] running pandoc (in docker)"
+        run
         echo "[INFO - watcher] pandoc finished"
 
         # reload
         # first arg, or default to firefox if not set
+        #if [ $DO_BROWSER_RELOAD = 1 ];then
+            #reload_browser
+        #fi
     else
         if [ $IS_WAITING = 0 ];then
             LAST_EVENT=$EVENT

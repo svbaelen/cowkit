@@ -1,33 +1,47 @@
-# Cow kit
+# cowkit
 
 Comfortable Open Writing Kit
 
-- standardized open writing formats: plain HTML5, Markdown, and/or LateX
-- zero platform dependencies (except for docker)
-- zero setup costs or dependency issues (docker container)
+That means:
+- standardized <b>open writing formats</b>: Markdown, plain HTML, and/or LateX
+- no writing and/or publishing platforms
+- zero dependencies (except for docker)
+- zero setup cost
 
-## Run (and watch)
+Built on top of [Pandoc](https://pandoc.org/) (file format converter)
 
-```sh
-./utils/watcher.sh
-```
-
-(Defaults to Firefox active tab(s) reload, change/turn-off with `-b` option.)
-
-### More info:
+## Run (using docker)
 
 ```sh
-./utils/watcher.sh -h
+docker run --rm --volume "$(pwd):/app" cowkit:latest
 ```
+
+See [development](#development) section for native runtime environments.
+
+## More info:
+
+```sh
+docker run --rm --volume "$(pwd):/app" cowkit:latest --help
+```
+
+## Config
+
+- `config.yaml`: general pandoc config
+- `layouts/<file>`: output-specific config + document outline.
+- `src/00_base.md`: main document info, such as metadata, titlepage, headers, bibliographies, etc.
+- `src/templates/`: templates related to various output formats
+
+To turn off <b>auto-reload</b> for HTML output, simply comment out the `header-includes` line related to `live_reload.js` script in the
+[00_base.md](./src/00_base.md) file.
 
 ## More comfort
 
-If re-running build process is too slow for you, open `./layouts/html.yaml` and comment out stuff. Start with the <b>Lua filters</b> (which will skip
+If re-running build process is too slow for you, open `./layouts/html.yaml` and comment out stuff. Start with the <b>Lua-based filters</b> (which will skip
 bibliography rebuilds). If still too slow, uncomment sections/chapters etc.
 
-With the `utils/watcher.sh` you can update this at runtime.
+With the `watcher` utility you can update this at runtime.
 
-## Dev
+## Development
 
 ```sh
 docker run --rm --volume "$(pwd):/data" \
@@ -35,6 +49,15 @@ docker run --rm --volume "$(pwd):/data" \
   --defaults=./config.yaml \
   --defaults=./layouts/html.yaml --template ./src/templates/default.html
 ```
+
+### Watcher
+
+```sh
+./utils/watcher.sh
+```
+
+(Defaults to Firefox active tab(s) reload, change/turn-off with `-b` option.)
+
 
 ## Refs
 
