@@ -6,9 +6,23 @@ Comfortable Open Writing Kit
 - zero platform dependencies (except for docker)
 - zero setup costs or dependency issues (docker container)
 
+## Run (and watch)
+
+```sh
+./utils/watcher.sh
+```
+
+(Defaults to Firefox active tab(s) reload, change/turn-off with `-b` option.)
+
+### More info:
+
+```sh
+./utils/watcher.sh -h
+```
+
 ## More comfort
 
-If re-running build process is too slow for you, open `./layouts/html.yaml` and comment out stuff. Start with the filters (which will skip
+If re-running build process is too slow for you, open `./layouts/html.yaml` and comment out stuff. Start with the <b>Lua filters</b> (which will skip
 bibliography rebuilds). If still too slow, uncomment sections/chapters etc.
 
 With the `utils/watcher.sh` you can update this at runtime.

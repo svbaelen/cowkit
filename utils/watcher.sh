@@ -38,14 +38,13 @@ usage()
     USAGE=$(
     cat << EOF | sed 's/\t\+\t/\t\t\t    /g'
 Usage: $0 [OPTIONS]
-
 Options:
     -b|--browser BROWSER    reload active browser tab. Default browser: ${DEFAULT_BROWSER}
                             (options: 0, firefox, chromium, chrome, safari)
-                            set to 0 to disable browser reloads
+                            Set to 0 to disable browser reloads
     -h|--help|--usage       show usage
 
-Dependencies: this script uses Docker. Make sure this is installed on your system.
+Note: requires Docker to be installed
 EOF
 )
 printf "${USAGE}\n"
@@ -63,7 +62,7 @@ while [ -n "$1" ]; do
                 chrome)  ;;
                 chromium) ;;
                 "")
-                    printf "[ERROR - watcher] browser cannot be empty\n"
+                    printf "[ERROR - watcher] browser cannot be empty\n\n"
                     usage;
                     exit 1
                     ;;
@@ -124,7 +123,7 @@ set -o nounset
 IS_WAITING=0
 echo "[INFO - watcher] watching files for pandoc re-run (docker)"
 if [ $DO_BROWSER_RELOAD = 1 ];then
-    echo "[INFO - watcher] activating browser reload for $BROWSER"
+    echo "[INFO - watcher] activating browser reload for $BROWSER (change with -b option)"
 fi
 
 inotifywait -m -r -e ${EVENT} -q \
