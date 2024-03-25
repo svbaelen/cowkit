@@ -13,15 +13,15 @@ Built on top of [Pandoc](https://pandoc.org/) (file format converter)
 ## Run (using docker)
 
 ```sh
-docker run --rm --volume "$(pwd):/app" cowkit:latest
+docker run --user $(id -u):$(id -g) --rm --volume "$(pwd):/app" cowkit:latest
 ```
 
-See [development](#development) section for native runtime environments.
+For native runtime environment, see [development](#development) section.
 
 ## More info:
 
 ```sh
-docker run --rm --volume "$(pwd):/app" cowkit:latest --help
+docker run cowkit:latest --help
 ```
 
 ## Config
