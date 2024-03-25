@@ -14,6 +14,7 @@
 
 INIT=0
 RUN_ONCE=0
+HTTP_SERVE=1
 HTTP_PORT=8000
 
 #=========================================================
@@ -30,6 +31,7 @@ Options:
     -h|--help|--usage       show usage
     -i|--init               initialize new project
     -r|--run-once           run pandoc once, no watcher
+    -ns|--no-serve          disable HTTP server
 
 Note: requires Docker to be installed
 EOF
@@ -42,6 +44,8 @@ while [ -n "$1" ]; do
         -i|--init) INIT=1
             ;;
         -r|--run-once) RUN_ONCE=1
+            ;;
+        -ns|--no-server) HTTP_SERVE=0
             ;;
         -h|--help|--usage)
             usage;
@@ -83,9 +87,16 @@ if [ $INIT = 1 ];then
     echo "OOSP: not yet implementend"
     #mv build/index.html /app/newfile.html
 elif [ $RUN_ONCE = 1 ];then
-    python3 -V
     echo "[INFO - main] running pandoc once..."
+    cd /app
     run_pandoc
+    # serve
+    if [ $HTTP_SERVE = 1 ];then
+        echo "[INFO - main] serving at http://localhost:$HTTP_PORT"
+        cd /app/build
+        python3 -m http.server $HTTP_PORT > /dev/null 2>&1 &
+    fi
+
 else
     # assumes -v "$(pwd):/app" in docker run
     # run once
@@ -93,9 +104,11 @@ else
     echo "[INFO - main] running pandoc (first time)..."
     run_pandoc
     # serve
-    echo "[INFO - main] serving at http://localhost:$HTTP_PORT"
-    cd /app/build
-    python3 -m http.server $HTTP_PORT > /dev/null 2>&1 &
+    if [ $HTTP_SERVE = 1 ];then
+        echo "[INFO - main] serving at http://localhost:$HTTP_PORT"
+        cd /app/build
+        python3 -m http.server $HTTP_PORT > /dev/null 2>&1 &
+    fi
     # watch
     cd /app
     echo "[INFO - main] launcher file watcher..."

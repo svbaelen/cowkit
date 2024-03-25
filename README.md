@@ -1,16 +1,17 @@
 # cowkit
 
-Comfortable Open Writing Kit
+## Comfortable Open Writing Kit
 
-That means:
-- standardized <b>open writing formats</b>: Markdown, plain HTML, and/or LateX
-- no writing and/or publishing platforms
-- zero dependencies (except for docker)
-- zero setup cost
+Comfortable, that is:
+- standardized <b>open formats</b>: Markdown, plain HTML, and/or LateX
+- zero setup, no framework dependencies (only requires docker)
+- fully customizable
+- <b>focus</b> on writing <b>productivity</b> (auto watch and re-render)
+- not mature, not well tested, and far from perfect
 
-Built on top of [Pandoc](https://pandoc.org/) (file format converter)
+Built on top of [Pandoc](https://pandoc.org/) (file format converter), and inspired by this [pandoc book template](https://github.com/wikiti/pandoc-book-template).
 
-## Run (using docker)
+## Get started (using docker)
 
 ```sh
 docker run -u $(id -u):$(id -g) --rm -v "$(pwd):/app" -p 8000:8000 cowkit:latest
@@ -29,7 +30,7 @@ docker run cowkit:latest --help
 - `config.yaml`: general pandoc config
 - `layouts/<file>`: output-specific config + document outline.
 - `src/00_base.md`: main document info, such as metadata, titlepage, headers, bibliographies, etc.
-- `src/templates/`: templates related to various output formats
+- `src/templates/<file>`: templates related to various output formats
 
 To turn off <b>auto-reload</b> for HTML output, simply comment out the `header-includes` line related to `live_reload.js` script in the
 [00_base.md](./src/00_base.md) file.
@@ -48,6 +49,14 @@ docker run --rm --volume "$(pwd):/data" \
   --user $(id -u):$(id -g)  pandoc/latex:latest \
   --defaults=./config.yaml \
   --defaults=./layouts/html.yaml --template ./src/templates/default.html
+```
+
+### Build docker image
+
+Example:
+
+```sh
+docker build -t cowkit:latest -t cowkit:v0.1.0 .
 ```
 
 ### Watcher

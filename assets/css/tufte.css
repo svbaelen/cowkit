@@ -500,11 +500,13 @@ input:checked + .slider:before {
 /*}*/
 
 .btn-toc-toggle {
+    /* not really good yet */
     display:block;
     width:1.2em;
     height:1.1em;
     float:right;
     padding-right:1em;
+    padding-left:1.5em;
 }
 
 .btn-svg-down,
@@ -514,12 +516,15 @@ input:checked + .slider:before {
     stroke-width:1px;
     margin-top:10px;
     overflow:visible;
+    align:right;
 }
 
 .btn-svg-down polyline,
 .btn-svg-up polyline{
     padding-top:5px;
     overflow:visible;
+    align:right;
+    float:right;
 }
 
 .btn-toc-toggle:hover .btn-svg-down,
