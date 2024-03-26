@@ -72,8 +72,9 @@ done
 
 run_pandoc () {
     pandoc \
-      --defaults=./config.yaml \
-      --defaults=./layouts/html.yaml --template ./src/templates/default.html
+      --defaults=./config/config.yaml \
+      --defaults=./config/html/html.yaml \
+      --template ./config/html/templates/default.html
 }
 
 #=========================================================

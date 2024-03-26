@@ -59,7 +59,7 @@ All human beings are born free and equal in dignity and rights. All human beings
 
 ## Figures and captions
 
-![Eleanor Roosevelt hält die englische Version der Allgemeinen Erklärung der Menschenrechte (FDR Presidential Library & Museum, CC BY 2.0 <https://creativecommons.org/licenses/by/2.0>, via Wikimedia Commons)](images/Eleanor_Roosevelt_and_Human_Rights_Declaration.jpeg){#fig:eleanor}
+![Eleanor Roosevelt hält die englische Version der Allgemeinen Erklärung der Menschenrechte (FDR Presidential Library & Museum, CC BY 2.0 <https://creativecommons.org/licenses/by/2.0>, via Wikimedia Commons)](img/Eleanor_Roosevelt_and_Human_Rights_Declaration.jpeg){#fig:eleanor}
 
 All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights.
 
@@ -68,13 +68,51 @@ What about this figure.
 
 ## Code
 
-All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights.
+Let's start with some `inline code`..
+
+A bash script
 
 ```bash
 ping wikipedia.org
 ```
 
-All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights.
+Some haskell code with a caption. It is important to use the `lst` prefix here.
+
+<div id="lst:code" class="listing">
+My haskell Listing caption
+```haskell
+main :: IO ()
+main = putStrLn "Hello World!"
+```
+</div>
+
+More info [here](http://lierdakil.github.io/pandoc-crossref/#code-block-labels) (other syntax also possible).
+
+
+Here is some python code:
+
+```{#code:test .python .numberLines}
+def fib(n):
+    a, b = 0, 1
+    while a < n:
+        print(a, end=' ')
+        a, b = b, a+b
+    print()
+fib(1000)
+```
+
+And now for some C code, using different caption syntax:
+
+```{#lst:test2 .c .numberLines caption="Also with a caption"}
+#include<stdio.h>
+int main()
+{
+    int a, b = 10;
+    a = -b--;
+    printf("a = %d, b = %d", a, b);
+    return 0;
+}
+```
 
 ## URLs and email addresses
 
@@ -111,22 +149,12 @@ All human beings are born free and equal in dignity and rights. All human beings
 </tr>
 </table>
 
-### A Latex table
-
-```{=latex}
-begin{tabular}{|l|l|}\hline
-Age & Frequency \\ \hline
-18--25  & 15 \\
-26--35  & 33 \\
-36--45  & 22 \\ \hline
-\end{tabular}
-```
 
 ## Footnotes
 
 All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights. All human beings are
 born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights.^[All human beings are born free and equal
-in dignity and rights. ![Some image](images/Eleanor_Roosevelt_and_Human_Rights_Declaration.jpeg)]. And you should now it's like this yeah. And not something else.
+in dignity and rights. ![Some image](img/Eleanor_Roosevelt_and_Human_Rights_Declaration.jpeg)]. And you should now it's like this yeah. And not something else.
 
 ## Quotes
 
@@ -158,3 +186,5 @@ Thanks to [pandoc-crossref](https://lierdakil.github.io/pandoc-crossref/) you ca
 ([@fig:eleanor]) and tables ([@tbl:example_tbl]). Sections ([@sec:conclusion]) are not supported in LaTeX.
 
 Or, you can also do [@eq:pythagoras](#eq:pythagoras) to actually link it.
+
+It is also possible to refer to a codeblock, e.g., [@Lst:code](#lst:code).

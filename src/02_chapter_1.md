@@ -3,6 +3,20 @@
 This is chapter one.
 And then some.
 
+And some other C code:
+
+```{#lst:codetest2 .c .numberLines caption="C code caption"}
+#include<stdio.h>
+int main()
+{
+    int a, b = 10;
+    a = -b--;
+    printf("a = %d, b = %d", a, b);
+    return 0;
+}
+```
+
+
 ## A Universal Declaration of Human Rights
 
 ### Preamble

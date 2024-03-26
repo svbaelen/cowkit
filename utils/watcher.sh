@@ -67,8 +67,9 @@ done
 run_docker () {
     docker run --rm --volume "$(pwd):/data" \
       --user $(id -u):$(id -g)  pandoc/latex:latest \
-      --defaults=./config.yaml \
-      --defaults=./layouts/html.yaml --template ./src/templates/default.html
+      --defaults=./config/config.yaml \
+      --defaults=./config/html/html.yaml \
+      --template ./config/html/templates/default.html
 }
 
 

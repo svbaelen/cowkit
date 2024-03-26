@@ -7,12 +7,12 @@ from: markdown
 highlight-style: pygments
 reference-location: block # block, section, or document
 resource-path:
-  - .
-  - ${.}/src
+  - ${.}/../
+  - ${.}/../src
+  - ${.}/
 standalone: true
 top-level-division: default # part, chapter, section, or default
 toc: true
 number-sections: true
 verbosity: WARNING # ERROR, WARNING, or INFO
-
 # MORE: output-specific configs (and outline) found in layouts subdirectory

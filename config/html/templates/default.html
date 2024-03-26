@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="$lang$" xml:lang="$lang$"$if(dir)$ dir="$dir$"$endif$>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="generator" content="pandoc" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <link rel="manifest" href="./html/site.webmanifest">
+    $for(author-meta)$
+    <meta name="author" content="$author-meta$" />
+    $endfor$
+    $if(date-meta)$
+    <meta name="dcterms.date" content="$date-meta$" />
+    $endif$
+    $if(keywords)$
+    <meta name="keywords" content="$for(keywords)$$keywords$$sep$, $endfor$" />
+    $endif$
+    <title>$if(title-prefix)$$title-prefix$ – $endif$$pagetitle$</title>
+    $if(math)$
+    $math$
+    $endif$
+    <!--[if lt IE 9]>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+    <![endif]-->
+
+    <!-- headers added by user (in metadata) -->
+    $for(header-includes)$
+    $header-includes$
+    $endfor$
+    <!-- style -->
+    <!-- relative to template path (in ./root/templates folder) -->
+    <!-- The default pandoc style under the <style> tag can be-->
+    <!--$styles.html()$-->
+    <style>
+      $../css/tufte.css()$
+    </style>
+    $for(css)$
+    <link rel="stylesheet" href="$css$" />
+    $endfor$
+    <!-- default scripts -->
+    <script src="./scripts/general.js" defer/></script>
+  </head>
+  <body>
+    <main id="main-content" class="main-content">
+      <!------------------>
+      <!-- sidebar left -->
+      <!------------------>
+      <nav id="sidebar-left" class="sidebar-left" role="doc-toc">
+        <div id="toc-content">
+          <div id="lbar-buttons">
+            <div id="btn-sticky">
+              <span><b>Sticky</b></span>
+              <label class="switch" id="toggle-sidebar">
+                <input id="input-toggle-sidebar" type="checkbox" checked>
+                <span class="slider round"></span>
+              </label>
+            </div>
+            <div id="scroll-buttons">
+              <div id="btn-scroll-top" title="scroll to top">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 358.012 358.012" xml:space="preserve">
+                  <g>
+                  <path d="M179.006,358.012c98.865,0,179.006-80.141,179.006-179.006S277.871,0,179.006,0S0,80.141,0,179.006
+                            S80.141,358.012,179.006,358.012z
+                            M84.795,234.54l-8.437-8.437L179,123.455l102.66,102.66l-8.437,8.437L179,140.335L84.795,234.54z "/>
+                  </g>
+                </svg>
+              </div>
+              <div id="btn-scroll-bottom" title="scroll to bottom">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 358.012 358.012" xml:space="preserve">
+                  <g>
+                  <path d="M179.006,358.012c98.865,0,179.006-80.141,179.006-179.006S277.871,0,179.006,0S0,80.141,0,179.006
+                            S80.141,358.012,179.006,358.012z
+                            M84.795,234.54l-8.437-8.437L179,123.455l102.66,102.66l-8.437,8.437L179,140.335L84.795,234.54z "/>
+                  </g>
+                </svg>
+              </div>
+            </div>
+          </div>
+          $if(toc)$
+          $if(toc-title)$
+          <h2 id="toc-title">$toc-title$</h2>
+          $endif$
+          $table-of-contents$
+          $endif$
+        </div>
+      </nav>
+
+      <!------------>
+      <!--  main  -->
+      <!------------>
+      <div id="text-body">
+        $for(include-before)$
+        $include-before$
+        $endfor$
+        $if(title)$
+        <header id="title-block-header">
+          <h1 class="title">$title$</h1>
+          $if(subtitle)$
+          <p class="subtitle">$subtitle$</p>
+          $endif$
+          $for(author)$
+          <p class="author">$author$</p>
+          $endfor$
+          $if(date)$
+          <p class="date">$date$</p>
+          $endif$
+        </header>
+        $endif$
+
+        $body$
+        $for(include-after)$
+        $include-after$
+        $endfor$
+      </div>
+
+      <!------------------->
+      <!-- sidebar right -->
+      <!------------------->
+      <div id="sidebar-right" class="siderbar-right"></div>
+    </main>
+
+  </body>
+</html>

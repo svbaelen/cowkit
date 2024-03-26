@@ -1,4 +1,6 @@
-# data-dir = src
+# ================================
+# HTML specific config and layout
+# ================================
 filters:
   - pandoc-crossref
   #- src/filters/multiple-bibliographies.lua # comment out for quick build (no refs)

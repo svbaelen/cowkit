@@ -1,5 +1,7 @@
 ---
+#===========================================
 # General content information
+#===========================================
 author-meta: 'Eleanor Roosevelt'
 bibliography_main: ./src/references.bib
 bibliography_sources: ./src/sources.bib
@@ -10,28 +12,32 @@ csl: https://www.zotero.org/styles/ieee
 date-meta: 2022
 endnote: false
 keywords: # list of keywords to be included in HTML, PDF, ODT, pptx, docx and AsciiDoc metadata; repeat as for author, above
-lang: en-US
+lang: en_GB
 link-citations: true
 link-bibliography: true
-linkcolor: black
 suppress-bibliography: false
 title: 'My Title'
 subtitle: 'Subtitle'
-urlcolor: blue
+# crossref <http://lierdakil.github.io/pandoc-crossref/#settings-file>
+figureTitle: "Figura"
+
 # nocite - but best not combined with numeric IEEE-like citation styles, as it messes with the order
 #nocite: |
 #  @brown2016
 
 # HTML
-header-includes:
+header-includes: |
+    <script src="./scripts/sidebar.js"></script>
     <script src="./scripts/live_reload.js"></script>
+    <script src="./scripts/captions.js"></script>
 
+# Latex
 include-after: # contents specified by -A/--include-after-body (may have multiple values)
 indent: # if true, pandoc will use document class settings for indentation (the default LaTeX template otherwise removes indentation and adds space between paragraphs)
-linestretch: 1.5 # adjusts line spacing using the setspace package, e.g. 1.25, 1.5
+linestretch: 1.25 # adjusts line spacing using the setspace package, e.g. 1.25, 1.5
 lof: false
 lofTitle: Figures
-lot: false
+lot: true
 pagestyle: # control \pagestyle{}: the default article class supports plain (default), empty (no running heads or page numbers), and headings (section titles in running heads)
 papersize: # paper size, e.g. letter, a4
 secnumdepth: # numbering depth for sections (with --number-sections option or numbersections variable)
