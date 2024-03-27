@@ -292,6 +292,18 @@ pre code {
     padding:0;
 }
 
+pre .code-lang {
+    /*display:none;*/
+    float: right;
+    margin-top:-0.25em;
+    margin-right:-0.4em;
+    font-size:0.65em;
+    color: rgba(0,0,0,0.5);
+}
+pre:hover .code-lang {
+    display:inline-block;
+}
+
 b, strong {
     font-weight: bold;
 }

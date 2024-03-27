@@ -35,6 +35,7 @@ header-includes: |
     <script src="./scripts/sidebar.js"></script>
     <script src="./scripts/live_reload.js"></script>
     <script src="./scripts/captions.js"></script>
+    <script src="./scripts/code.js"></script>
 
 # Latex
 # ======

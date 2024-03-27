@@ -48,6 +48,13 @@ function sidebarScrollUp() {
   /*});*/
 }
 
+/*==================================================================*/
+/* MAIN                                                             */
+/*------------------------------------------------------------------*/
+/*                                                                  */
+/* Comment out what is not needed                                   */
+/*==================================================================*/
+
 window.addEventListener('load', function () {
   sidebarDropdown();
   sidebarScrollUp();

@@ -22,6 +22,13 @@ function tableCaptionBelow() {
   });
 }
 
+/*==================================================================*/
+/* MAIN                                                             */
+/*------------------------------------------------------------------*/
+/*                                                                  */
+/* Comment out what is not needed                                   */
+/*==================================================================*/
+
 window.addEventListener('load', function () {
     listingCaptionBelow();
     tableCaptionBelow();
