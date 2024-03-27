@@ -21,6 +21,8 @@ suppress-bibliography: false
 title: 'My Title'
 subtitle: 'Subtitle'
 toc-title: 'Contents'
+# already specified in layout.yaml
+# css: ./config/html/css/tufte.css 
 
 # ref: crossref <http://lierdakil.github.io/pandoc-crossref/#settings-file>
 

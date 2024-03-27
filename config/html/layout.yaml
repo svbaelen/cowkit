@@ -13,6 +13,9 @@ input-files:
   - ./src/04_figures.md
   - ./src/05_acknowledgment.md
   - ./src/06_references.md
+css:
+  - ./config/html/css/tufte.css
+  - ./config/html/css/print.css
 log-file: build/html.log
 output-file: build/index.html
 to: html

@@ -7,26 +7,26 @@
 - Convenient, though [far from perfect](#caveats-and-known-limitations)
 - Standardized <b>open formats</b>: Markdown, HTML5, and/or LateX
 - Zero setup, no frameworks (requires only [Docker](https://docs.docker.com/engine/install/) or [Pandoc](https://pandoc.org/))
-- Easy on the eyes & fully customizable (styling, metadata, configuration, ...)
+- Easy on the eyes & fully customizable (styling, metadata, layout, ...)
 - <b>Focus on writing</b> instead of compiling (file-watcher + auto build)
 
 Built on top of [Pandoc](https://pandoc.org/) (file format converter), and partially inspired by this [pandoc book template](https://github.com/wikiti/pandoc-book-template).
 
 ## Get started (using docker)
 
+CLI utility
+
 ```sh
 docker run -u $(id -u):$(id -g) --rm -v "$(pwd):/app" -p 8000:8000 cowkit:latest
 ```
 
-For native runtime environment, see [development](#development) section.
-
-## CLI utility
-
-Check available options:
+Check <b>available options</b>:
 
 ```sh
 docker run cowkit:latest --help
 ```
+
+For native non-docker runtime, see [development](#development) section.
 
 ## Configuration
 
@@ -98,6 +98,8 @@ docker run --rm --volume "$(pwd):/data" \
 ```sh
 pandoc  --defaults=./config/config.yaml   --defaults=./config/pdf/layout.yaml
 ```
+
+With docker:
 
 ```sh
 docker run --rm --volume "$(pwd):/data" \
