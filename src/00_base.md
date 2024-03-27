@@ -29,13 +29,14 @@ header-includes: |
     <script src="./scripts/sidebar.js"></script>
     <script src="./scripts/live_reload.js"></script>
     <script src="./scripts/captions.js"></script>
+    <link rel="icon" type="image/x-icon" href="cowicon.svg" />
 
 # Latex
 include-after: # contents specified by -A/--include-after-body (may have multiple values)
 indent: # if true, pandoc will use document class settings for indentation (the default LaTeX template otherwise removes indentation and adds space between paragraphs)
 linestretch: 1 # adjusts line spacing using the setspace package, e.g. 1.25, 1.5
 lof: false
-#lofTitle: Figures
+lofTitle: Figures
 #lot: true
 #pagestyle: # control \pagestyle{}: the default article class supports plain (default), empty (no running heads or page numbers), and headings (section titles in running heads)
 #papersize: # paper size, e.g. letter, a4

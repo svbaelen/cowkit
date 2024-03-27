@@ -15,6 +15,7 @@ highlight-style: pygments
 reference-location: block # block, section, or document
 resource-path:
   - ${.}/../
+  - ${.}/../assets/img
   - ${.}/../src
   - ${.}/
 standalone: true
