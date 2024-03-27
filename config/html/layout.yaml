@@ -3,8 +3,8 @@
 # ================================
 filters:
   - pandoc-crossref
-  #- src/filters/multiple-bibliographies.lua # comment out for quick build (no refs)
-  #- src/filters/pandoc-quotes.lua
+  - src/filters/multiple-bibliographies.lua # comment out for quick build (no refs)
+  - src/filters/pandoc-quotes.lua
 input-files:
   - ./src/00_base.md
   - ./src/01_intro.md

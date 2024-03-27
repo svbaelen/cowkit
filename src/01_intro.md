@@ -67,7 +67,7 @@ What about this figure.
 
 ## Code
 
-Let's start with some `inline code`..
+Let's start with some `inline code` and then move on to code blocks.
 
 A bash script
 
@@ -153,7 +153,7 @@ All human beings are born free and equal in dignity and rights. All human beings
 
 All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights. All human beings are
 born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights.^[All human beings are born free and equal
-in dignity and rights. ![Some image](img/Eleanor_Roosevelt_and_Human_Rights_Declaration.jpeg)]. And you should now it's like this yeah. And not something else.
+in dignity and rights. ![Some image](img/Eleanor_Roosevelt_and_Human_Rights_Declaration.jpeg)] And you should now it's like this yeah. And not something else.
 
 ## Quotes
 
@@ -170,8 +170,7 @@ All human beings are born free and equal in dignity and rights. All human beings
 > All human beings are born free and equal in dignity and rights. They are endowed with reason and conscience and should act towards one another in a
 > spirit of brotherhood [@unitednations1948].
 
-All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights. All human beings are
-born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights [@unitednations1948].
+All human beings are born free and equal in dignity and rights, and we can combine multiple citations [@unitednations1948; @brown2016].
 
 And let's try another one [@brown2016].
 
@@ -182,7 +181,7 @@ $$x^2 + y^2 = z^2$$ {#eq:pythagoras}
 ## Cross-references
 
 Thanks to [pandoc-crossref](https://lierdakil.github.io/pandoc-crossref/) you can crossreference equations [@eq:pythagoras], figures
-([@fig:eleanor]) and tables ([@tbl:example_tbl]). Sections ([@sec:conclusion]) are not supported in LaTeX.
+([@fig:eleanor]) and tables ([@tbl:example_tbl]). We can also refer to sections in different files, such as ([@sec:conclusion]).
 
 Or, you can also do [@eq:pythagoras](#eq:pythagoras) to actually link it.
 

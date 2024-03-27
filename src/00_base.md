@@ -33,7 +33,7 @@ toc-title: 'Contents'
 # HTML
 # ======
 header-includes: |
-    <link rel="icon" type="image/x-icon" href="cowicon.svg"/>
+    <link rel="icon" type="image/x-icon" href="src/img/cowicon.svg"/>
     <script src="./scripts/sidebar.js"></script>
     <script src="./scripts/live_reload.js"></script>
     <script src="./scripts/captions.js"></script>

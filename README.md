@@ -28,6 +28,12 @@ docker run cowkit:latest --help
 
 For native non-docker runtime, see [development](#development) section.
 
+### Initialize new project
+
+```sh
+docker run -u $(id -u):$(id -g) --rm -v "$(pwd):/app" -p 8000:8000 cowkit:latest --init
+```
+
 ## Configuration
 
 - `config/config.yaml`: main pandoc config
