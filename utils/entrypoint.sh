@@ -50,8 +50,6 @@ Options:
     -t|--template FILE      template file (default: '${TEMPLATE}')
                             note: for the pdf format, use a .tex template
     -l|--layout FILE        layout + config (default: '${CONFIG_FORMAT}')
-
-Note: requires Docker to be installed
 EOF
 )
 printf "${USAGE}\n"

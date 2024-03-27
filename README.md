@@ -4,11 +4,11 @@
 
 ## Comfortable features
 
-- convenient yet [far from perfect](#caveats-and-known-limitations)
-- standardized <b>open formats</b>: Markdown, plain HTML, and/or LateX
-- zero setup, no framework dependencies (only requires docker)
-- fully customizable
-- <b>focus on writing</b> instead of compiling (filewatcher + live build + reload)
+- Convenient, though [far from perfect](#caveats-and-known-limitations)
+- Standardized <b>open formats</b>: Markdown, HTML5, and/or LateX
+- Zero setup, no frameworks (requires only [Docker](https://docs.docker.com/engine/install/) or [Pandoc](https://pandoc.org/))
+- Easy on the eyes & fully customizable (styling, metadata, configuration, ...)
+- <b>Focus on writing</b> instead of compiling (file-watcher + auto build)
 
 Built on top of [Pandoc](https://pandoc.org/) (file format converter), and partially inspired by this [pandoc book template](https://github.com/wikiti/pandoc-book-template).
 
@@ -20,23 +20,27 @@ docker run -u $(id -u):$(id -g) --rm -v "$(pwd):/app" -p 8000:8000 cowkit:latest
 
 For native runtime environment, see [development](#development) section.
 
-## More info:
+## CLI utility
+
+Check available options:
 
 ```sh
 docker run cowkit:latest --help
 ```
 
-## Config
+## Configuration
 
 - `config/config.yaml`: main pandoc config
-- `config/<fmt>/layout.yaml`: output-specific config + layout (can overwrite parts of main `config.yaml`).
+- `config/<fmt>/layout.yaml`: output-specific layout + config (can overwrite values set in `config.yaml`).
 - `config/<fmt>/templates/<file>`: templates related to various output formats
 - `src/<file>.md`: in the metadata section of each markdown file (between `---`) one can add all kinds of metadata and config options supported by pandoc
    (and pandoc extensions), e.g., [see here](https://github.com/svbaelen/cowkit/blob/main/src/00_base.md?plain=1#L3).
 
+
+Set (different) config and/or template files via `cowkit` <b>CLI arguments</b>.
+
 <b>Additional functionality</b> such as auto-reload <b>can be disabled</b> or <b>extended</b> via the `header-includes` section in the markdown metadata, e.g., see [this example](https://github.com/svbaelen/cowkit/blob/main/src/00_base.md?plain=1#L33).
 
-One can also specify specific config or template files via `cowkit` CLI arguments.
 
 ## More comfort
 
@@ -47,38 +51,21 @@ With the `watcher` utility you can update this at runtime.
 
 ## Caveats and known limitations
 
+### General:
+
+- Tested only on
+  - Ubuntu 22.04
+
+### CLI utility
+
+- A fatal Pandoc error can crash the program (and file-watcher/builder), requiring the user to re-launch
+
 ### HTML output
 
 - browser auto-reload after rebuild is based on [LiveJS](https://livejs.com/), however, sometimes a manual refresh is necessary on the browser tab
   to re-initialize this script. This seems to occur on layout changes (not always). Need to inspect!
 
 ## Development
-
-### Build HTML
-
-```sh
-pandoc --defaults=./config/config.yaml --defaults=./config/html/html.yaml \
-  --template ./config/html/templates/default.html
-```
-
-```sh
-docker run --rm --volume "$(pwd):/data" \
-  --user $(id -u):$(id -g)  pandoc/latex:latest \
-  --defaults=./config/config.yaml \
-  --defaults=./config/html/html.yaml --template ./config/html/templates/default.html
-```
-
-### Build PDF
-
-```sh
-pandoc   --defaults=./config/config.yaml   --defaults=./config/pdf/layout.yaml
-```
-
-```sh
-docker run --rm --volume "$(pwd):/data" \
-  --user $(id -u):$(id -g)  pandoc/latex:latest \
-  --defaults=./config/config.yaml   --defaults=./config/pdf/pdf.yaml
-```
 
 ### Build docker image
 
@@ -88,15 +75,32 @@ Example:
 docker build -t cowkit:latest -t cowkit:v0.1.0 .
 ```
 
-### Watcher
+### Build HTML
+
+Native Pandoc:
 
 ```sh
-./utils/watcher.sh
+pandoc --defaults=./config/config.yaml --defaults=./config/html/layout.yaml \
+  --template ./config/html/templates/default.html
 ```
 
-## Refs
+With docker:
 
-- https://pandoc.org/MANUAL.html
-- https://github.com/maehr/academic-pandoc-template?tab=readme-ov-file
-- https://github.com/wikiti/pandoc-book-template
+```sh
+docker run --rm --volume "$(pwd):/data" \
+  --user $(id -u):$(id -g)  pandoc/latex:latest \
+  --defaults=./config/config.yaml \
+  --defaults=./config/html/layout.yaml --template ./config/html/templates/default.html
+```
 
+### Build PDF
+
+```sh
+pandoc  --defaults=./config/config.yaml   --defaults=./config/pdf/layout.yaml
+```
+
+```sh
+docker run --rm --volume "$(pwd):/data" \
+  --user $(id -u):$(id -g)  pandoc/latex:latest \
+  --defaults=./config/config.yaml   --defaults=./config/pdf/layout.yaml
+```
