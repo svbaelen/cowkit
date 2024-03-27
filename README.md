@@ -2,9 +2,8 @@
 
 ![cowkit](./assets/img/cowkit_logo.svg)
 
-## A Comfortable Open Writing Kit
+## Comfortable features
 
-Comfortable, that is:
 - convenient yet [far from perfect](#caveats-and-known-limitations)
 - standardized <b>open formats</b>: Markdown, plain HTML, and/or LateX
 - zero setup, no framework dependencies (only requires docker)
@@ -30,12 +29,14 @@ docker run cowkit:latest --help
 ## Config
 
 - `config/config.yaml`: main pandoc config
-- `config/<outputtype.yaml>`: output-specific config + document outline.
-- `src/00_base.md`: main document info, such as metadata, titlepage, headers, bibliographies, etc.
-- `src/templates/<file>`: templates related to various output formats
+- `config/<fmt>/layout.yaml`: output-specific config + layout (can overwrite parts of main `config.yaml`).
+- `config/<fmt>/templates/<file>`: templates related to various output formats
+- `src/<file>.md`: in the metadata section of each markdown file (between `---`) one can add all kinds of metadata and config options supported by pandoc
+   (and pandoc extensions), e.g., [see here](https://github.com/svbaelen/cowkit/blob/main/src/00_base.md?plain=1#L3).
 
-To turn off <b>auto-reload</b> for HTML output, simply comment out the `header-includes` line related to `live_reload.js` script in the
-[00_base.md](./src/00_base.md) file.
+<b>Additional functionality</b> such as auto-reload <b>can be disabled</b> or <b>extended</b> via the `header-includes` section in the markdown metadata, e.g., see [this example](https://github.com/svbaelen/cowkit/blob/main/src/00_base.md?plain=1#L33).
+
+One can also specify specific config or template files via `cowkit` CLI arguments.
 
 ## More comfort
 
