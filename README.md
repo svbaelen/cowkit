@@ -1,15 +1,17 @@
 # cowkit
 
+![cowkit](./assets/img/cowkit_logo.svg)
+
 ## A Comfortable Open Writing Kit
 
 Comfortable, that is:
+- convenient yet [far from perfect](#caveats-and-known-limitations)
 - standardized <b>open formats</b>: Markdown, plain HTML, and/or LateX
 - zero setup, no framework dependencies (only requires docker)
 - fully customizable
-- <b>focus on productivity</b> (write with auto watch + auto tab reload)
-- comfortable enough, though [far from perfect](#caveats-and-known-limitations)
+- <b>focus on writing</b> instead of compiling (filewatcher + live build + reload)
 
-Built on top of [Pandoc](https://pandoc.org/) (file format converter), and inspired by this [pandoc book template](https://github.com/wikiti/pandoc-book-template).
+Built on top of [Pandoc](https://pandoc.org/) (file format converter), and partially inspired by this [pandoc book template](https://github.com/wikiti/pandoc-book-template).
 
 ## Get started (using docker)
 
