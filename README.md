@@ -14,13 +14,13 @@ Built on top of [Pandoc](https://pandoc.org/) (file format converter), and parti
 
 ## Get started (using docker)
 
-CLI utility
+For default HTML output + file watcher:
 
 ```sh
 docker run -u $(id -u):$(id -g) --rm -v "$(pwd):/app" -p 8000:8000 cowkit:latest
 ```
 
-Check <b>available options</b>:
+Check <b>available options</b> for `cowkit` CLI utility:
 
 ```sh
 docker run cowkit:latest --help
