@@ -7,7 +7,6 @@
 # All options can be overwritten in the file-specific ./config/<fmt>/layout.yaml
 
 cite-method: citeproc # citeproc, natbib, or biblatex
-#citeproc: true
 embed-resources: true
 file-scope: false # Parse each file individually before combining for multifile documents. This will allow footnotes in different files with the same identifiers to work as expected. If this option is set, footnotes and links will not work across files.
 from: markdown

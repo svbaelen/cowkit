@@ -1,6 +1,8 @@
 ---
 #===========================================
 # General content information
+#
+# Note: these can also be configured in other markdown files
 #===========================================
 author-meta: 'Eleanor Roosevelt'
 bibliography_main: ./src/references.bib
@@ -18,33 +20,43 @@ link-bibliography: true
 suppress-bibliography: false
 title: 'My Title'
 subtitle: 'Subtitle'
-# crossref <http://lierdakil.github.io/pandoc-crossref/#settings-file>
+toc-title: 'Contents'
+
+# ref: crossref <http://lierdakil.github.io/pandoc-crossref/#settings-file>
 
 # nocite - but best not combined with numeric IEEE-like citation styles, as it messes with the order
 #nocite: |
 #  @brown2016
 
 # HTML
+# ======
 header-includes: |
+    <link rel="icon" type="image/x-icon" href="cowicon.svg"/>
     <script src="./scripts/sidebar.js"></script>
     <script src="./scripts/live_reload.js"></script>
     <script src="./scripts/captions.js"></script>
-    <link rel="icon" type="image/x-icon" href="cowicon.svg" />
 
 # Latex
+# ======
+# ListOfX (in html, make a dedicated .md, e.g., with \listoffigures inside)
+lof: false
+lot: false
+#lofTitle: |
+#  # List of Figures
+# add {-} to skip section number
+#lofTitle: |
+#  # List of Figures {-}
+
 include-after: # contents specified by -A/--include-after-body (may have multiple values)
 indent: # if true, pandoc will use document class settings for indentation (the default LaTeX template otherwise removes indentation and adds space between paragraphs)
 linestretch: 1 # adjusts line spacing using the setspace package, e.g. 1.25, 1.5
-lof: false
-lofTitle: Figures
-#lot: true
-#pagestyle: # control \pagestyle{}: the default article class supports plain (default), empty (no running heads or page numbers), and headings (section titles in running heads)
-#papersize: # paper size, e.g. letter, a4
-#secnumdepth: # numbering depth for sections (with --number-sections option or numbersections variable)
-#toc-depth: 2
-toc-title: 'Contents'
+
+pagestyle: # control \pagestyle{}: the default article class supports plain (default), empty (no running heads or page numbers), and headings (section titles in running heads)
+papersize: # paper size, e.g. letter, a4
+secnumdepth: # numbering depth for sections (with --number-sections option or numbersections variable)
 
 # Fonts
+# ======
 fontenc: # allows font encoding to be specified through fontenc package (with pdflatex); default is T1 (see LaTeX font encodings guide)
 fontfamily: # font package for use with pdflatex: TeX Live includes many options, documented in the LaTeX Font Catalogue. The default is Latin Modern.
 fontfamilyoptions: # options for package used as fontfamily; repeat for multiple options.
