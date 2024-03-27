@@ -17,21 +17,22 @@ Built on top of [Pandoc](https://pandoc.org/) (file format converter), and parti
 For default HTML output + file watcher:
 
 ```sh
-docker run -u $(id -u):$(id -g) --rm -v "$(pwd):/app" -p 8000:8000 cowkit:latest
+docker run -u $(id -u):$(id -g) --rm -v "$(pwd):/app" -p 8000:8000 cowkit
 ```
 
 Check <b>available options</b> for `cowkit` CLI utility:
 
 ```sh
-docker run cowkit:latest --help
+docker run cowkit --help
 ```
+Run specific `cowkit` version with image tag, e.g., `cowkit:latest`.
 
 For native non-docker runtime, see [development](#development) section.
 
 ### Initialize new project
 
 ```sh
-docker run -u $(id -u):$(id -g) --rm -v "$(pwd):/app" -p 8000:8000 cowkit:latest --init
+docker run -u $(id -u):$(id -g) --rm -v "$(pwd):/app" -p 8000:8000 cowkit --init
 ```
 
 ## Configuration
