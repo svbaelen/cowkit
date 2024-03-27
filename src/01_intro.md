@@ -1,7 +1,6 @@
 # Introduction {#sec:introduction label="Introduction"}
 
-All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights. All human beings are
-born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights.
+This could be your intro. Let's go.
 
 ## Heading 2
 

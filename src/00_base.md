@@ -19,7 +19,6 @@ suppress-bibliography: false
 title: 'My Title'
 subtitle: 'Subtitle'
 # crossref <http://lierdakil.github.io/pandoc-crossref/#settings-file>
-figureTitle: "Figura"
 
 # nocite - but best not combined with numeric IEEE-like citation styles, as it messes with the order
 #nocite: |
@@ -34,14 +33,14 @@ header-includes: |
 # Latex
 include-after: # contents specified by -A/--include-after-body (may have multiple values)
 indent: # if true, pandoc will use document class settings for indentation (the default LaTeX template otherwise removes indentation and adds space between paragraphs)
-linestretch: 1.25 # adjusts line spacing using the setspace package, e.g. 1.25, 1.5
+linestretch: 1 # adjusts line spacing using the setspace package, e.g. 1.25, 1.5
 lof: false
-lofTitle: Figures
-lot: true
-pagestyle: # control \pagestyle{}: the default article class supports plain (default), empty (no running heads or page numbers), and headings (section titles in running heads)
-papersize: # paper size, e.g. letter, a4
-secnumdepth: # numbering depth for sections (with --number-sections option or numbersections variable)
-toc-depth: 2
+#lofTitle: Figures
+#lot: true
+#pagestyle: # control \pagestyle{}: the default article class supports plain (default), empty (no running heads or page numbers), and headings (section titles in running heads)
+#papersize: # paper size, e.g. letter, a4
+#secnumdepth: # numbering depth for sections (with --number-sections option or numbersections variable)
+#toc-depth: 2
 toc-title: 'Contents'
 
 # Fonts

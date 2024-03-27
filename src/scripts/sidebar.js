@@ -41,11 +41,11 @@ function sidebarScrollUp() {
     window.scrollTo(0, 0);
   });
   // down
-  const btnScrollBottom = document.querySelector("#lbar-buttons #btn-scroll-bottom");
-  btnScrollBottom.style.display = "flex";
-  btnScrollBottom.addEventListener("click", (ev) => {
-    window.scrollTo(0, document.body.scrollHeight);
-  });
+  /*const btnScrollBottom = document.querySelector("#lbar-buttons #btn-scroll-bottom");*/
+  /*btnScrollBottom.style.display = "flex";*/
+  /*btnScrollBottom.addEventListener("click", (ev) => {*/
+    /*window.scrollTo(0, document.body.scrollHeight);*/
+  /*});*/
 }
 
 window.addEventListener('load', function () {

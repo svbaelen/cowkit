@@ -32,49 +32,19 @@ TIME_UNTIL_RERUN=3
 # Options and positional arugments
 #=========================================================
 
-usage()
-{
-    # In the here-doc (inside EOF - EOF):
-    USAGE=$(
-    cat << EOF | sed 's/\t\+\t/\t\t\t    /g'
-Usage: $0 [OPTIONS]
-Options:
-    -h|--help|--usage       show usage
-
-Note: requires Docker to be installed
-EOF
-)
-printf "${USAGE}\n"
-}
-
-while [ -n "$1" ]; do
-    case "$1" in
-        -h|--help|--usage)
-            usage;
-            exit 1
-            ;;
-        -*|--*)
-            printf "[ERROR] option not recognized. Exiting...\n"
-            usage;
-            exit 1
-            ;;
-        *)  # Default case:
-            # this is requred to obtain a positional arugment at $1 later
-            # (if desired)
-            break
-    esac
-    shift
-done
+CONFIG_MAIN=$1
+CONFIG_FORMAT=$2
+TEMPLATE=$3
 
 #=========================================================
 # Functions
 #=========================================================
 
-run () {
+run_pandoc () {
     pandoc \
-      --defaults=./config/config.yaml \
-      --defaults=./config/html/html.yaml \
-      --template ./config/html/templates/default.html
+      --defaults=${CONFIG_MAIN} \
+      --defaults=${CONFIG_FORMAT} \
+      --template=${TEMPLATE}
 }
 
 #=========================================================
@@ -122,8 +92,8 @@ do
         echo "[INFO - watcher] updated ${FILE}"
 
         LAST_EVENT_TIME=$EVENT_TIME
-        echo "[INFO - watcher] running pandoc (in docker)"
-        run
+        echo "[INFO - watcher] running pandoc"
+        run_pandoc
         echo "[INFO - watcher] pandoc rebuild finished"
 
         # reload
@@ -136,8 +106,12 @@ do
             LAST_EVENT=$EVENT
             LAST_EVENT_TIME=$EVENT_TIME
             IS_WAITING=1
+            echo "[INFO - watcher] skipping rerun (timediff set to $TIME_UNTIL_RERUN sec)"
+            sleep $TIME_DIFF
+            echo "[INFO - watcher] running pandoc"
+            run_pandoc
+        else
+            echo "[INFO - watcher] skipping rerun (timediff set to $TIME_UNTIL_RERUN sec)"
         fi
-        #echo $FILE
-        echo "[INFO - watcher] skipping rerun (timediff set to $TIME_UNTIL_RERUN sec)"
     fi
 done

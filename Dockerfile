@@ -6,7 +6,8 @@ ARG PANDOC_VERSION=latest-ubuntu
 #ARG PANDOC_VERSION=latest
 #FROM rust:${RUST_VERSION}-slim-bullseye AS build
 
-FROM pandoc/latex:$PANDOC_VERSION
+FROM pandoc/extra:$PANDOC_VERSION
+#FROM pandoc/latex:$PANDOC_VERSION
 WORKDIR /app
 
 RUN apt-get update && apt-get upgrade -y
@@ -27,9 +28,9 @@ COPY . /data/example/
 RUN mv /data/example/utils/watcher_docker.sh /usr/local/bin/watcher.sh
 RUN mv /data/example/utils/entrypoint.sh /usr/local/bin/cowkit.sh
 
-# install other latex engine
-RUN curl --proto '=https' --tlsv1.2 -fsSL https://drop-sh.fullyjustified.net | sh
-RUN mv tectonic /usr/local/bin
+## install other latex engine
+#RUN curl --proto '=https' --tlsv1.2 -fsSL https://drop-sh.fullyjustified.net | sh
+#RUN mv tectonic /usr/local/bin
 
 #CMD ["app"]
 #ENTRYPOINT ["pandoc", "--version"]

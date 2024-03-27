@@ -2,6 +2,7 @@ filters:
   - pandoc-crossref
   - src/filters/multiple-bibliographies.lua # comment out for quick build (no refs)
   - src/filters/pandoc-quotes.lua
+  #- src/filters/columns.lua
 input-files:
   - ./src/00_base.md
   - ./src/01_intro.md
@@ -12,6 +13,7 @@ input-files:
   - ./src/06_references.md
 log-file: build/out.log
 output-file: build/out.pdf
-pdf-engine: pdflatex # wkhtmltopdf, weasyprint, prince, pdflatex, lualatex, xelatex, latexmk, pdfroff, context, tectonic
+pdf-engine: xelatex # wkhtmltopdf, weasyprint, prince, pdflatex, lualatex, xelatex, latexmk, pdfroff, context, tectonic
 to: pdf
 toc-depth: 3
+toc: false

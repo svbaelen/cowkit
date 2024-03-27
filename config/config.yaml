@@ -1,4 +1,11 @@
+# ==================
+# Pandoc base config
+# ==================
+#
 # https://pandoc.org/MANUAL.html#options-affecting-specific-writers
+# NOTE:
+# All options can be overwritten in the file-specific ./config/<fmt>/layout.yaml
+
 cite-method: citeproc # citeproc, natbib, or biblatex
 #citeproc: true
 embed-resources: true
@@ -15,4 +22,5 @@ top-level-division: default # part, chapter, section, or default
 toc: true
 number-sections: true
 verbosity: WARNING # ERROR, WARNING, or INFO
-# MORE: output-specific configs (and outline) found in layouts subdirectory
+
+# MORE: output-specific configs (and outline) found in subdirs

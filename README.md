@@ -68,7 +68,7 @@ docker run --rm --volume "$(pwd):/data" \
 ### Build PDF
 
 ```sh
-pandoc   --defaults=./config/config.yaml   --defaults=./config/pdf/pdf.yaml
+pandoc   --defaults=./config/config.yaml   --defaults=./config/pdf/layout.yaml
 ```
 
 ```sh
@@ -96,3 +96,4 @@ docker build -t cowkit:latest -t cowkit:v0.1.0 .
 - https://pandoc.org/MANUAL.html
 - https://github.com/maehr/academic-pandoc-template?tab=readme-ov-file
 - https://github.com/wikiti/pandoc-book-template
+
