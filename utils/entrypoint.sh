@@ -198,6 +198,8 @@ else
     cd /app
     echo "[INFO - main] running pandoc (first time)..."
     run_pandoc
+    echo "[INFO - main] done - pandoc built finished"
+
     # serve
     if [ $HTTP_SERVE = 1 ];then
         cd /app/$OUTPUT_DIR
@@ -210,7 +212,7 @@ else
     fi
     # watch
     cd /app
-    echo "[INFO - main] launcher file watcher..."
+    echo "[INFO - main] launching file watcher..."
     # run ./utils/watcher_docker.sh in docker container
     watcher.sh "$CONFIG_MAIN" "$CONFIG_FORMAT" "$TEMPLATE"
 fi

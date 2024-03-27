@@ -94,7 +94,7 @@ do
         LAST_EVENT_TIME=$EVENT_TIME
         echo "[INFO - watcher] running pandoc"
         run_pandoc
-        echo "[INFO - watcher] pandoc rebuild finished"
+        echo "[INFO - main] done - pandoc built finished"
 
         # reload
         # first arg, or default to firefox if not set
