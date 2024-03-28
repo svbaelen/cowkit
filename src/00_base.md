@@ -22,6 +22,13 @@ endnote: false
 keywords:
   - cowkit
   - academic
+
+abstract: |
+  This is the abstract.
+
+  It consists of two paragraphs.
+# abstract: false # do not show
+
 lang: en_GB
 link-citations: true
 link-bibliography: true

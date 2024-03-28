@@ -199,7 +199,7 @@ else
     cd /app
     echo "[INFO - main] running pandoc... (initial run)"
     run_pandoc
-    echo "[INFO - main] done - build finished (see output in '$OUTPUT_DIR')"
+    echo "[INFO - main] done - build finished (output in '$OUTPUT_DIR')"
 
     # serve
     if [ $HTTP_SERVE = 1 ];then

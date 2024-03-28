@@ -104,6 +104,15 @@
         </header>
         $endif$
 
+        $if(abstract)$
+          <div id="abstract">
+          <span id="abstract-title">Abstract</span>
+          <hr>
+          <div id="abstract-text">$abstract$</div>
+          <hr>
+          </div>
+        $endif$
+
         $body$
         $for(include-after)$
         $include-after$

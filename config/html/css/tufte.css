@@ -13,9 +13,10 @@
     --rbar-max-width: 300px;
     --main-max-width: 800px;
     --lbar-max-width: 400px;
-    --link-color:#0645ad;
+    --color-link:#0645ad;
     --color-sidebar-gray:#f8f8f7;
     --color-background-main:#fffff8;
+    /*--color-background-main:#ffffff;*/
     /*--color-background-code:#f8f8f7;*/
     --color-background-code:inherit;
     --font-size-caption:0.92em;
@@ -151,7 +152,7 @@ li:focus-within a {
  *********************/
 
 a {
-    color: var(--link-color);
+    color: var(--color-link);
     text-decoration: none;
 }
 
@@ -183,12 +184,12 @@ a:focus {
 
 a::-moz-selection {
     background: rgba(255, 255, 0, 0.3);
-    color: var(--link-color);
+    color: var(--color-link);
 }
 
 a::selection {
     background: rgba(255, 255, 0, 0.3);
-    color: var(--link-color);
+    color: var(--color-link);
 }
 
 p {
@@ -258,6 +259,15 @@ hr {
     margin: 1em 0;
     padding: 0;
 }
+#text-body hr {
+    display: block;
+    height: 2px;
+    border: 0;
+    border-top: 1px solid rgba(0,0,0,0.4);
+    border-bottom: 1px solid var(--color-background-main);
+    margin: 1em 0;
+    padding: 0;
+}
 
 header {
   margin-bottom: 4em;
@@ -292,16 +302,43 @@ pre code {
     padding:0;
 }
 
-pre .code-lang {
+pre .code-meta {
     /*display:none;*/
     float: right;
     margin-top:-0.25em;
-    margin-right:-0.4em;
+    margin-right:-1em;
     font-size:0.65em;
     color: rgba(0,0,0,0.5);
 }
-pre:hover .code-lang {
+pre .code-meta .code-lang {
     display:inline-block;
+    margin-top:-0.5em;
+    vertical-align: text-top;
+}
+pre .code-meta .clipboard-icon {
+    margin-left: 0.65em;
+}
+pre .code-meta .clipboard-icon svg {
+    /*margin-top:0.1em;*/
+    padding:0.2em;
+    overflow: visible;
+    fill: rgba(0,0,0,0.4);
+}
+pre .code-meta .clipboard-icon:hover svg {
+    fill: var(--color-link);
+    background: rgba(0,0,0,0.03);
+    cursor:pointer;
+}
+.copy-msg {
+    height:0;
+    display:none;
+    font-size: 0.8em;
+    color: rgba(0,0,0,0.5);
+    margin-top:-1.3em;
+    float:right;
+}
+
+pre:hover .code-lang {
 }
 
 b, strong {
@@ -491,6 +528,30 @@ input:checked + .slider:before {
 }
 
 /******************************
+ * MAIN TEXT #main #text
+ ******************************/
+
+#abstract {
+    margin:5em 0 2em 0;
+}
+#abstract hr {
+    border-top: 1px solid rgba(0,0,0,0.2);
+    margin:0;
+    padding:0;
+}
+
+#abstract-title {
+    font-weight:bold;
+    font-size:0.9em;
+    color:#000;
+    text-transform: uppercase;
+    /*font-style:italic;*/
+}
+#abstract-text p {
+    margin:0.4em 0;
+}
+
+/******************************
  * SIDEBAR LEFT #sidebar #lbar
  ******************************/
 
@@ -519,7 +580,7 @@ input:checked + .slider:before {
     color: #444;
 }
 #toc-content a:hover {
-    color: var(--link-color);
+    color: var(--color-link);
 }
 
 /* sidebar top buttons */
@@ -574,7 +635,7 @@ input:checked + .slider:before {
 }
 #lbar-buttons #btn-scroll-bottom:hover svg,
 #lbar-buttons #btn-scroll-top:hover svg {
-  stroke: var(--link-color);
+  stroke: var(--color-link);
 }
 
 /* toc */
@@ -643,7 +704,7 @@ input:checked + .slider:before {
 .btn-toc-toggle:hover .btn-svg-down,
 .btn-toc-toggle:hover .btn-svg-up {
     stroke-width:3px;
-    stroke:var(--link-color);
+    stroke:var(--color-link);
 }
 
 /*******************************
@@ -733,6 +794,8 @@ pre.numberSource {
     padding-left: 4px;
 }
 div.sourceCode{
+    /* comes after <p> with margin 1em */
+    margin-top:-0.25em;
 }
 @media screen {
     pre > code.sourceCode > span > a:first-child::before {
