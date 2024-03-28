@@ -46,7 +46,7 @@ docker run -u $(id -u):$(id -g) --rm -v "$(pwd):/app" -p 8000:8000 cowkit --init
 
 Set (different) config and/or template files via `cowkit` <b>CLI arguments</b>.
 
-<b>Additional functionality</b> such as auto-reload <b>can be disabled</b> or <b>extended</b> via the `header-includes` section in the markdown metadata, e.g., see [this example](https://github.com/svbaelen/cowkit/blob/main/src/00_base.md?plain=1#L33).
+<b>Additional functionality</b> such as auto-reload <b>can be disabled</b> or <b>extended</b> via the `header-includes` section in the markdown metadata, e.g., see [this example](https://github.com/svbaelen/cowkit/blob/main/src/00_base.md?plain=1#L41).
 
 ## Examples
 
@@ -54,7 +54,9 @@ TODO
 
 ## More comfort
 
-Create an alias to the docker command. Some example (you can replace `.bash_aliases` with `.bashrc` or some other shell config file in your `PATH`):
+### Create aliases
+
+Create <b>aliases</b> to some relevant docker commands. Note that you can replace `.bash_aliases` with `.bashrc` or some other shell config file in your `PATH`:
 
 ```sh
 # init project
@@ -65,7 +67,9 @@ CMD='docker run -u $(id -u):$(id -g) --rm -v "$(pwd):/app" -p 8000:8000 cowkit'
 echo "alias cowkit='$CMD'" >> ~/.bash_aliases && source ~/.bash_aliases
 ```
 
-Remove or update these commands later in your `~/.bash_aliases`.
+Naturally, these commands can be updated or removed anytime in `~/.bash_aliases`.
+
+### Speed up building
 
 If re-running build process is too slow for you, open a `./config/<fmt>/layout.yaml` file and comment out stuff. Start with the <b>Lua-based
 filters</b> (which will skip bibliography rebuilds). If still too slow, uncomment sections/chapters etc.
