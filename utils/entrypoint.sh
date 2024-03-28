@@ -103,13 +103,15 @@ done
 
 # update configs
 CONFIG_FORMAT="./config/${FMT_OUT}/layout.yaml"
+
+# make latex stuff available
+#TEXDIR=$( kpsewhich -var-value=TEXMFLOCAL )
+export TEXINPUTS="./config/pdf/templates:"
+
 if [ "${FMT_OUT}" = "pdf" ];then
     FMT_TMPL="tex"
-    #TEXDIR=$( kpsewhich -var-value=TEXMFLOCAL )
-    export TEXINPUTS="./config/pdf/templates:"
     #TEMPLATE="eisvogel"
     # https://github.com/pandoc/dockerfiles/blob/master/ubuntu/Dockerfile#L191
-    #ls /.pandoc/templates
     #TEMPLATE="./config/${FMT_OUT}/templates/default.${FMT_TMPL}"
     #cp "$TEMPLATE" /.pandoc/templates/default.latex
 else
@@ -132,6 +134,7 @@ fi
 if [ "${FMT_OUT}" = "pdf" ] || [ "${FMT_OUT}" = "tex" ];then
     HTTP_SERVE=0
 fi
+
 
 #=========================================================
 # Functions
@@ -181,6 +184,13 @@ if [ $RUN_ONCE = 1 ];then
     echo "[INFO - main] running pandoc once..."
     cd /app
     run_pandoc
+    #echo "[INFO - main] done"
+    #if [ "${FMT_OUT}" = "html" ];then
+        #echo "[INFO - main] generate PDF for download (only first time)"
+        #sed -e  "s/to:.*/to:pdf/g" "$CONFIG_FORMAT" > "$CONFIG_FORMAT.tmp"
+        #sed -e  "s/.html/.pdf/g" "$CONFIG_FORMAT.tmp" > "$CONFIG_FORMAT.tmp2"
+        #mv -- "$CONFIG_FORMAT.tmp2" "$CONFIG_FORMAT.tmp"
+    #fi
     echo "[INFO - main] finished - output in ${OUTPUT_DIR}"
     exit 1
     # serve
@@ -200,7 +210,6 @@ else
     cd /app
     echo "[INFO - main] running pandoc... (initial run)"
     run_pandoc
-    echo "[INFO - main] done - build finished (output in '$OUTPUT_DIR')"
 
     # serve
     if [ $HTTP_SERVE = 1 ];then

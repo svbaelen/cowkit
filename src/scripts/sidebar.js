@@ -1,5 +1,15 @@
 /* Additional sidebar functionality */
 
+function downloadPdf() {
+ const btnDownload = document.querySelector("#btn-download-pdf");
+  btnDownload.addEventListener("click", (ev) => {
+    window.open(
+      `/${btnDownload.dataset.filename}`,
+      '_blank'
+    );
+  });
+}
+
 function sidebarDropdown() {
   const btnDownSvg = ``;
   const mainTocElements = document.querySelectorAll(`#toc-content > ul > li > a`);
@@ -45,8 +55,20 @@ function sidebarScrollUp() {
   /*const btnScrollBottom = document.querySelector("#lbar-buttons #btn-scroll-bottom");*/
   /*btnScrollBottom.style.display = "flex";*/
   /*btnScrollBottom.addEventListener("click", (ev) => {*/
-    /*window.scrollTo(0, document.body.scrollHeight);*/
+  /*window.scrollTo(0, document.body.scrollHeight);*/
   /*});*/
+}
+
+function spacingAroundNumberedToc(){
+  const tocElWithNr = document.querySelectorAll(
+    `#toc-content ul > li:has(.toc-section-number)`
+  );
+
+  const firstTocWithNr = tocElWithNr[0];
+  const lastTocWithNr = tocElWithNr[tocElWithNr.length - 1];
+
+  firstTocWithNr.style.marginTop = "8px";
+  lastTocWithNr.style.marginBottom = "12px";
 }
 
 /*==================================================================*/
@@ -59,4 +81,6 @@ function sidebarScrollUp() {
 window.addEventListener('load', function () {
   sidebarDropdown();
   sidebarScrollUp();
+  spacingAroundNumberedToc();
+  downloadPdf();
 })

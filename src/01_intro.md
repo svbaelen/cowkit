@@ -1,4 +1,4 @@
-# Introduction {#sec:introduction label="Introduction"}
+# Introduction {#sec:introduction}
 
 This could be your intro. Let's go.
 
@@ -58,11 +58,21 @@ All human beings are born free and equal in dignity and rights. All human beings
 
 ## Figures and captions
 
-![Eleanor Roosevelt hält die englische Version der Allgemeinen Erklärung der Menschenrechte (FDR Presidential Library & Museum, CC BY 2.0 <https://creativecommons.org/licenses/by/2.0>, via Wikimedia Commons)](img/Eleanor_Roosevelt_and_Human_Rights_Declaration.jpeg){#fig:eleanor}
+![Eleanor Roosevelt hält die englische Version der Allgemeinen Erklärung der Menschenrechte (FDR Presidential Library & Museum, CC BY 2.0 <https://creativecommons.org/licenses/by/2.0>, via Wikimedia Commons)](img/eleanor.jpeg){#fig:eleanor}
 
 All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights.
 
-What about this figure.
+We can also generate subfigures::
+
+<div id="fig:my-subfig-ref">
+
+![first figure](img/eleanor.jpeg){#fig:subfig1 width=45%}\hfill
+![and another one](img/cowicon.svg){#fig:subfig2 width=45%} 
+
+<!-- hack https://github.com/lierdakil/pandoc-crossref/issues/381 -->
+
+This is the main caption of this figure
+</div>
 
 
 ## Code
@@ -120,7 +130,7 @@ int main()
 ## Tables
 
 | column 1                                                        | column 2                                                        |
-| --------------------------------------------------------------- | --------------------------------------------------------------- |
+| ---                                                             | ---                                                             |
 | All human beings are born free and equal in dignity and rights. | All human beings are born free and equal in dignity and rights. |
 | All human beings are born free and equal in dignity and rights. | All human beings are born free and equal in dignity and rights. |
 | All human beings are born free and equal in dignity and rights. | All human beings are born free and equal in dignity and rights. |
@@ -128,9 +138,24 @@ int main()
 
 : Table caption {#tbl:example_tbl}
 
-All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights.
+And a more simple table, with custom `HTML class` for styling. With the amount of `---` we can set the relative width of a column too.
 
-<table>
+<div class="simple-table">
+ col 1   | col 2  | col 3
+ ---     | ---    | --------------
+ row-1a  | row-1b | row1-c is a very long row, let's see how that will look
+ row-2a  | row-2b | row2-c
+
+: Simple table with custom styling {#tbl:simple}
+</div>
+
+All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights. All human beings are
+born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights.
+
+A HTML table (will not properly render in in `tex` output).
+
+```{=html}
+<table id="tbl:html">
 <tr>
 <th>Company</th>
 <th>Contact</th>
@@ -147,13 +172,29 @@ All human beings are born free and equal in dignity and rights. All human beings
 <td>Mexico</td>
 </tr>
 </table>
+```
 
+<!-- the dummy: -->
+
+
+A LaTeX table that will be ignored in HTML, but allowed in `PDF` and `Tex` formats.
+
+```{=tex}
+\begin{center}
+\captionof{table}{My table caption here}
+\begin{tabular}{|l|l|}\hline
+Age & Frequency \\ \hline
+18--25  & 15 \\
+26--35  & 33 \\
+36--45  & 22 \\ \hline
+\end{tabular}
+\end{center}
+```
 
 ## Footnotes
 
 All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights. All human beings are
-born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights.^[All human beings are born free and equal
-in dignity and rights. ![Some image](img/Eleanor_Roosevelt_and_Human_Rights_Declaration.jpeg)] And you should now it's like this yeah. And not something else.
+born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights.^[A footnote with an image inside the footnote. Pretty cool, but very ugly in a PDF doc of course. ![](img/eleanor.jpeg){height=5cm}] And you should now it's like this yeah. And not something else.
 
 ## Quotes
 
@@ -174,6 +215,8 @@ All human beings are born free and equal in dignity and rights, and we can combi
 
 And let's try another one [@brown2016].
 
+Or use the `latex` syntax to cite the article \cite{brown2016}.
+
 ## Equations
 
 $$x^2 + y^2 = z^2$$ {#eq:pythagoras}
@@ -186,3 +229,8 @@ Thanks to [pandoc-crossref](https://lierdakil.github.io/pandoc-crossref/) you ca
 Or, you can also do [@eq:pythagoras](#eq:pythagoras) to actually link it.
 
 It is also possible to refer to a codeblock, e.g., [@Lst:code](#lst:code).
+
+## Section with custom metadata {#sec:customsection}
+
+Here, instead of the default `#section-with-custom-metadata`, the ID becomes `#sec:customsection`).
+Now you can refer to it like [@sec:customsection](#sec:customsection), with pre-configured prefixes like in LaTeX.

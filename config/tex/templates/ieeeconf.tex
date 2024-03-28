@@ -1,3 +1,7 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Pandoc template IEEEConf style
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 % Options for packages loaded elsewhere
 % IMPORTANT: make sure this is based on the one from the docker image, which can
 % be derived with `pandoc -D latex`
@@ -30,7 +34,7 @@ $endif$
 $for(classoption)$
   $classoption$$sep$,
 $endfor$,
-]{$documentclass$}
+]{ieeeconf}
 $if(beamer)$
 $if(background-image)$
 \usebackgroundtemplate{%
@@ -473,10 +477,26 @@ $endif$
 % Overwrite and custom
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % svbaelen %
-
-\usepackage{subfig}
-\usepackage{subcaption}
-\usepackage{caption}
+% https://tex.stackexchange.com/a/224096
+\makeatletter
+\let\oldlt\longtable
+\let\endoldlt\endlongtable
+\def\longtable{\@ifnextchar[\longtable@i \longtable@ii}
+\def\longtable@i[#1]{\begin{figure}[t]
+\onecolumn
+\begin{minipage}{0.5\textwidth}
+\oldlt[#1]
+}
+\def\longtable@ii{\begin{figure}[t]
+\onecolumn
+\begin{minipage}{0.5\textwidth}
+\oldlt
+}
+\def\endlongtable{\endoldlt
+\end{minipage}
+\twocolumn
+\end{figure}}
+\makeatother
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Main doc

@@ -10,7 +10,7 @@
 - Easy on the eyes & fully customizable (styling, metadata, layout, ...)
 - <b>Focus on writing</b> instead of compiling (file-watcher + auto build)
 
-Built on top of [Pandoc](https://pandoc.org/) (file format converter), and partially inspired by this [pandoc book template](https://github.com/wikiti/pandoc-book-template).
+Built on top of [Pandoc](https://pandoc.org/) (file format converter), and inspired by this [pandoc book template](https://github.com/wikiti/pandoc-book-template).
 
 ## Get started (using docker)
 
@@ -59,12 +59,14 @@ TODO
 Create <b>aliases</b> to some relevant docker commands. Note that you can replace `.bash_aliases` with `.bashrc` or some other shell config file in your `PATH`:
 
 ```sh
-# default - note that CLI arguments still work, e.g.:
-#   cowkit --init
-#   cowkit --format pdf --template /path/to/template
+# map to `cowkit`
 CMD='docker run -u $(id -u):$(id -g) --rm -v "$(pwd):/app" -p 8000:8000 cowkit'
 echo "alias cowkit='$CMD'" >> ~/.bash_aliases && source ~/.bash_aliases
 ```
+
+Note that CLI arguments still work, e.g.:
+ - `cowkit --init`
+ - `cowkit --format pdf --template /path/to/template`
 
 Naturally, these commands can be updated or removed anytime in `~/.bash_aliases`.
 
@@ -77,6 +79,7 @@ filters</b> (which will skip bibliography rebuilds). If still too slow, uncommen
 
 ### General:
 
+- Designed to render on browser-desktop environments, <i>not</i> yet optimized for mobile
 - Tested only on
   - Ubuntu 22.04
 

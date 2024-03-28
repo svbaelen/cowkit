@@ -1,5 +1,5 @@
 # ================================
-# PDF config and layout
+# Tex config and layout
 #
 # Notes:
 #   - <https://pandoc.org/MANUAL.html#general-writer-options-1>
@@ -9,7 +9,8 @@
 filters:
   - pandoc-crossref
   - src/filters/multiple-bibliographies.lua # comment out for quick build (no refs)
-  - src/filters/pandoc-quotes.lua
+  #- src/filters/pandoc-quotes.lua
+  - src/filters/cowkit.lua
 input-files:
   - ./src/00_base.md
   - ./src/01_intro.md
@@ -17,9 +18,14 @@ input-files:
   - ./src/03_conclusion.md
   - ./src/05_acknowledgment.md
   - ./src/06_references.md
-log-file: build/out.log
-output-file: build/out.pdf
-pdf-engine: xelatex # wkhtmltopdf, weasyprint, prince, pdflatex, lualatex, xelatex, latexmk, pdfroff, context, tectonic
-to: pdf
+  - ./src/appendix.md
+  #- ./src/list_of_tables.md
+  #- ./src/list_of_figures.md
+  #- ./src/list_of_listings.md
+css:
+  - ./config/html/css/tufte.css
+  - ./config/html/css/print.css
+log-file: build/tex.log
+output-file: build/index.tex
+to: latex
 toc-depth: 3
-toc: false

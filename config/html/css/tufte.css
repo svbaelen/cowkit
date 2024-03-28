@@ -19,7 +19,8 @@
     /*--color-background-main:#ffffff;*/
     /*--color-background-code:#f8f8f7;*/
     --color-background-code:inherit;
-    --font-size-caption:0.92em;
+    --color-background-code-inline:#afb8c133;
+    --font-size-caption:0.93em;
 }
 
 html {
@@ -274,6 +275,16 @@ header {
   text-align: center;
 }
 
+b, strong {
+    font-weight: bold;
+    /*color:black;*/
+    color:#000;
+    /* for more bold of similar font, uncomment next 2 lines */
+    /*font-size:0.83em;*/
+    /*font-family: 'Merriweather", serif';*/
+}
+
+/* code */
 pre,
 code,
 kbd,
@@ -296,6 +307,12 @@ code {
     padding:0.25em;
     font-size: 0.75em;
     background-color: var(--color-background-code);
+}
+
+p > code {
+    padding:0.25em;
+    background-color: var(--color-background-code-inline);
+    border-radius: 4px;
 }
 
 pre code {
@@ -341,9 +358,6 @@ pre .code-meta .clipboard-icon:hover svg {
 pre:hover .code-lang {
 }
 
-b, strong {
-    font-weight: bold;
-}
 
 dfn {
     font-style: italic;
@@ -421,17 +435,45 @@ figure {
     text-align: center;
     margin: 1em 0;
 }
-
 figure img {
     border: none;
     margin: 0 auto;
 }
 
+.subfigures > p {
+    display:flex;
+    /*flex-wrap: wrap;*/
+    align-items: end;
+    justify-content:center;
+    flex-flow: row wrap;
+    flex-grow: 1;
+}
+
+.subfigures figure {
+    flex-grow: 2; /* flex-grow, flex-shrink, flex-basis */
+}
+
+.subfigures > figcaption {
+    flex: 0 0 100%; /* flex-grow, flex-shrink, flex-basis */
+    margin-top:-2em;
+    text-align:center;
+}
+
+.subfigures figure,
+.subfigures img {
+    min-width:250px;
+    display:inline-block;
+    position:relative;
+    padding: 0.5em 0.5em;
+}
+
+
 caption,
 figcaption {
     font-size: var(--font-size-caption);
     font-style: italic;
-    margin: 0.3em 0 .8em 0;
+    margin: 0.3em 0.7em .8em 0.7em;
+    /*width:100%;*/
 }
 
 table {
@@ -444,7 +486,7 @@ table {
 
 table th {
     padding: .2em 1em;
-    background-color: var(--color-sidebar-gray);
+    background-color: var(--color-background-code-inline);
     border-top: 1px solid #ddd;
     border-left: 1px solid #ddd;
 }
@@ -456,15 +498,28 @@ table td {
     vertical-align: top;
 }
 
+.simple-table table {
+    border: none;
+}
+.simple-table table th {
+    border: none;
+    color: #000;
+    border-top: 1px solid rgba(0,0,0,0.4);
+    border-bottom: 1px solid rgba(0,0,0,0.4);
+    background-color: inherit;
+}
+.simple-table table td {
+    border: none;
+    width:auto;
+    /*padding: .1em 1em;*/
+}
+.simple-table table tr:last-child {
+    border-bottom: 1px solid rgba(0,0,0,0.4);
+}
+
 .author {
     font-size: 1.2em;
     text-align: center;
-}
-
-/* for tufte */
-b, strong {
-    /*color:black;*/
-    color:#111;
 }
 
 .switch {
@@ -557,11 +612,25 @@ input:checked + .slider:before {
  * SIDEBAR LEFT #sidebar #lbar
  ******************************/
 
+#toc-content {
+    font-size: calc( var(--sidebar-font-scale-factor) * 1em );
+}
+#toc-content a {
+    /*color: #444;*/
+    color: #444;
+}
+#toc-content a:hover {
+    color: var(--color-link);
+}
+
+#toc-title {
+    margin-bottom:0;
+}
 #sidebar-left li {
   list-style: none;
 }
 #sidebar-left ul {
-  padding-left: 1.3em;
+  padding-left: 1.3em0.7
 }
 #sidebar-left > ul {
   padding-left: 0;
@@ -572,17 +641,6 @@ input:checked + .slider:before {
 
 .toc-section-number {
     margin-right:0.2em;
-}
-
-#toc-content {
-    font-size: calc( var(--sidebar-font-scale-factor) * 1em );
-}
-#toc-content a {
-    /*color: #444;*/
-    color: #444;
-}
-#toc-content a:hover {
-    color: var(--color-link);
 }
 
 /* sidebar top buttons */
@@ -604,6 +662,25 @@ input:checked + .slider:before {
 }
 #lbar-buttons > div:first-child {
     padding-left:0px;
+}
+
+#lbar-buttons #btn-download-pdf {
+  display:flex;
+  align-items: center;
+  cursor:pointer;
+  /*display: none;*/
+}
+
+#lbar-buttons #btn-download-pdf svg{
+  height:1.3em;
+  width:1.3em;
+  stroke: rgba(0,0,0,0.3);
+  stroke-width:25;
+  fill:none;
+  overflow:visible;
+}
+#lbar-buttons #btn-download-pdf:hover svg{
+    stroke: var(--color-link);
 }
 
 #lbar-buttons #scroll-buttons {
@@ -729,6 +806,14 @@ min-width:1500px
         margin-left:var(--main-max-width);
         max-width: var(--rbar-width);
     }
+}
+
+table {
+    margin: 0 auto;
+}
+
+#text-body > table {
+    /*margin-bottom:0;*/
 }
 
 
@@ -892,11 +977,7 @@ div.sourceCode[data-caption]:after {
     font-style:italic;
     font-size: var(--font-size-caption);
 }
-caption {
-    text-align:center;
-    margin: -1.8em auto 0 auto;
-    width:100%;;
-}
+
 
 
 /*********************
@@ -952,3 +1033,4 @@ caption {
 /*border-radius: 10px;*/
 /*border: transparent;*/
 /*}*/
+

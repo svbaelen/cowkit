@@ -37,6 +37,17 @@ title: 'My Doc Title'
 subtitle: 'This is a subtitle'
 toc-title: 'Contents'
 
+# http://lierdakil.github.io/pandoc-crossref/#reference-format
+eqnPrefix: Eq.
+figPrefix: Fig.
+secPrefix: Sec.
+lstPrefix: Lst.
+tblPrefix: Table
+
+ccsDelim: "; &nbsp;"
+ccsLabelSep: ": &nbsp;"
+#subfigGrid: true
+
 # ref: crossref
 
 # nocite (best not combined with numeric IEEE citation styles; it messes with the order)
@@ -45,15 +56,23 @@ toc-title: 'Contents'
 
 # HTML
 # ======
+
+# Download pdf: requires a PDF with this name in the build directory 
+# (-> can be compiled with $ cowkit -s -f pdf)
+download-pdf: out.pdf
+
 header-includes:
   - <link rel="icon" type="image/x-icon" href="img/cowicon.svg"/>
   - <script src="./scripts/sidebar.js"></script>
   - <script src="./scripts/live_reload.js"></script>
   - <script src="./scripts/captions.js"></script>
   - <script src="./scripts/code.js"></script>
+  - <script src="./scripts/subfigs.js"></script>
 
 # Latex
 # ======
+margin-left: 3cm
+margin-right: 3cm
 
 # ListOfX (in html, make a dedicated .md, e.g., with \listoffigures inside)
 lof: false

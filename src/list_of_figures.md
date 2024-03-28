@@ -1,6 +1,6 @@
 ---
 lofTitle: |
-  # List of my figures
+  # List of figures {-}
 ---
 
 <!-- ----------------------------------------------- -->
