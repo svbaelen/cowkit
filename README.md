@@ -59,10 +59,9 @@ TODO
 Create <b>aliases</b> to some relevant docker commands. Note that you can replace `.bash_aliases` with `.bashrc` or some other shell config file in your `PATH`:
 
 ```sh
-# init project
-CMD='docker run -u $(id -u):$(id -g) --rm -v "$(pwd):/app" -p 8000:8000 cowkit --init'
-echo "alias cowkit-init='$CMD'" >> ~/.bash_aliases && source ~/.bash_aliases
-# run
+# default - note that CLI arguments still work, e.g.:
+#   cowkit --init
+#   cowkit --format pdf --template /path/to/template
 CMD='docker run -u $(id -u):$(id -g) --rm -v "$(pwd):/app" -p 8000:8000 cowkit'
 echo "alias cowkit='$CMD'" >> ~/.bash_aliases && source ~/.bash_aliases
 ```

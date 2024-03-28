@@ -39,6 +39,7 @@ function sidebarScrollUp() {
   btnScrollTop.style.display = "flex";
   btnScrollTop.addEventListener("click", (ev) => {
     window.scrollTo(0, 0);
+    document.location.href="/";
   });
   // down
   /*const btnScrollBottom = document.querySelector("#lbar-buttons #btn-scroll-bottom");*/

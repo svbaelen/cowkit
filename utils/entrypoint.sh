@@ -41,7 +41,7 @@ usage()
 Usage: cowkit [OPTIONS]
 Options:
     -h|--help|--usage       show usage
-    -i|--init|--new         initialize new project (based on default example)
+    -n|--new|--init         initialize new project (based on default example)
     -s|--single-run         run pandoc once and serve, no file watcher
     -ns|--no-serve          no HTTP server
     -f|--format FMT         output format (=fmt)
@@ -62,7 +62,7 @@ FMT_OUT="${FMT_OUT_DEFAULT}"
 
 while [ -n "$1" ]; do
     case "$1" in
-        -i|--init) INIT=1
+        -n|--init|--new) INIT=1
             ;;
         -s|--single-run) RUN_ONCE=1
             ;;
@@ -173,25 +173,26 @@ fi
 
 # make build dir
 mkdir -p /app/${OUTPUT_DIR}
-echo "[INFO - main] setting output format to '$FMT_OUT'"
-echo "[INFO - main] setting output directory to '$OUTPUT_DIR'"
-echo "[INFO - main] using ${FMT_OUT} config '$CONFIG_FORMAT'"
-echo "[INFO - main] using ${FMT_OUT} template '$TEMPLATE'"
+echo "[INFO - main] initializing: {format='$FMT_OUT', output directory '$OUTPUT_DIR'}"
+echo "[INFO - main] use ${FMT_OUT} config '$CONFIG_FORMAT'"
+echo "[INFO - main] use ${FMT_OUT} template '$TEMPLATE'"
 
 if [ $RUN_ONCE = 1 ];then
     echo "[INFO - main] running pandoc once..."
     cd /app
     run_pandoc
+    echo "[INFO - main] finished - output in ${OUTPUT_DIR}"
+    exit 1
     # serve
-    if [ $HTTP_SERVE = 1 ];then
-        printf "[INFO - main] "
-        printf "=> ----------------------------------------------\n"
-        echo "[INFO - main] => serving at http://localhost:$HTTP_PORT (in $OUTPUT_DIR)"
-        printf "[INFO - main] "
-        printf "=> ----------------------------------------------\n"
-        cd /app/build
-        python3 -m http.server $HTTP_PORT > /dev/null 2>&1
-    fi
+    #if [ $HTTP_SERVE = 1 ];then
+        #printf "[INFO - main] "
+        #printf "=> ----------------------------------------------\n"
+        #echo "[INFO - main] => serving at http://localhost:$HTTP_PORT (in $OUTPUT_DIR)"
+        #printf "[INFO - main] "
+        #printf "=> ----------------------------------------------\n"
+        #cd /app/build
+        #python3 -m http.server $HTTP_PORT > /dev/null 2>&1
+    #fi
 
 else
     # assumes -v "$(pwd):/app" in docker run

@@ -532,7 +532,8 @@ input:checked + .slider:before {
  ******************************/
 
 #abstract {
-    margin:5em 0 2em 0;
+    margin:5em 2.5em 2em 2.5em;
+    text-align: center;
 }
 #abstract hr {
     border-top: 1px solid rgba(0,0,0,0.2);
@@ -542,12 +543,13 @@ input:checked + .slider:before {
 
 #abstract-title {
     font-weight:bold;
-    font-size:0.9em;
+    font-size:0.85em;
     color:#000;
     text-transform: uppercase;
     /*font-style:italic;*/
 }
 #abstract-text p {
+    text-align: left;
     margin:0.4em 0;
 }
 

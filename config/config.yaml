@@ -21,7 +21,7 @@ resource-path:
   - ${.}/../assets/img
   - ${.}/../src
   - ${.}/
-standalone: true
+standalone: false
 top-level-division: default # part, chapter, section, or default
 toc: true
 number-sections: true
