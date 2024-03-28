@@ -27,6 +27,7 @@ CONFIG_FORMAT="./config/${FMT_OUT}/layout.yaml"
 TEMPLATE="./config/${FMT_OUT}/templates/default.${FMT_TMPL}"
 TEMPLATE_IN=""
 CONFIG_FORMAT_IN=""
+LAUNCH_EXAMPLES="https://github.com/svbaelen/cowkit#examples"
 
 #=========================================================
 # Options and positional arugments
@@ -41,7 +42,7 @@ Usage: cowkit [OPTIONS]
 Options:
     -h|--help|--usage       show usage
     -i|--init|--new         initialize new project (based on default example)
-    -r|--run-once           run pandoc once and serve, no file watcher
+    -s|--single-run         run pandoc once and serve, no file watcher
     -ns|--no-serve          no HTTP server
     -f|--format FMT         output format (=fmt)
                             available options: {$FMT_OUT_DEFAULT (default), pdf, tex}
@@ -63,7 +64,7 @@ while [ -n "$1" ]; do
     case "$1" in
         -i|--init) INIT=1
             ;;
-        -r|--run-once) RUN_ONCE=1
+        -s|--single-run) RUN_ONCE=1
             ;;
         -ns|--no-serve) HTTP_SERVE=0
             ;;
@@ -148,24 +149,24 @@ run_pandoc () {
 #=========================================================
 
 if [ $INIT = 1 ];then
-    echo "[INFO - main] initializing new project..."
+    printf "[INFO - main] initializing new cowkit project..."
 
     if [ -d /app/config ];then
-        echo "[ERROR - main] './config' directory already exists."
-        echo "[ERROR - main] exiting (better safe than sorry)"
+        printf "\n[ERROR - main] './config' directory already exists here\n"
+        printf "[ERROR - main] exiting (better safe than sorry)\n"
         exit 1
     fi
     if [ -d /app/src ];then
-        echo "[ERROR - main] './src' directory already exists."
-        echo "[ERROR - main] exiting (better safe than sorry)"
+        printf "\n[ERROR - main] './src' directory already exists here\n"
+        echo "[ERROR - main] exiting (better safe than sorry)\n"
         exit 1
     fi
     cp -r /data/example/config /app
     cp -r /data/example/src /app
 
-    echo "[INFO - main] successfully initialized, now launch!"
-    echo "[INFO - main] see examples: 'https://github.com/svbaelen/cowkit/tree/main/examples'"
-    echo "[INFO - main] enjoy!"
+    printf " [success]\n"
+    echo "[INFO - main] some launch examples: $LAUNCH_EXAMPLES"
+    echo "[INFO - main] next up: launch it!"
 
     exit 1
 fi
@@ -196,9 +197,9 @@ else
     # assumes -v "$(pwd):/app" in docker run
     # run once
     cd /app
-    echo "[INFO - main] running pandoc (first time)..."
+    echo "[INFO - main] running pandoc... (initial run)"
     run_pandoc
-    echo "[INFO - main] done - pandoc built finished"
+    echo "[INFO - main] done - build finished (see output in '$OUTPUT_DIR')"
 
     # serve
     if [ $HTTP_SERVE = 1 ];then
@@ -214,5 +215,5 @@ else
     cd /app
     echo "[INFO - main] launching file watcher..."
     # run ./utils/watcher_docker.sh in docker container
-    watcher.sh "$CONFIG_MAIN" "$CONFIG_FORMAT" "$TEMPLATE"
+    watcher.sh "$CONFIG_MAIN" "$CONFIG_FORMAT" "$TEMPLATE" "$OUTPUT_DIR"
 fi

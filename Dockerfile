@@ -1,13 +1,15 @@
 # SPDX-FileCopyrightText: 2024 Senne Van Baelen
 # SPDX-License-Identifier: Apache-2.0
+#
+# Built on top of: <https://hub.docker.com/r/pandoc/latex>
 
 ARG APP_NAME=cowkit
 ARG PANDOC_VERSION=latest-ubuntu
 #ARG PANDOC_VERSION=latest
 #FROM rust:${RUST_VERSION}-slim-bullseye AS build
 
-FROM pandoc/extra:$PANDOC_VERSION
-#FROM pandoc/latex:$PANDOC_VERSION
+#FROM pandoc/extra:$PANDOC_VERSION
+FROM pandoc/latex:$PANDOC_VERSION
 WORKDIR /app
 
 RUN apt-get update && apt-get upgrade -y

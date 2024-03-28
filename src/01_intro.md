@@ -69,7 +69,7 @@ What about this figure.
 
 Let's start with some `inline code` and then move on to code blocks.
 
-A bash script
+A bash script:
 
 ```bash
 ping wikipedia.org

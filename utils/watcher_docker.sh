@@ -35,6 +35,7 @@ TIME_UNTIL_RERUN=3
 CONFIG_MAIN=$1
 CONFIG_FORMAT=$2
 TEMPLATE=$3
+OUTPUT_DIR=$4
 
 #=========================================================
 # Functions
@@ -94,7 +95,7 @@ do
         LAST_EVENT_TIME=$EVENT_TIME
         echo "[INFO - watcher] running pandoc"
         run_pandoc
-        echo "[INFO - main] done - pandoc built finished"
+        echo "[INFO - watcher] done - output file(s) updated"
 
         # reload
         # first arg, or default to firefox if not set

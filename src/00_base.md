@@ -1,46 +1,53 @@
 ---
-#===========================================
-# General content information
+#==============================================================
+# Metadata - general document configuration
 #
-# Note: these can also be configured in other markdown files
-#===========================================
-author-meta: 'Eleanor Roosevelt'
+# Notes:
+#   - values can also be set in other markdown files
+#   - some of these config values can also be set in the yaml
+#   - comment out with '#'
+#   - <https://pandoc.org/MANUAL.html#metadata-variables>
+#   - <http://lierdakil.github.io/pandoc-crossref/#settings-file>
+#==============================================================
+
+author-meta:
+  - "John Doe"
+  - "Senne Van Baelen"
 bibliography_main: ./src/references.bib
 bibliography_sources: ./src/sources.bib
-citecolor: black
-color-links: true # See https://ctan.org/pkg/xcolor for colors
 #csl: https://www.zotero.org/styles/chicago-note-bibliography
 csl: https://www.zotero.org/styles/ieee
 date-meta: 2022
 endnote: false
-keywords: # list of keywords to be included in HTML, PDF, ODT, pptx, docx and AsciiDoc metadata; repeat as for author, above
+keywords:
+  - cowkit
+  - academic
 lang: en_GB
 link-citations: true
 link-bibliography: true
 suppress-bibliography: false
-title: 'My Title'
-subtitle: 'Subtitle'
+title: 'My Doc Title'
+subtitle: 'This is a subtitle'
 toc-title: 'Contents'
-# already specified in layout.yaml
-# css: ./config/html/css/tufte.css 
 
-# ref: crossref <http://lierdakil.github.io/pandoc-crossref/#settings-file>
+# ref: crossref
 
-# nocite - but best not combined with numeric IEEE-like citation styles, as it messes with the order
+# nocite (best not combined with numeric IEEE citation styles; it messes with the order)
 #nocite: |
 #  @brown2016
 
 # HTML
 # ======
-header-includes: |
-    <link rel="icon" type="image/x-icon" href="img/cowicon.svg"/>
-    <script src="./scripts/sidebar.js"></script>
-    <script src="./scripts/live_reload.js"></script>
-    <script src="./scripts/captions.js"></script>
-    <script src="./scripts/code.js"></script>
+header-includes:
+  - <link rel="icon" type="image/x-icon" href="img/cowicon.svg"/>
+  - <script src="./scripts/sidebar.js"></script>
+  - <script src="./scripts/live_reload.js"></script>
+  - <script src="./scripts/captions.js"></script>
+  - <script src="./scripts/code.js"></script>
 
 # Latex
 # ======
+
 # ListOfX (in html, make a dedicated .md, e.g., with \listoffigures inside)
 lof: false
 lot: false
@@ -50,6 +57,8 @@ lot: false
 #lofTitle: |
 #  # List of Figures {-}
 
+citecolor: black
+color-links: true # See https://ctan.org/pkg/xcolor for colors
 include-after: # contents specified by -A/--include-after-body (may have multiple values)
 indent: # if true, pandoc will use document class settings for indentation (the default LaTeX template otherwise removes indentation and adds space between paragraphs)
 linestretch: 1 # adjusts line spacing using the setspace package, e.g. 1.25, 1.5
@@ -78,4 +87,3 @@ category: # document category, included in docx and pptx metadata
 description: # document description, included in ODT, docx and pptx metadata. Some applications show this as Comments metadata.
 subject: # document subject, included in ODT, PDF, docx, EPUB, and pptx metadata
 ---
-
