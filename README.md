@@ -6,7 +6,7 @@
 
 - Convenient, though [far from perfect](#caveats-and-known-limitations)
 - Standardized <b>open formats</b>: Markdown, HTML5, and/or LateX
-- Zero setup, no frameworks (requires only [Docker](https://docs.docker.com/engine/install/) or [Pandoc](https://pandoc.org/))
+- Zero setup, no frameworks (requires only [Docker](https://docs.docker.com/engine/install/) with [Pandoc](https://pandoc.org/)-based image)
 - Easy on the eyes & fully customizable (styling, metadata, layout, ...)
 - <b>Focus on writing</b> instead of compiling (file-watcher + auto build)
 
@@ -60,7 +60,7 @@ Set (different) config and/or template files via `cowkit` <b>CLI arguments</b>.
 
 ## Examples
 
-See [here](./examples/README.md)
+See [here](./examples/examples.md)
 
 ## More comfort
 

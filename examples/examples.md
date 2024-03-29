@@ -1,21 +1,20 @@
 # Cowkit examples
 
-Note that all commands here have the `-s` options: this ensures a <b>single run</b>, i.e., no file watching or HTTP serving.
+## Important remarks
 
-## Prerequisites
-
-These examples assume you set [the alias](../README.md#create-alias) `cowkit` for the docker `run` command. Alternatively, use the [full docker
+- These examples assume you set [the alias](../README.md#create-alias) `cowkit` for the docker `run` command. Alternatively, use the [full docker
 command](../README.md#get-started).
+- All commands here have the `-s` options: this ensures a <b>single run</b>, i.e., no file watching or HTTP serving.
 
-### HTML
+## HTML
 
-### PDF / LaTeX
+## PDF / LaTeX
 
 PDF outputs are generated based on `latex` templates (and a `tex` compiler). Of course, you might want to adjust things here and there before
 publishing, so as <b>an intermediate step</b>, compile to `.tex` first, do the finetuning, and then convert to PDF yourself.
 
 
-#### Default
+### Default
 
 (See [template](https://github.com/svbaelen/cowkit/tree/main/config/tex/templates/default.tex))
 
@@ -31,7 +30,7 @@ To TEX as intermediate step (default output: `./build/index.tex`)
 cowkit -s -f tex
 ```
 
-#### IEEEConf (two columns)
+### IEEEConf (two columns)
 
 To PDF (default output: `./build/index.pdf`)
 
