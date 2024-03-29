@@ -11,29 +11,28 @@
 #==============================================================
 
 author:
-  - "[The Pandoc People](https://github.com/jgm/pandoc/graphs/contributors)"
   - Senne Van Baelen
-author-title: "<b><i>Authors:</i></b>"
-author-meta:
-  - Senne Van Baelen
+  - "[Pandoc Contributors](https://github.com/jgm/pandoc/graphs/contributors)"
+author-title: '<b><i>Authors:</i></b>'
+date: "<i>2024-03-30</i>"
+title: '[cowkit](https://github.com/svbaelen/cowkit)'
+subtitle: 'A Comfortable Open Writing Kit.<br>(example document)'
+toc-title: 'Contents'
 
 bibliography_main: ./src/references.bib
 bibliography_sources: ./src/sources.bib
 #csl: https://www.zotero.org/styles/chicago-note-bibliography
 csl: https://www.zotero.org/styles/ieee
-date-meta: 2022
+
 endnote: false
 keywords:
   - cowkit
-  - academic
+  - academic writing
 
 lang: en_GB
 link-citations: true
 link-bibliography: true
 suppress-bibliography: false
-title: 'My Doc Title'
-subtitle: 'This is a subtitle'
-toc-title: 'Contents'
 
 # http://lierdakil.github.io/pandoc-crossref/#reference-format
 eqnPrefix: Eq.
@@ -53,7 +52,11 @@ ccsLabelSep: ": &nbsp;"
 # HTML
 # ======
 
-# Download pdf: requires a PDF with this name in the build directory 
+author-meta:
+  - Senne Van Baelen
+date-meta: 2024
+
+# Download pdf: requires a PDF with this name in your server directory
 # (-> can be compiled with $ cowkit -s -f pdf)
 download-pdf: index.pdf
 

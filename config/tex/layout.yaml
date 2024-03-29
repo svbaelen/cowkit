@@ -12,7 +12,7 @@ filters:
   #- src/filters/pandoc-quotes.lua
   - src/filters/cowkit.lua
 input-files:
-  - ./src/metadata.md
+  - ./src/_base.md
   - ./src/abstract.md
   - ./src/01_intro.md
   - ./src/02_chapter_1.md

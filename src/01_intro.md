@@ -1,6 +1,8 @@
 # Introduction {#sec:introduction}
 
-This could be your intro. Let's go.
+This could be your intro. Let's start with an image.
+
+![The cowkit logo](img/cowkit_logo.svg){#fig:logo}
 
 ## Heading 2
 
@@ -64,12 +66,11 @@ All human beings are born free and equal in dignity and rights. All human beings
 All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights. All human beings are
 born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights.
 
-We can also generate subfigures::
+We can also generate subfigures (within `div` element):
 
 <div id="fig:my-subfig-ref">
-
 ![first figure](img/eleanor.jpeg){#fig:subfig1 width=45%}\hfill
-![and another one](img/cowicon.svg){#fig:subfig2 width=45%} 
+![and another one](img/cowicon.svg){#fig:subfig2 width=40%}
 
 <!-- hack https://github.com/lierdakil/pandoc-crossref/issues/381 -->
 

@@ -153,9 +153,18 @@ li:focus-within a {
  ******************************/
 
 #title-block-header .title {
+    --heading-scale-factor: 0.8;
+    /*font-size:1.1em;*/
 }
 #title-block-header .subtitle {
-    font-size:1.2em;
+    font-size:1.15em;
+}
+
+#title-block-header .date {
+    margin-top:3em;
+    font-size: 1.05em;
+    /*font-family: 'Merriweather', serif;*/
+    /*font-size: 0.8em;*/
 }
 
 /******************************
@@ -457,6 +466,7 @@ figure img {
     justify-content:center;
     flex-flow: row wrap;
     flex-grow: 1;
+    margin-top:-1em;
 }
 
 .subfigures figure {
@@ -539,9 +549,9 @@ table td {
     /*margin-top:2em;*/
     font-size:0.9em;
 }
-.author {
+#authors .author {
     padding:0;
-    margin: 0.5em 0;
+    margin: 0.4em 0;
     font-size: 1em;
     text-align: center;
 }
@@ -790,7 +800,7 @@ input:checked + .slider:before {
 .btn-svg-up {
     fill:none;
     stroke:rgba(0,0,0,0.7);
-    stroke-width:1px;
+    stroke-width:1.1;
     margin-top:10px;
     overflow:visible;
     align:right;

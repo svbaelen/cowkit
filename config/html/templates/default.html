@@ -29,17 +29,17 @@
     <!-- style -->
     <!-- relative to template path (in ./root/templates folder) -->
     <!-- The default pandoc style under the <style> tag can be-->
-    <!--$styles.html()$-->
-    <!-- $../css/tufte.css()$-->
-    $for(css)$
-    <link rel="stylesheet" href="$css$" />
-    $endfor$
-    <!-- default scripts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap"
-    rel="stylesheet">
-    <script src="./scripts/general.js" defer/></script>
+<!--$styles.html()$-->
+<!-- $../css/tufte.css()$-->
+$for(css)$
+  <link rel="stylesheet" href="$css$" />
+$endfor$
+  <!-- default scripts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap"
+      rel="stylesheet">
+<script src="./scripts/general.js" defer/></script>
   </head>
   <body>
     <main id="main-content" class="main-content">
@@ -58,14 +58,14 @@
             </div>
             $if(download-pdf)$
             <div id="btn-download-pdf" data-filename="$download-pdf$" title="download PDF">
-                <svg width="800px" height="800px" viewBox="0 0 24 24" fill="none"
-                                                                      xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 3V16M12 16L16 11.625M12 16L8 11.625" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M15 21H9C6.17157 21 4.75736 21 3.87868 20.1213C3 19.2426 3
-                             17.8284 3 15M21 15C21 17.8284 21 19.2426 20.1213 20.1213C19.8215
-                             20.4211 19.4594 20.6186 19 20.7487" stroke-width="1.5"
-                                                                 stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+              <svg width="800px" height="800px" viewBox="0 0 24 24" fill="none"
+                                                                    xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 3V16M12 16L16 11.625M12 16L8 11.625" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M15 21H9C6.17157 21 4.75736 21 3.87868 20.1213C3 19.2426 3
+                               17.8284 3 15M21 15C21 17.8284 21 19.2426 20.1213 20.1213C19.8215
+                               20.4211 19.4594 20.6186 19 20.7487" stroke-width="1.5"
+                                                                   stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
             </div>
             $endif$
             <div id="scroll-buttons">
@@ -73,8 +73,8 @@
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 358.012 358.012" xml:space="preserve">
                   <g>
                   <path d="M179.006,358.012c98.865,0,179.006-80.141,179.006-179.006S277.871,0,179.006,0S0,80.141,0,179.006
-                            S80.141,358.012,179.006,358.012z
-                            M84.795,234.54l-8.437-8.437L179,123.455l102.66,102.66l-8.437,8.437L179,140.335L84.795,234.54z "/>
+                              S80.141,358.012,179.006,358.012z
+                              M84.795,234.54l-8.437-8.437L179,123.455l102.66,102.66l-8.437,8.437L179,140.335L84.795,234.54z "/>
                   </g>
                 </svg>
               </div>
@@ -82,8 +82,8 @@
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 358.012 358.012" xml:space="preserve">
                   <g>
                   <path d="M179.006,358.012c98.865,0,179.006-80.141,179.006-179.006S277.871,0,179.006,0S0,80.141,0,179.006
-                            S80.141,358.012,179.006,358.012z
-                            M84.795,234.54l-8.437-8.437L179,123.455l102.66,102.66l-8.437,8.437L179,140.335L84.795,234.54z "/>
+                              S80.141,358.012,179.006,358.012z
+                              M84.795,234.54l-8.437-8.437L179,123.455l102.66,102.66l-8.437,8.437L179,140.335L84.795,234.54z "/>
                   </g>
                 </svg>
               </div>
@@ -105,13 +105,13 @@
         $for(include-before)$
         $include-before$
         $endfor$
-        $if(title)$
         <header id="title-block-header">
+          $if(title)$
           <h1 class="title">$title$</h1>
+          $endif$
           $if(subtitle)$
           <p class="subtitle">$subtitle$</p>
           $endif$
-
           $if(author)$
           <div id="authors">
             $if(author-title)$
@@ -120,22 +120,20 @@
             $for(author)$
             <p class="author">$author$</p>
             $endfor$
-            $if(date)$
           </div>
           $endif$
-          <p class="date">$date$</p>
-      </div>
+          $if(date)$
+          <p id="title-date" class="date">$date$</p>
           $endif$
         </header>
-        $endif$
 
         $if(abstract)$
-          <div id="abstract">
+        <div id="abstract">
           <span id="abstract-title">Abstract</span>
           <hr>
           <div id="abstract-text">$abstract$</div>
           <hr>
-          </div>
+        </div>
         $endif$
 
         $body$

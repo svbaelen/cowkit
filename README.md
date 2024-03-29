@@ -14,11 +14,22 @@ Built on top of [Pandoc](https://pandoc.org/) (file format converter), and inspi
 
 ## Get started
 
+### Initialize new (example) project
+
+```sh
+docker run -u $(id -u):$(id -g) --rm -v "$(pwd):/app" -p 8000:8000 cowkit --init
+```
+
+### Run
+
 For default HTML output (and file watcher + HTTP server):
 
 ```sh
 docker run -u $(id -u):$(id -g) --rm -v "$(pwd):/app" -p 8000:8000 cowkit
 ```
+
+See the [config section](#configuration) to find out where to put what.
+<b>Other examples</b> can be [found here](./examples/examples_cli.md).
 
 You can specify a `cowkit` <b>version</b> with the image tag, e.g., `cowkit:latest`.  For a non-docker runtime environment, see [development](#development)
 section.
@@ -31,14 +42,6 @@ Check <b>available options</b> for the `cowkit` utility with `--help`:
 docker run -u $(id -u):$(id -g) --rm -v "$(pwd):/app" -p 8000:8000 cowkit --help
 ```
 
-### Initialize new project
-
-This will initialize an example project with defaults you can easily adjust.
-
-```sh
-docker run -u $(id -u):$(id -g) --rm -v "$(pwd):/app" -p 8000:8000 cowkit --init
-```
-
 ### Update to latest version
 
 ```sh
@@ -47,16 +50,16 @@ docker image pull cowkit:latest
 
 ## Configuration
 
-- `config/config.yaml`: main pandoc config
-- `config/<fmt>/layout.yaml`: output-specific layout + config (can overwrite values set in `config.yaml`).
-- `config/<fmt>/templates/<file>`: templates related to various output formats
-- `src/<file>.md`: in the metadata section of each markdown file (between `---`) one can add all kinds of metadata and config options supported by pandoc
-   (and pandoc extensions), e.g., [see here](https://github.com/svbaelen/cowkit/blob/main/src/00_base.md?plain=1#L3).
+- `config/config.yaml`: main <b>pandoc config</b>
+- `config/<fmt>/layout.yaml`: output-specific <b>layout</b> (which input files to include) + config (can overwrite values set in `config.yaml`).
+- `config/<fmt>/templates/<file>`: <b>templates</b> related to specific output formats
+- `src/<file>.md`: <b>content</b> files written in **markdown**. Every section, subsection, paragraph, figure, etc. *can*
+  have a separate file. In the <b>metadata section</b> of each markdown file (between `---`) you can add all kinds of metadata and config options supported
+  by pandoc (and pandoc extensions), e.g., [see here](https://github.com/svbaelen/cowkit/blob/main/src/00_base.md?plain=1#L3).
 
+Set (different) config and/or template files via `cowkit` <b>[CLI arguments](#cli-options)</b>.
 
-Set (different) config and/or template files via `cowkit` <b>CLI arguments</b>.
-
-<b>Additional functionality</b> such as auto-reload <b>can be disabled</b> or <b>extended</b> via the `header-includes` section in the markdown metadata, e.g., see [this example](https://github.com/svbaelen/cowkit/blob/main/src/00_base.md?plain=1#L41).
+<b>Additional functionality</b> such as auto-reload <b>can be disabled</b> or <b>extended</b> via the `header-includes` section in the markdown metadata, e.g., see [this example](https://github.com/svbaelen/cowkit/blob/main/src/base.md?plain=1#L60).
 
 ## Examples
 
