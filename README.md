@@ -55,11 +55,11 @@ docker image pull cowkit:latest
 - `config/<fmt>/templates/<file>`: <b>templates</b> related to specific output formats
 - `src/<file>.md`: <b>content</b> files written in **markdown**. Every section, subsection, paragraph, figure, etc. *can*
   have a separate file. In the <b>metadata section</b> of each markdown file (between `---`) you can add all kinds of metadata and config options supported
-  by pandoc (and pandoc extensions), e.g., [see here](https://github.com/svbaelen/cowkit/blob/main/src/00_base.md?plain=1#L3).
+  by pandoc (and pandoc extensions), e.g., [see here](https://github.com/svbaelen/cowkit/blob/main/src/_base.md?plain=1#L3).
 
 Set (different) config and/or template files via `cowkit` <b>[CLI arguments](#cli-options)</b>.
 
-<b>Additional functionality</b> such as auto-reload <b>can be disabled</b> or <b>extended</b> via the `header-includes` section in the markdown metadata, e.g., see [this example](https://github.com/svbaelen/cowkit/blob/main/src/base.md?plain=1#L60).
+<b>Additional functionality</b> such as auto-reload <b>can be disabled</b> or <b>extended</b> via the `header-includes` section in the markdown metadata, e.g., see [this example](https://github.com/svbaelen/cowkit/blob/main/src/_base.md?plain=1#L60).
 
 ## Examples
 

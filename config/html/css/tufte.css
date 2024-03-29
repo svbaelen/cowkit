@@ -328,6 +328,7 @@ code {
     background-color: var(--color-background-code);
 }
 
+a > code,
 p > code {
     padding:0.25em;
     background-color: var(--color-background-code-inline);
@@ -1047,16 +1048,3 @@ div.sourceCode[data-caption]:after {
     font-style: normal;
     font-display: swap;
 }
-
-/*::-webkit-scrollbar {*/
-/*width: 6px;*/
-/*}*/
-/*::-webkit-scrollbar-track {*/
-/*background: transparent;*/
-/*}*/
-/*::-webkit-scrollbar-thumb {*/
-/*background-color: rgba(155, 155, 155, 0.5);*/
-/*border-radius: 10px;*/
-/*border: transparent;*/
-/*}*/
-

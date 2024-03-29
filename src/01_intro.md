@@ -4,9 +4,15 @@ This could be your intro. Let's start with an image.
 
 ![The cowkit logo](img/cowkit_logo.svg){#fig:logo}
 
+Check [the github project](https://github.com/svbaelen/cowkit) for more info on the `cowkit` utility.
+
 ## Heading 2
 
-All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights.
+All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights. All human beings are
+born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights.
+
+All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights. All human beings are
+born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights.
 
 ### Heading 3
 

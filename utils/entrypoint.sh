@@ -152,7 +152,7 @@ run_pandoc () {
 #=========================================================
 
 if [ $INIT = 1 ];then
-    printf "[INFO - main] initializing new cowkit project..."
+    printf "[INFO - main] initializing new cowkit project...\n"
 
     if [ -d /app/config ];then
         printf "\n[ERROR - main] './config' directory already exists here\n"
@@ -167,9 +167,20 @@ if [ $INIT = 1 ];then
     cp -r /data/example/config /app
     cp -r /data/example/src /app
 
-    printf " [success]\n"
-    echo "[INFO - main] some launch examples: $LAUNCH_EXAMPLES"
-    echo "[INFO - main] next up: launch it!"
+    if [ $RUN_ONCE = 1 ];then
+        echo "[INFO - main] running pandoc once"
+        mkdir -p /app/${OUTPUT_DIR}
+        echo "[INFO - main] initializing: {format='$FMT_OUT', output directory '$OUTPUT_DIR'}"
+        echo "[INFO - main] use ${FMT_OUT} config '$CONFIG_FORMAT'"
+        echo "[INFO - main] use ${FMT_OUT} template '$TEMPLATE'"
+        cd /app
+        run_pandoc
+        echo "[INFO - main] finished - output in ${OUTPUT_DIR}"
+        exit 1
+    else
+        echo "[INFO - main] some examples: $LAUNCH_EXAMPLES"
+        echo "[INFO - main] Success. Next up: launch!"
+    fi
 
     exit 1
 fi
@@ -203,7 +214,6 @@ if [ $RUN_ONCE = 1 ];then
         #cd /app/build
         #python3 -m http.server $HTTP_PORT > /dev/null 2>&1
     #fi
-
 else
     # assumes -v "$(pwd):/app" in docker run
     # run once

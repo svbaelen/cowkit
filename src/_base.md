@@ -49,6 +49,16 @@ ccsLabelSep: ": &nbsp;"
 #nocite: |
 #  @brown2016
 
+# headers for HTML and/or LaTeX
+header-includes: 
+  - <link rel="icon" type="image/x-icon" href="img/cowicon.svg"/>
+  - <script src="./scripts/sidebar.js"></script>
+  - <script src="./scripts/live_reload.js"></script>
+  - <script src="./scripts/captions.js"></script>
+  - <script src="./scripts/code.js"></script>
+  - <script src="./scripts/subfigs.js"></script>
+  - \definecolor{myhrefcolor}{HTML}{0645AD}
+
 # HTML
 # ======
 
@@ -60,13 +70,6 @@ date-meta: 2024
 # (-> can be compiled with $ cowkit -s -f pdf)
 download-pdf: index.pdf
 
-header-includes:
-  - <link rel="icon" type="image/x-icon" href="img/cowicon.svg"/>
-  - <script src="./scripts/sidebar.js"></script>
-  - <script src="./scripts/live_reload.js"></script>
-  - <script src="./scripts/captions.js"></script>
-  - <script src="./scripts/code.js"></script>
-  - <script src="./scripts/subfigs.js"></script>
 
 # Latex
 # ======
@@ -82,8 +85,11 @@ lot: false
 #lofTitle: |
 #  # List of Figures {-}
 
-citecolor: black
 color-links: true # See https://ctan.org/pkg/xcolor for colors
+citecolor: black
+linkcolor: myhrefcolor # requires header-includes def above
+urlcolor: myhrefcolor
+
 include-after: # contents specified by -A/--include-after-body (may have multiple values)
 indent: # if true, pandoc will use document class settings for indentation (the default LaTeX template otherwise removes indentation and adds space between paragraphs)
 linestretch: 1 # adjusts line spacing using the setspace package, e.g. 1.25, 1.5
@@ -106,9 +112,4 @@ mainfontoptions:
 sansfontoptions:
 monofontoptions:
 mathfontoptions:
-
-# Word
-category: # document category, included in docx and pptx metadata
-description: # document description, included in ODT, docx and pptx metadata. Some applications show this as Comments metadata.
-subject: # document subject, included in ODT, PDF, docx, EPUB, and pptx metadata
 ---
