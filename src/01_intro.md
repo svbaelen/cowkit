@@ -138,7 +138,7 @@ Check out some options [here](https://pandoc.org/chunkedhtml-demo/8.9-tables.htm
 | All human beings are born free and equal in dignity and rights. | All human beings are born free and equal in dignity and rights. |
 | All human beings are born free and equal in dignity and rights. | All human beings are born free and equal in dignity and rights. |
 
-: Table caption {#tbl:example_tbl}
+: Table caption goes here {#tbl:example_tbl}
 
 And a more simple table, with custom `HTML class` for styling. With the amount of `---` we can set the relative width of a column too.
 

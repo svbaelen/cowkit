@@ -1,4 +1,4 @@
-# Cowkit examples
+# Cowkit example overview
 
 ## CLI examples
 

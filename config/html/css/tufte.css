@@ -148,9 +148,19 @@ li:focus-within a {
     grid-area: rbar;
 }
 
-/*********************
- * Main stuff
- *********************/
+/******************************
+ * HEADER #header #titlepage
+ ******************************/
+
+#title-block-header .title {
+}
+#title-block-header .subtitle {
+    font-size:1.2em;
+}
+
+/******************************
+ * MAIN STUFF #main
+ ******************************/
 
 a {
     color: var(--color-link);
@@ -470,18 +480,23 @@ figure img {
 
 caption,
 figcaption {
+    display:block;
     font-size: var(--font-size-caption);
     font-style: italic;
-    margin: 0.3em 0.7em .8em 0.7em;
-    /*width:100%;*/
+    margin:0.4em 0 1.5em 0;
+    text-align:center;
 }
 
 table {
-    margin-bottom: 2em;
+    margin-bottom: 1.6em;
     border-bottom: 1px solid #ddd;
     border-right: 1px solid #ddd;
     border-spacing: 0;
     border-collapse: collapse;
+}
+
+div:has(> caption) > table {
+    margin-bottom: 0.4em;
 }
 
 table th {
@@ -517,8 +532,17 @@ table td {
     border-bottom: 1px solid rgba(0,0,0,0.4);
 }
 
+#authors {
+    margin-top:4em;
+}
+#author-title {
+    /*margin-top:2em;*/
+    font-size:0.9em;
+}
 .author {
-    font-size: 1.2em;
+    padding:0;
+    margin: 0.5em 0;
+    font-size: 1em;
     text-align: center;
 }
 
@@ -806,14 +830,6 @@ min-width:1500px
         margin-left:var(--main-max-width);
         max-width: var(--rbar-width);
     }
-}
-
-table {
-    margin: 0 auto;
-}
-
-#text-body > table {
-    /*margin-bottom:0;*/
 }
 
 

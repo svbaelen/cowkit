@@ -5,8 +5,8 @@
     <meta name="generator" content="pandoc" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
     <link rel="manifest" href="./html/site.webmanifest">
-    $for(author)$
-    <meta name="author" content="$author" />
+    $for(author-meta)$
+    <meta name="author" content="$author-meta$" />
     $endfor$
     $if(date-meta)$
     <meta name="dcterms.date" content="$date-meta$" />
@@ -111,11 +111,20 @@
           $if(subtitle)$
           <p class="subtitle">$subtitle$</p>
           $endif$
-          $for(author)$
-          <p class="author">$author$</p>
-          $endfor$
-          $if(date)$
+
+          $if(author)$
+          <div id="authors">
+            $if(author-title)$
+            <span id="author-title">$author-title$</span>
+            $endif$
+            $for(author)$
+            <p class="author">$author$</p>
+            $endfor$
+            $if(date)$
+          </div>
+          $endif$
           <p class="date">$date$</p>
+      </div>
           $endif$
         </header>
         $endif$

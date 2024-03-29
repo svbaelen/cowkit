@@ -11,8 +11,12 @@
 #==============================================================
 
 author:
-  - "John Doe"
-  - "Senne Van Baelen"
+  - "[The Pandoc People](https://github.com/jgm/pandoc/graphs/contributors)"
+  - Senne Van Baelen
+author-title: "<b><i>Authors:</i></b>"
+author-meta:
+  - Senne Van Baelen
+
 bibliography_main: ./src/references.bib
 bibliography_sources: ./src/sources.bib
 #csl: https://www.zotero.org/styles/chicago-note-bibliography
@@ -40,9 +44,7 @@ tblPrefix: Table
 
 ccsDelim: "; &nbsp;"
 ccsLabelSep: ": &nbsp;"
-#subfigGrid: true
 
-# ref: crossref
 
 # nocite (best not combined with numeric IEEE citation styles; it messes with the order)
 #nocite: |
@@ -53,7 +55,7 @@ ccsLabelSep: ": &nbsp;"
 
 # Download pdf: requires a PDF with this name in the build directory 
 # (-> can be compiled with $ cowkit -s -f pdf)
-download-pdf: out.pdf
+download-pdf: index.pdf
 
 header-includes:
   - <link rel="icon" type="image/x-icon" href="img/cowicon.svg"/>
