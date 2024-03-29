@@ -1,4 +1,15 @@
-% Options for packages loaded elsewhere
+% ================================
+% Pandoc LaTeX templates
+% ================================
+%
+% based on default:
+% <https://github.com/jgm/pandoc/blob/main/data/templates/default.latex>
+%
+% Extended by Senne Van Baelen <senne@svbaelen.me>
+%
+% Can also be extended via pandoc metdata, e.g., see `src/metadata.md` (add
+% stuff to header-includes)
+%
 % IMPORTANT: make sure this is based on the one from the docker image, which can
 % be derived with `pandoc -D latex`
 
@@ -227,6 +238,8 @@ $if(verbatim-in-note)$
 \usepackage{fancyvrb}
 $endif$
 \usepackage{xcolor}
+
+% outcommented by svbaelen
 $if(geometry)$
 $if(beamer)$
 \geometry{$for(geometry)$$geometry$$sep$,$endfor$}
@@ -234,6 +247,17 @@ $else$
 \usepackage[$for(geometry)$$geometry$$sep$,$endfor$]{geometry}
 $endif$
 $endif$
+
+% added by svbaelen
+\usepackage{geometry}
+\geometry{
+  a4paper,
+  %total={170mm,257mm},
+  left=3.3cm,
+  right=3.3cm,
+  %top=3.3cm,
+}
+
 $if(beamer)$
 \newif\ifbibliography
 $endif$
@@ -474,8 +498,9 @@ $endif$
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % svbaelen %
 
-\usepackage{subfig}
-\usepackage{subcaption}
+\usepackage{customize/subfig}
+%\usepackage{subcaption}
+%\usepackage{caption}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Main doc

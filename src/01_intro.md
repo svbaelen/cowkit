@@ -58,9 +58,11 @@ All human beings are born free and equal in dignity and rights. All human beings
 
 ## Figures and captions
 
-![Eleanor Roosevelt hält die englische Version der Allgemeinen Erklärung der Menschenrechte (FDR Presidential Library & Museum, CC BY 2.0 <https://creativecommons.org/licenses/by/2.0>, via Wikimedia Commons)](img/eleanor.jpeg){#fig:eleanor}
+![Eleanor Roosevelt hält die englische Version der Allgemeinen Erklärung der Menschenrechte (FDR Presidential Library & Museum, CC BY 2.0
+<https://creativecommons.org/licenses/by/2.0>, via Wikimedia Commons)](img/eleanor.jpeg){#fig:eleanor}
 
-All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights.
+All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights. All human beings are
+born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights.
 
 We can also generate subfigures::
 
@@ -88,7 +90,7 @@ ping wikipedia.org
 Some haskell code with a caption. It is important to use the `lst` prefix here.
 
 <div id="lst:code" class="listing">
-My haskell Listing caption
+My haskell Listing, no line numbers
 ```haskell
 main :: IO ()
 main = putStrLn "Hello World!"
@@ -129,10 +131,10 @@ int main()
 
 ## Tables
 
+Check out some options [here](https://pandoc.org/chunkedhtml-demo/8.9-tables.html).
+
 | column 1                                                        | column 2                                                        |
 | ---                                                             | ---                                                             |
-| All human beings are born free and equal in dignity and rights. | All human beings are born free and equal in dignity and rights. |
-| All human beings are born free and equal in dignity and rights. | All human beings are born free and equal in dignity and rights. |
 | All human beings are born free and equal in dignity and rights. | All human beings are born free and equal in dignity and rights. |
 | All human beings are born free and equal in dignity and rights. | All human beings are born free and equal in dignity and rights. |
 
@@ -141,6 +143,7 @@ int main()
 And a more simple table, with custom `HTML class` for styling. With the amount of `---` we can set the relative width of a column too.
 
 <div class="simple-table">
+
  col 1   | col 2  | col 3
  ---     | ---    | --------------
  row-1a  | row-1b | row1-c is a very long row, let's see how that will look
@@ -214,8 +217,6 @@ All human beings are born free and equal in dignity and rights. All human beings
 All human beings are born free and equal in dignity and rights, and we can combine multiple citations [@unitednations1948; @brown2016].
 
 And let's try another one [@brown2016].
-
-Or use the `latex` syntax to cite the article \cite{brown2016}.
 
 ## Equations
 

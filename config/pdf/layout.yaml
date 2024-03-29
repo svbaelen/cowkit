@@ -11,14 +11,16 @@ filters:
   - src/filters/multiple-bibliographies.lua # comment out for quick build (no refs)
   - src/filters/pandoc-quotes.lua
 input-files:
-  - ./src/00_base.md
+  - ./src/metadata.md
+  - ./src/abstract.md
   - ./src/01_intro.md
   - ./src/02_chapter_1.md
   - ./src/03_conclusion.md
-  - ./src/05_acknowledgment.md
-  - ./src/06_references.md
-log-file: build/out.log
-output-file: build/out.pdf
+  - ./src/04_acknowledgment.md
+  - ./src/05_references.md
+  - ./src/appendix.md
+log-file: build/pdf.log
+output-file: build/index.pdf
 pdf-engine: xelatex # wkhtmltopdf, weasyprint, prince, pdflatex, lualatex, xelatex, latexmk, pdfroff, context, tectonic
 to: pdf
 toc-depth: 3

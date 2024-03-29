@@ -10,7 +10,7 @@
 #   - <http://lierdakil.github.io/pandoc-crossref/#settings-file>
 #==============================================================
 
-author-meta:
+author:
   - "John Doe"
   - "Senne Van Baelen"
 bibliography_main: ./src/references.bib
@@ -22,12 +22,6 @@ endnote: false
 keywords:
   - cowkit
   - academic
-
-abstract: |
-  This is the abstract.
-
-  It consists of two paragraphs.
-# abstract: false # do not show
 
 lang: en_GB
 link-citations: true
@@ -71,8 +65,8 @@ header-includes:
 
 # Latex
 # ======
-margin-left: 3cm
-margin-right: 3cm
+# margin-left: 3cm   # can also set in templates
+# margin-right: 3cm  # can also set in templates
 
 # ListOfX (in html, make a dedicated .md, e.g., with \listoffigures inside)
 lof: false

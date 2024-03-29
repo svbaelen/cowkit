@@ -12,27 +12,37 @@
 
 Built on top of [Pandoc](https://pandoc.org/) (file format converter), and inspired by this [pandoc book template](https://github.com/wikiti/pandoc-book-template).
 
-## Get started (using docker)
+## Get started
 
-For default HTML output + file watcher:
+For default HTML output (and file watcher + HTTP server):
 
 ```sh
 docker run -u $(id -u):$(id -g) --rm -v "$(pwd):/app" -p 8000:8000 cowkit
 ```
 
-Check <b>available options</b> for `cowkit` CLI utility:
+You can specify a `cowkit` <b>version</b> with the image tag, e.g., `cowkit:latest`.  For a non-docker runtime environment, see [development](#development)
+section.
+
+### CLI options
+
+Check <b>available options</b> for the `cowkit` utility with `--help`:
 
 ```sh
-docker run cowkit --help
+docker run -u $(id -u):$(id -g) --rm -v "$(pwd):/app" -p 8000:8000 cowkit --help
 ```
-Run specific `cowkit` version with image tag, e.g., `cowkit:latest`.
-
-For native non-docker runtime, see [development](#development) section.
 
 ### Initialize new project
 
+This will initialize an example project with defaults you can easily adjust.
+
 ```sh
 docker run -u $(id -u):$(id -g) --rm -v "$(pwd):/app" -p 8000:8000 cowkit --init
+```
+
+### Update to latest version
+
+```sh
+docker image pull cowkit:latest
 ```
 
 ## Configuration
@@ -50,13 +60,13 @@ Set (different) config and/or template files via `cowkit` <b>CLI arguments</b>.
 
 ## Examples
 
-TODO
+See [here](./examples/README.md)
 
 ## More comfort
 
-### Create aliases
+### Create alias
 
-Create <b>aliases</b> to some relevant docker commands. Note that you can replace `.bash_aliases` with `.bashrc` or some other shell config file in your `PATH`:
+Create an <b>alias</b> to one or more relevant docker commands. Note that you can replace `.bash_aliases` with `.bashrc` or some other shell config file in your `PATH`:
 
 ```sh
 # map to `cowkit`

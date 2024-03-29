@@ -34,7 +34,7 @@ $endif$
 $for(classoption)$
   $classoption$$sep$,
 $endfor$,
-]{ieeeconf}
+]{customize/ieeeconf}  %IEEE conf template
 $if(beamer)$
 $if(background-image)$
 \usebackgroundtemplate{%
@@ -482,12 +482,12 @@ $endif$
 \let\oldlt\longtable
 \let\endoldlt\endlongtable
 \def\longtable{\@ifnextchar[\longtable@i \longtable@ii}
-\def\longtable@i[#1]{\begin{figure}[t]
+\def\longtable@i[#1]{\begin{figure}[H]
 \onecolumn
 \begin{minipage}{0.5\textwidth}
 \oldlt[#1]
 }
-\def\longtable@ii{\begin{figure}[t]
+\def\longtable@ii{\begin{figure}[H]
 \onecolumn
 \begin{minipage}{0.5\textwidth}
 \oldlt
