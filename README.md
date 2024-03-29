@@ -60,7 +60,7 @@ Set (different) config and/or template files via `cowkit` <b>CLI arguments</b>.
 
 ## Examples
 
-See [here](./examples/examples.md)
+See [here](./examples/README.md)
 
 ## More comfort
 
