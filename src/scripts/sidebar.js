@@ -21,22 +21,35 @@ function sidebarDropdown() {
   </svg>`;
 
   mainTocElements.forEach((tocEl) => {
-    tocEl.innerHTML += `<a class="btn-toc-toggle" href=""></a>`;
-    const btn = tocEl.querySelector(`.btn-toc-toggle`);
-    btn.style.display = "block";
+    // tocEl == first <a> element in <li>
+    const container = document.createElement("span");
+    const dropdownBtn = document.createElement("a");
+    const tocElParent = tocEl.parentElement; // the li element
+    const tocElSublist = tocEl.parentElement.querySelector(`ul`);
 
-    if (tocEl.parentElement.querySelector(`ul`)){
+    container.style.display = "flex";
+    container.style.justifyContent = "space-between";
+    dropdownBtn.classList.add("btn-toc-toggle");
+
+    tocElParent.insertBefore(container, tocEl);
+    container.appendChild(tocEl);
+    container.appendChild(dropdownBtn);
+
+    //tocElParent.innerHTML += `<a class="btn-toc-toggle" href=""></a>`;
+    //const btn = tocElParent.querySelector(`.btn-toc-toggle`);
+    dropdownBtn.style.display = "block";
+
+    if (tocElSublist){
       // init
-      btn.innerHTML = svgBtnDown;
-      btn.addEventListener("click", (ev) => {
+      dropdownBtn.innerHTML = svgBtnDown;
+      dropdownBtn.addEventListener("click", (ev) => {
         ev.preventDefault();
-        const nestedEl = tocEl.parentElement.querySelector(`ul`);
-        if (nestedEl.style.display === "none" || !nestedEl.style.display) {
-          nestedEl.style.display = "block";
-          btn.innerHTML = svgBtnUp;
+        if (tocElSublist.style.display === "none" || !tocElSublist.style.display) {
+          tocElSublist.style.display = "block";
+          dropdownBtn.innerHTML = svgBtnUp;
         } else {
-          nestedEl.style.display = "none";
-          btn.innerHTML = svgBtnDown;
+          tocElSublist.style.display = "none";
+          dropdownBtn.innerHTML = svgBtnDown;
         }
       });
     }

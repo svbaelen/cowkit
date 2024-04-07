@@ -1,10 +1,9 @@
 # Introduction {#sec:introduction}
 
-This could be your intro. Let's start with an image.
+This could be your intro. Let's start with an image (see [@fig:logo](#fig:logo)). Check [the github project](https://github.com/svbaelen/cowkit) for
+more info.
 
 ![The cowkit logo](img/cowkit_logo.svg){#fig:logo}
-
-Check [the github project](https://github.com/svbaelen/cowkit) for more info on the `cowkit` utility.
 
 ## Heading 2
 
@@ -232,7 +231,7 @@ $$x^2 + y^2 = z^2$$ {#eq:pythagoras}
 ## Cross-references
 
 Thanks to [pandoc-crossref](https://lierdakil.github.io/pandoc-crossref/) you can crossreference equations [@eq:pythagoras], figures
-([@fig:eleanor]) and tables ([@tbl:example_tbl]). We can also refer to sections in different files, such as ([@sec:conclusion]).
+([@fig:eleanor]) and tables ([@tbl:example_tbl]). We can also refer to sections in different files, such as [@sec:conclusion].
 
 Or, you can also do [@eq:pythagoras](#eq:pythagoras) to actually link it.
 

@@ -218,7 +218,7 @@ else
     # assumes -v "$(pwd):/app" in docker run
     # run once
     cd /app
-    echo "[INFO - main] running pandoc... (initial run)"
+    echo "[INFO - main] running initial build... (takes several seconds)"
     run_pandoc
     echo "[INFO - main] finished - output in ${OUTPUT_DIR}"
 

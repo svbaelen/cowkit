@@ -30,3 +30,4 @@ log-file: build/tex.log
 output-file: build/index.tex
 to: latex
 toc-depth: 3
+listings: true

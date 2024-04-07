@@ -16,7 +16,7 @@ author:
 author-title: '<b><i>Authors:</i></b>'
 date: "<i>2024-03-30</i>"
 title: '[cowkit](https://github.com/svbaelen/cowkit)'
-subtitle: 'A Comfortable Open Writing Kit.<br>(example document)'
+subtitle: 'A Comfortable Open Writing Kit<br>(example document)'
 toc-title: 'Contents'
 
 bibliography_main: ./src/references.bib
@@ -33,6 +33,9 @@ lang: en_GB
 link-citations: true
 link-bibliography: true
 suppress-bibliography: false
+listings: true                   # needed together with listings: true in yaml config
+                                 # (for default pandoc crossref listing style, simply
+                                 #  set both to false)
 
 # http://lierdakil.github.io/pandoc-crossref/#reference-format
 eqnPrefix: Eq.

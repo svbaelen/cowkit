@@ -4,10 +4,12 @@
 
 ## Comfortable features
 
+Write and compose with markdown - publish to Tex, PDF, and HTML.
+
 - Convenient, though [far from perfect](#caveats-and-known-limitations)
-- Standardized <b>open formats</b>: Markdown, HTML5, and/or LateX
+- Can handle scientific, **tex-like content structure** 
 - Zero setup, no frameworks (requires only [Docker](https://docs.docker.com/engine/install/) with [Pandoc](https://pandoc.org/)-based image)
-- Easy on the eyes & fully customizable (styling, metadata, layout, ...)
+- Fully customizable (styling, metadata, layout, ...)
 - <b>Focus on writing</b> instead of compiling (file-watcher + auto build)
 
 Built on top of [Pandoc](https://pandoc.org/) (file format converter), and inspired by this [pandoc book template](https://github.com/wikiti/pandoc-book-template).
@@ -146,3 +148,14 @@ docker run --rm --volume "$(pwd):/data" \
   --user $(id -u):$(id -g)  pandoc/latex:latest \
   --defaults=./config/config.yaml   --defaults=./config/pdf/layout.yaml
 ```
+## Acknowledgements
+
+This project is built on, or inspired by:
+
+- [Markdown](https://en.wikipedia.org/wiki/Markdown)
+- [Pandoc](https://github.com/jgm/pandoc)
+- [Edward Tufte](https://github.com/edwardtufte/tufte-css)
+- [Pandoc crossref](https://github.com/lierdakil/pandoc-crossref)
+- Other Pandoc-based projects:
+    - [Pandoc book template](https://github.com/wikiti/pandoc-book-template)
+    - [Pandoc academic templates](https://github.com/maehr/academic-pandoc-template)

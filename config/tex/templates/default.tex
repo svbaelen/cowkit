@@ -6,6 +6,7 @@
 % <https://github.com/jgm/pandoc/blob/main/data/templates/default.latex>
 %
 % Extended by Senne Van Baelen <senne@svbaelen.me>
+% Extensions and adjustments: look for #svbaelen
 %
 % Can also be extended via pandoc metdata, e.g., see `src/metadata.md` (add
 % stuff to header-includes)
@@ -239,7 +240,7 @@ $if(verbatim-in-note)$
 $endif$
 \usepackage{xcolor}
 
-% outcommented by svbaelen
+% outcommented by #svbaelen
 $if(geometry)$
 $if(beamer)$
 \geometry{$for(geometry)$$geometry$$sep$,$endfor$}
@@ -248,7 +249,7 @@ $else$
 $endif$
 $endif$
 
-% added by svbaelen
+% added by #svbaelen
 \usepackage{geometry}
 \geometry{
   a4paper,
@@ -264,11 +265,11 @@ $endif$
 $if(listings)$
 \usepackage{listings}
 \newcommand{\passthrough}[1]{#1}
-\lstset{defaultdialect=[5.3]Lua}
-\lstset{defaultdialect=[x86masm]Assembler}
+%\lstset{defaultdialect=[5.3]Lua}
+%\lstset{defaultdialect=[x86masm]Assembler}
 $endif$
 $if(lhs)$
-\lstnewenvironment{code}{\lstset{language=Haskell,basicstyle=\small\ttfamily}}{}
+%\lstnewenvironment{code}{\lstset{language=Haskell,basicstyle=\small\ttfamily}}{}
 $endif$
 $if(highlighting-macros)$
 $highlighting-macros$
@@ -496,11 +497,43 @@ $endif$
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Overwrite and custom
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% svbaelen %
+% #svbaelen %
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+%\definecolor{codestring}{rgb}{0.58,0,0.82}
+\definecolor{myblack}{rgb}{0.95,0.95,0.92}
+\definecolor{codekeyword}{HTML}{0F52BA}
+\definecolor{codestring}{HTML}{A52A2A}
 
 \usepackage{customize/subfig}
 %\usepackage{subcaption}
 %\usepackage{caption}
+
+%%%CODE
+\lstset{
+  %numbers=left,
+  numberstyle=\tiny,
+  %stepnumber=1,
+  numbersep=5pt,
+  %tabsize=4,
+  basicstyle=\ttfamily\small,
+  columns=fullflexible,
+  keepspaces=true,
+  xleftmargin=0.47cm,
+  xrightmargin=0.1cm,
+  framexleftmargin = 1em,
+  belowskip=1.5em,
+  aboveskip=1.5em,
+  %frameround=ftff,
+  frame=single,
+  showstringspaces=false,
+  commentstyle=\color{codegreen},
+  keywordstyle=\color{codekeyword},
+  numberstyle=\tiny\color{codegray},
+  stringstyle=\color{codestring},
+  %rulecolor=\color{black},
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Main doc

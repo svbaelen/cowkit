@@ -25,3 +25,4 @@ pdf-engine: xelatex # wkhtmltopdf, weasyprint, prince, pdflatex, lualatex, xelat
 to: pdf
 toc-depth: 3
 toc: false
+listings: true
