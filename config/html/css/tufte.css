@@ -12,7 +12,8 @@
     --rbar-width: 300px;
     --rbar-max-width: 300px;
     --main-max-width: 800px;
-    --lbar-max-width: 400px;
+    --lbar-max-width: 350px;
+    --lbar-min-width: 260px;
     --color-link:#0645ad;
     --color-sidebar-gray:#f8f8f7;
     --color-background-main:#fffff8;
@@ -75,9 +76,9 @@ body {
  * GRID  #grid areas
  *********************/
 
+/* mobile (desktop see later) */
 #main-content {
     display: grid;
-    justify-content: center;
     grid-gap: 45px;
     /* grid-template-rows / grid-template-cols */
     /* we have 1 row, and 3 cols! */
@@ -85,13 +86,45 @@ body {
         /*"lbar main rbar" auto / 20% minmax(auto, 800px) 20%;*/
     /* same as next 3 */
     grid-template-areas:
-        "lbar main rbar";
-    grid-template-columns: 1fr minmax(auto, var(--main-max-width)) 1fr;
+        "main";
+    grid-template-columns: minmax(auto, var(--main-max-width));
     grid-template-rows: 1fr;
     width: 100vw;
     max-width:100%;
-    align-items: start;
+    align-items: center;
+    /*justify-items: center;*/
+    justify-content: center;
     margin:0;
+}
+
+#btn-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position:fixed;
+    top: 1em;
+    left:1em;
+    z-index:100;
+    cursor:pointer;
+}
+
+#btn-burger {
+    padding:0.2em;
+    height:25px;
+    width:25px;
+    stroke: #292929;
+}
+
+#btn-close {
+    display:none;
+    fill: #292929;
+    height:18px;
+    width:18px;
+    padding:0.2em;
+}
+
+#btn-close * {
+    stroke-width: 2;
 }
 
 #text-body {
@@ -105,22 +138,23 @@ body {
     counter-reset: listing-section;
 }
 
-.sidebar-left {
+#sidebar-left {
+    display:none;
     background:inherit;
+    position:fixed;
     grid-area: lbar;
     padding:0 0em 0 2em;
     align-self: start;
     top: 0;
-    position:sticky;
+    left:0;
     overflow-y: auto;
     resize: horizontal;
-    height:100vh;
-    max-height:100vh;
-    width:100%;
     max-height: 100vh;
-    min-width:200px;
-    max-width: var(--lbar-max-width);
+    min-width: 300px;
+    max-width: 100%
     scrollbar-width: thin;
+    height:100vh;
+    z-index:50;
 }
 
 #toc-content {
@@ -131,7 +165,7 @@ body {
     margin-right:1em;
 }
 
-.sidebar-left:hover #toc-content {
+#sidebar-left:hover #toc-content {
     display:block;
 }
 
@@ -139,13 +173,45 @@ li:focus-within a {
   outline: none;
 }
 
-.sidebar-left:hover,
-.sidebar-left:has(#input-toggle-sidebar:checked) {
+#sidebar-left:hover,
+#sidebar-left:has(#input-toggle-sidebar:checked) {
     background:var(--color-sidebar-gray);
 }
 
 .sidebar-right {
+    display:none;
     grid-area: rbar;
+}
+
+/* 3 column doc */
+@media only screen and ( min-width:1024px ) {
+    #main-content {
+        align-items: start;
+        grid-template-areas:
+        "lbar main rbar";
+        grid-template-columns: 1fr minmax(auto, var(--main-max-width)) 1fr;
+        grid-template-rows: 1fr;
+        width: 100vw;
+        max-width:100%;
+        align-items: start;
+        margin:0;
+    }
+
+    #sidebar-left {
+        position:sticky;
+        width:100%;
+        display:block;
+        max-height:100vh;
+        max-height: 100vh;
+        min-width: var(--lbar-min-width);
+        max-width: var(--lbar-max-width);
+    }
+    .sidebar-right {
+        display:block;
+    }
+    #btn-mobile {
+        display:none;
+    }
 }
 
 /******************************
@@ -648,6 +714,18 @@ input:checked + .slider:before {
  * SIDEBAR LEFT #sidebar #lbar
  ******************************/
 
+@media only screen and (
+/*min-width: calc(var(--lbar-max-width) + var(--rbar-width) + var(--main-max-width))*/
+min-width:1500px
+) {
+    .footnotes {
+        position: absolute;
+        margin:-2em 4em 0 0em;
+        margin-left:var(--main-max-width);
+        max-width: var(--rbar-width);
+    }
+}
+
 #toc-content {
     font-size: calc( var(--sidebar-font-scale-factor) * 1em );
 }
@@ -681,7 +759,7 @@ input:checked + .slider:before {
 
 /* sidebar top buttons */
 #lbar-buttons {
-    margin-top:20px;
+    margin-top:40px;
     border-bottom: 1px solid rgba(0,0,0,0.1);
     padding-bottom:1em;
     margin-right: 1em;
@@ -689,10 +767,33 @@ input:checked + .slider:before {
     justify-content: flex-start;
     align-items:center;
     align-content:center;
-    height:60px;
+    min-height:60px;
+    /*flex-wrap: wrap;*/
+    overflow-x:scroll;
+    row-gap: 1em;
+    font-size: 1.1em;
 }
+
+@media only screen and (min-width: 1024px) {
+    #lbar-buttons {
+        margin-top:20px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    #lbar-buttons {
+        font-size: 0.9em;
+    }
+}
+
+@media only screen and (min-width: 1280px) {
+    #lbar-buttons {
+        font-size: 1em;
+    }
+}
+
+
 #lbar-buttons > div {
-    height:100%;
     padding: 0 1.25em;
     border-right: 1px solid rgba(0,0,0,0.1);
 }
@@ -700,14 +801,33 @@ input:checked + .slider:before {
     padding-left:0px;
 }
 
-#lbar-buttons #btn-download-pdf {
-  display:flex;
+#sidebar-left #btn-sticky {
+    /* display only on +1024 */
+    display:none;
+}
+@media only screen and ( min-width:1024px ) {
+    #sidebar-left #btn-sticky {
+        display:block;
+    }
+}
+
+
+
+#lbar-buttons .btn-download {
+  /*display:flex;*/
+  flex-direction:column;
+  display:none;
   align-items: center;
+  gap: 0.2em;
+  justify-content:center;
   cursor:pointer;
   /*display: none;*/
 }
+#lbar-buttons .btn-text {
+    font-size:0.70em;
+}
 
-#lbar-buttons #btn-download-pdf svg{
+#lbar-buttons .btn-download svg{
   height:1.3em;
   width:1.3em;
   stroke: rgba(0,0,0,0.3);
@@ -715,12 +835,13 @@ input:checked + .slider:before {
   fill:none;
   overflow:visible;
 }
-#lbar-buttons #btn-download-pdf:hover svg{
+#lbar-buttons .btn-download:hover svg{
     stroke: var(--color-link);
 }
 
 #lbar-buttons #scroll-buttons {
-    display:flex;
+    /*display:flex;*/
+    display:none;
     column-gap: 0.7em;
     row-gap: 0.2em;
     /*flex-direction:column;*/

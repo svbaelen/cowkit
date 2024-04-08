@@ -1,0 +1,38 @@
+name: pages
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  # Single deploy job since we're just deploying
+  deploy:
+
+    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
+    permissions:
+      pages: write      # to deploy to Pages
+      id-token: write   # to verify the deployment originates from an appropriate source
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Build docker images
+        run: docker build -t cowkit:latest .
+      - name: Run cowkit
+        run: docker run -u $(id -u):$(id -g) --rm -v "$(pwd):/app" cowkit -f all -s
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Upload example repository
+          path: './build'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

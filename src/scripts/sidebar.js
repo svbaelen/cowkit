@@ -1,12 +1,19 @@
 /* Additional sidebar functionality */
 
-function downloadPdf() {
- const btnDownload = document.querySelector("#btn-download-pdf");
-  btnDownload.addEventListener("click", (ev) => {
+function sidebarDownloadBtns() {
+  const btnDownloadPdf = document.querySelector("#btn-download-pdf");
+  btnDownloadPdf.style.display = "flex";
+  btnDownloadPdf.addEventListener("click", (ev) => {
     window.open(
-      `/${btnDownload.dataset.filename}`,
+      `/${btnDownloadPdf.dataset.filename}`,
       '_blank'
     );
+  });
+
+  const btnDownloadTex = document.querySelector("#btn-download-tex");
+  btnDownloadTex.style.display = "flex";
+  btnDownloadTex.addEventListener("click", (ev) => {
+    window.open(`/${btnDownloadTex.dataset.filename}`);
   });
 }
 
@@ -56,7 +63,11 @@ function sidebarDropdown() {
   });
 }
 
-function sidebarScrollUp() {
+function sidebarScrollBtns() {
+  // container
+  const scrollBtnContainer = document.querySelector("#scroll-buttons");
+  scrollBtnContainer.style.display = "flex";
+
   // up
   const btnScrollTop = document.querySelector("#lbar-buttons #btn-scroll-top");
   btnScrollTop.style.display = "flex";
@@ -84,6 +95,50 @@ function spacingAroundNumberedToc(){
   lastTocWithNr.style.marginBottom = "12px";
 }
 
+function sidebarMobileMenu() {
+  const btnMobile = document.querySelector(`#btn-mobile`);
+  const btnBurger = document.querySelector(`#btn-burger`);
+  const btnClose = document.querySelector(`#btn-close`);
+  const sidebarLeft = document.querySelector(`#sidebar-left`);
+
+  const tocLinks = document.querySelectorAll(`#toc-content > ul a`);
+
+  btnBurger.style.display = "block";
+  btnClose.style.display = "none";
+
+  // init
+  btnBurger.addEventListener("click", (ev) => {
+    ev.preventDefault();
+    if (btnClose.style.display === "none" || !btnClose.style.display) {
+      btnClose.style.display = "block";
+      btnBurger.style.display = "none";
+      sidebarLeft.style.display = "block";
+    }
+  });
+  btnClose.addEventListener("click", (ev) => {
+    ev.preventDefault();
+    if (btnBurger.style.display === "none" || !btnBurger.style.display) {
+      btnBurger.style.display = "block";
+      btnClose.style.display = "none";
+      sidebarLeft.style.display = "none";
+    }
+  });
+
+
+  tocLinks.forEach((link) => {
+    link.addEventListener("click", (ev) => {
+      if (btnBurger.style.display === "none" || !btnBurger.style.display) {
+        btnBurger.style.display = "block";
+        btnClose.style.display = "none";
+        sidebarLeft.style.display = "none";
+      }
+    })
+  });
+}
+
+
+
+
 /*==================================================================*/
 /* MAIN                                                             */
 /*------------------------------------------------------------------*/
@@ -92,8 +147,9 @@ function spacingAroundNumberedToc(){
 /*==================================================================*/
 
 window.addEventListener('load', function () {
+  sidebarMobileMenu();
   sidebarDropdown();
-  sidebarScrollUp();
+  sidebarScrollBtns();
+  sidebarDownloadBtns();
   spacingAroundNumberedToc();
-  downloadPdf();
 })

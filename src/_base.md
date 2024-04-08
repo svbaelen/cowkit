@@ -16,7 +16,7 @@ author:
 author-title: '<b><i>Authors:</i></b>'
 date: "<i>2024-03-30</i>"
 title: '[cowkit](https://github.com/svbaelen/cowkit)'
-subtitle: 'A Comfortable Open Writing Kit<br>(example document)'
+subtitle: 'A Comfortable Open Writing Kit<br> (example document)'
 toc-title: 'Contents'
 
 bibliography_main: ./src/references.bib
@@ -69,10 +69,11 @@ author-meta:
   - Senne Van Baelen
 date-meta: 2024
 
-# Download pdf: requires a PDF with this name in your server directory
-# (-> can be compiled with $ cowkit -s -f pdf)
+# Download other outputs: requires a .pdf/.tex with this name in your server directory
+# (-> can be compiled with $ cowkit -s --format pdf|tex|all)
+# simply comment out to remove this button
 download-pdf: index.pdf
-
+download-tex: index.tex
 
 # Latex
 # ======
