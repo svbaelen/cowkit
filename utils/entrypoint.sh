@@ -192,7 +192,7 @@ if [ $INIT = 1 ];then
             run_pandoc $CONFIG_FORMAT $TEMPLATE
             echo "[INFO - main] finished - output in ${OUTPUT_DIR}"
         done
-        exit 1
+        exit 0
     else
         echo "[INFO - main] some examples: $LAUNCH_EXAMPLES"
         echo "[INFO - main] Success. Next up: launch!"
@@ -211,7 +211,7 @@ else
             echo "[INFO - main] finished - output in ${OUTPUT_DIR}"
         done
 
-        exit 1
+        exit 0
     else
         # assumes -v "$(pwd):/app" in docker run
         # run once
