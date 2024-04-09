@@ -73,7 +73,11 @@ function sidebarScrollBtns() {
   btnScrollTop.style.display = "flex";
   btnScrollTop.addEventListener("click", (ev) => {
     window.scrollTo(0, 0);
-    document.location.href="/";
+    history.pushState(
+      "", document.title, window.location.pathname + window.location.search
+    );
+    //document.location.href="/";
+    //console.log(window.location.href);
   });
   // down
   /*const btnScrollBottom = document.querySelector("#lbar-buttons #btn-scroll-bottom");*/
@@ -100,11 +104,21 @@ function sidebarMobileMenu() {
   const btnBurger = document.querySelector(`#btn-burger`);
   const btnClose = document.querySelector(`#btn-close`);
   const sidebarLeft = document.querySelector(`#sidebar-left`);
+  const textBody = document.querySelector(`#text-body`);
 
   const tocLinks = document.querySelectorAll(`#toc-content > ul a`);
 
   btnBurger.style.display = "block";
   btnClose.style.display = "none";
+
+  const hideMenu = () => {
+    if (btnBurger.style.display === "none" || !btnBurger.style.display) {
+      btnBurger.style.display = "block";
+      btnClose.style.display = "none";
+      sidebarLeft.style.display = "none";
+      btnMobile.classList.remove("in-menu");
+    }
+  }
 
   // init
   btnBurger.addEventListener("click", (ev) => {
@@ -113,29 +127,25 @@ function sidebarMobileMenu() {
       btnClose.style.display = "block";
       btnBurger.style.display = "none";
       sidebarLeft.style.display = "block";
+      btnMobile.classList.add("in-menu");
     }
   });
   btnClose.addEventListener("click", (ev) => {
     ev.preventDefault();
-    if (btnBurger.style.display === "none" || !btnBurger.style.display) {
-      btnBurger.style.display = "block";
-      btnClose.style.display = "none";
-      sidebarLeft.style.display = "none";
-    }
+    hideMenu()
   });
-
 
   tocLinks.forEach((link) => {
     link.addEventListener("click", (ev) => {
-      if (btnBurger.style.display === "none" || !btnBurger.style.display) {
-        btnBurger.style.display = "block";
-        btnClose.style.display = "none";
-        sidebarLeft.style.display = "none";
-      }
+      hideMenu()
     })
   });
-}
 
+  textBody.addEventListener("click", (ev) => {
+    ev.preventDefault();
+    hideMenu()
+  });
+}
 
 
 
@@ -147,9 +157,9 @@ function sidebarMobileMenu() {
 /*==================================================================*/
 
 window.addEventListener('load', function () {
-  sidebarMobileMenu();
-  sidebarDropdown();
-  sidebarScrollBtns();
+    sidebarMobileMenu();
+    sidebarDropdown();
+    sidebarScrollBtns();
   sidebarDownloadBtns();
   spacingAroundNumberedToc();
 })

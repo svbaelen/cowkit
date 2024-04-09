@@ -43,7 +43,7 @@ body {
     color: #444;
     /*font-family: Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;*/
     font-family: et-book, Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
-    font-size: calc( var(--font-scale-factor) * 18px );
+    font-size: calc( var(--font-scale-factor) * 14px );
     line-height: 1.4;
     padding: 0;
     margin:0;
@@ -105,25 +105,17 @@ body {
     top: 1em;
     left:1em;
     z-index:100;
-    cursor:pointer;
-    padding:0.25em;
-    background-color:var(--color-background-main);
-}
-#btn-mobile.in-menu {
-    background-color:var(--color-sidebar-gray);
 }
 
-#btn-burger {
-    height:25px;
-    width:25px;
+#btn-hamburger {
+    height:15px;
+    width:15px;
     stroke: #292929;
 }
 
 #btn-close {
-    display:none;
     fill: #292929;
-    height:18px;
-    width:18px;
+    stroke-width: 2;
 }
 
 #btn-close * {
@@ -141,8 +133,8 @@ body {
     counter-reset: listing-section;
 }
 
-#sidebar-left {
-    display:none;
+.sidebar-left {
+    /*display:none;*/
     background:inherit;
     position:fixed;
     grid-area: lbar;
@@ -153,11 +145,11 @@ body {
     overflow-y: auto;
     resize: horizontal;
     max-height: 100vh;
-    min-width: 300px;
+    /*width:80%;*/
+    min-width: var(--lbar-min-width);
     max-width: 100%
     scrollbar-width: thin;
     height:100vh;
-    z-index:50;
 }
 
 #toc-content {
@@ -168,7 +160,7 @@ body {
     margin-right:1em;
 }
 
-#sidebar-left:hover #toc-content {
+.sidebar-left:hover #toc-content {
     display:block;
 }
 
@@ -176,8 +168,8 @@ li:focus-within a {
   outline: none;
 }
 
-#sidebar-left:hover,
-#sidebar-left:has(#input-toggle-sidebar:checked) {
+.sidebar-left:hover,
+.sidebar-left:has(#input-toggle-sidebar:checked) {
     background:var(--color-sidebar-gray);
 }
 
@@ -200,7 +192,7 @@ li:focus-within a {
         margin:0;
     }
 
-    #sidebar-left {
+    .sidebar-left {
         position:sticky;
         width:100%;
         display:block;
@@ -211,9 +203,6 @@ li:focus-within a {
     }
     .sidebar-right {
         display:block;
-    }
-    #btn-mobile {
-        display:none;
     }
 }
 
@@ -380,7 +369,6 @@ samp {
     color: #000;
     font-family: monospace, monospace;
     _font-family: 'courier new', monospace;
-    /*max-width:60%;*/
 }
 
 pre {
@@ -412,20 +400,10 @@ pre code {
 pre .code-meta {
     /*display:none;*/
     float: right;
-    /*position:fixed;*/
-    /*right:0;*/
-    /*left: 50%;*/
-    /*top: 0%;*/
-    /*transform: translateX(-50%);*/
     margin-top:-0.25em;
     margin-right:-1em;
     font-size:0.65em;
     color: rgba(0,0,0,0.5);
-    z-index:100;
-}
-pre .code-meta > * {
-    /*position:fixed;*/
-    /*right:0;*/
 }
 pre .code-meta .code-lang {
     display:inline-block;
@@ -773,7 +751,7 @@ min-width:1500px
 
 /* sidebar top buttons */
 #lbar-buttons {
-    margin-top:3.5em;
+    margin-top:40px;
     border-bottom: 1px solid rgba(0,0,0,0.1);
     padding-bottom:1em;
     margin-right: 1em;
@@ -785,18 +763,12 @@ min-width:1500px
     /*flex-wrap: wrap;*/
     overflow-x:scroll;
     row-gap: 1em;
-    font-size: 1em;
+    font-size: 0.8em;
 }
 
 @media only screen and (min-width: 1024px) {
     #lbar-buttons {
         margin-top:20px;
-    }
-}
-
-@media only screen and (min-width: 768px) {
-    #lbar-buttons {
-        font-size: 0.9em;
     }
 }
 
@@ -814,18 +786,6 @@ min-width:1500px
 #lbar-buttons > div:first-child {
     padding-left:0px;
 }
-
-#sidebar-left #btn-sticky {
-    /* display only on +1024 */
-    display:none;
-}
-@media only screen and ( min-width:1024px ) {
-    #sidebar-left #btn-sticky {
-        display:block;
-    }
-}
-
-
 
 #lbar-buttons .btn-download {
   /*display:flex;*/
@@ -992,7 +952,7 @@ min-width:1500px
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
-/*div.columnflex: auto; overflow-x: auto;}*/
+div.columnflex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -1003,80 +963,45 @@ ul.task-list li input[type="checkbox"] {
 .display.math{display: block; text-align: center; margin: 0.5rem auto;}
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span {
-    display: inline-block;
-    line-height: 1.25;
-    /*max-width: 85vw;*/
-    max-width:75vw;
-    /*overflow:auto;*/
-}
-@media only screen and (min-width: 1024px) {
-    pre > code.sourceCode > span {
-        max-width: 100%;
-    }
-}
-
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 
 .sourceCode {
     overflow: visible;
-    /*overflow-x:scroll;*/
     /* svbaelen */
     background: var(--color-background-code);
 }
 
-code.sourceCode {
-    /*overflow-x:scroll;*/
-}
-
-code.sourceCode > span {
-    color: inherit;
-    text-decoration: inherit;
-}
-div.sourceCode {
-    margin: 1em 0;
-}
-pre.sourceCode {
-    margin: 0;
-    overflow-x:scroll;
-}
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
 @media screen {
-    div.sourceCode {
-        overflow: visible;
-    }
+    div.sourceCode { overflow: auto; }
 }
 @media print {
     pre > code.sourceCode { white-space: pre-wrap; }
     pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource code {
-    counter-reset: source-line 0;
-}
-
-pre.numberSource code > span {
-    position: relative;
-    left: -2em;
-    counter-increment: source-line;
-}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
 pre.numberSource code > span > a:first-child::before {
     content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none;
-    display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
-    padding: 0 4px;
-    width: 4em;
+    padding: 0 4px; width: 4em;
     color: #aaaaaa;
-    border-right:1px solid rgba(0,0,0,0.25);
 }
 /*pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }*/
 /* svbaelen custom */
 pre.numberSource {
-    /*margin-left: 1em;*/
+    margin-left: 1em;
     border-left: 1px solid rgba(0,0,0,0.25);
-    padding-left: 0px;
+    padding-left: 4px;
 }
 div.sourceCode{
     /* comes after <p> with margin 1em */
@@ -1143,7 +1068,6 @@ div.csl-right-inline {
 div.csl-indent {
   margin-left: 2em;
 }
-
 
 /* svbaelen */
 /* #listing */

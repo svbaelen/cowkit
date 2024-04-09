@@ -106,14 +106,10 @@ body {
     left:1em;
     z-index:100;
     cursor:pointer;
-    padding:0.25em;
-    background-color:var(--color-background-main);
-}
-#btn-mobile.in-menu {
-    background-color:var(--color-sidebar-gray);
 }
 
 #btn-burger {
+    padding:0.2em;
     height:25px;
     width:25px;
     stroke: #292929;
@@ -124,6 +120,7 @@ body {
     fill: #292929;
     height:18px;
     width:18px;
+    padding:0.2em;
 }
 
 #btn-close * {
@@ -390,6 +387,7 @@ pre {
     word-wrap: normal;
     background-color: var(--color-background-code);
     border: 1px solid rgba(0,0,0,0.5);
+    overflow-x:scroll;
 }
 
 code {
@@ -773,7 +771,7 @@ min-width:1500px
 
 /* sidebar top buttons */
 #lbar-buttons {
-    margin-top:3.5em;
+    margin-top:40px;
     border-bottom: 1px solid rgba(0,0,0,0.1);
     padding-bottom:1em;
     margin-right: 1em;
@@ -785,7 +783,7 @@ min-width:1500px
     /*flex-wrap: wrap;*/
     overflow-x:scroll;
     row-gap: 1em;
-    font-size: 1em;
+    font-size: 1.1em;
 }
 
 @media only screen and (min-width: 1024px) {
@@ -1006,43 +1004,23 @@ pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span {
     display: inline-block;
     line-height: 1.25;
-    /*max-width: 85vw;*/
-    max-width:75vw;
-    /*overflow:auto;*/
+    /*max-width: 90vw;*/
 }
-@media only screen and (min-width: 1024px) {
-    pre > code.sourceCode > span {
-        max-width: 100%;
-    }
-}
-
 pre > code.sourceCode > span:empty { height: 1.2em; }
 
-.sourceCode {
+div.sourceCode {
     overflow: visible;
-    /*overflow-x:scroll;*/
+    overflow-x:scroll;
     /* svbaelen */
     background: var(--color-background-code);
 }
 
-code.sourceCode {
-    /*overflow-x:scroll;*/
-}
-
-code.sourceCode > span {
-    color: inherit;
-    text-decoration: inherit;
-}
-div.sourceCode {
-    margin: 1em 0;
-}
-pre.sourceCode {
-    margin: 0;
-    overflow-x:scroll;
-}
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
 @media screen {
     div.sourceCode {
-        overflow: visible;
+        overflow: auto;
     }
 }
 @media print {
@@ -1052,31 +1030,26 @@ pre.sourceCode {
 pre.numberSource code {
     counter-reset: source-line 0;
 }
-
 pre.numberSource code > span {
-    position: relative;
-    left: -2em;
-    counter-increment: source-line;
+    position: relative; left: -4em; counter-increment: source-line;
 }
 pre.numberSource code > span > a:first-child::before {
     content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none;
-    display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px;
     width: 4em;
     color: #aaaaaa;
-    border-right:1px solid rgba(0,0,0,0.25);
 }
 /*pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }*/
 /* svbaelen custom */
 pre.numberSource {
-    /*margin-left: 1em;*/
+    margin-left: 1em;
     border-left: 1px solid rgba(0,0,0,0.25);
-    padding-left: 0px;
+    padding-left: 4px;
 }
 div.sourceCode{
     /* comes after <p> with margin 1em */
