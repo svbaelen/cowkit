@@ -13,7 +13,7 @@ filters:
 input-files:
   - ./src/_base.md
   - ./src/abstract.md
-  #- ./src/01_intro.md
+  - ./src/01_intro.md
   - ./src/02_chapter_1.md
   - ./src/03_conclusion.md
   - ./src/04_acknowledgment.md

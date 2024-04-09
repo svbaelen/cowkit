@@ -161,32 +161,7 @@ And a more simple table, with custom `HTML class` for styling. With the amount o
 All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights. All human beings are
 born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights.
 
-A HTML table (will not properly render in in `tex` output).
-
-```{=html}
-<table id="tbl:html">
-<tr>
-<th>Company</th>
-<th>Contact</th>
-<th>Country</th>
-</tr>
-<tr>
-<td>Alfreds Futterkiste</td>
-<td>Maria Anders</td>
-<td>Germany</td>
-</tr>
-<tr>
-<td>Centro comercial Moctezuma</td>
-<td>Francisco Chang</td>
-<td>Mexico</td>
-</tr>
-</table>
-```
-
-<!-- the dummy: -->
-
-
-A LaTeX table that will be ignored in HTML, but allowed in `PDF` and `Tex` formats.
+A LaTeX table (other tex snippets also possible) that will be ignored in HTML, but allowed in `PDF` and `Tex` formats.
 
 ```{=tex}
 \begin{center}

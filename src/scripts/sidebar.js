@@ -50,7 +50,6 @@ function sidebarDropdown() {
       // init
       dropdownBtn.innerHTML = svgBtnDown;
       dropdownBtn.addEventListener("click", (ev) => {
-        ev.preventDefault();
         if (tocElSublist.style.display === "none" || !tocElSublist.style.display) {
           tocElSublist.style.display = "block";
           dropdownBtn.innerHTML = svgBtnUp;
@@ -72,6 +71,7 @@ function sidebarScrollBtns() {
   const btnScrollTop = document.querySelector("#lbar-buttons #btn-scroll-top");
   btnScrollTop.style.display = "flex";
   btnScrollTop.addEventListener("click", (ev) => {
+    hideMenu();
     window.scrollTo(0, 0);
     history.pushState(
       "", document.title, window.location.pathname + window.location.search
@@ -99,6 +99,21 @@ function spacingAroundNumberedToc(){
   lastTocWithNr.style.marginBottom = "12px";
 }
 
+
+function hideMenu()  {
+  const btnMobile = document.querySelector(`#btn-mobile`);
+  const btnBurger = document.querySelector(`#btn-burger`);
+  const btnClose = document.querySelector(`#btn-close`);
+  const sidebarLeft = document.querySelector(`#sidebar-left`);
+
+  if (btnBurger.style.display === "none" || !btnBurger.style.display) {
+    btnBurger.style.display = "block";
+    btnClose.style.display = "none";
+    sidebarLeft.style.display = "none";
+    btnMobile.classList.remove("in-menu");
+  }
+}
+
 function sidebarMobileMenu() {
   const btnMobile = document.querySelector(`#btn-mobile`);
   const btnBurger = document.querySelector(`#btn-burger`);
@@ -111,18 +126,8 @@ function sidebarMobileMenu() {
   btnBurger.style.display = "block";
   btnClose.style.display = "none";
 
-  const hideMenu = () => {
-    if (btnBurger.style.display === "none" || !btnBurger.style.display) {
-      btnBurger.style.display = "block";
-      btnClose.style.display = "none";
-      sidebarLeft.style.display = "none";
-      btnMobile.classList.remove("in-menu");
-    }
-  }
-
   // init
   btnBurger.addEventListener("click", (ev) => {
-    ev.preventDefault();
     if (btnClose.style.display === "none" || !btnClose.style.display) {
       btnClose.style.display = "block";
       btnBurger.style.display = "none";
@@ -131,7 +136,6 @@ function sidebarMobileMenu() {
     }
   });
   btnClose.addEventListener("click", (ev) => {
-    ev.preventDefault();
     hideMenu()
   });
 
@@ -142,7 +146,6 @@ function sidebarMobileMenu() {
   });
 
   textBody.addEventListener("click", (ev) => {
-    ev.preventDefault();
     hideMenu()
   });
 }

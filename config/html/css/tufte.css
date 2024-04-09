@@ -6,7 +6,7 @@
  */
 
 :root {
-    --heading-scale-factor: 0.6;
+    --heading-scale-factor: 0.65;
     --font-scale-factor: 1;
     --sidebar-font-scale-factor: 1;
     --rbar-width: 300px;
@@ -43,7 +43,7 @@ body {
     color: #444;
     /*font-family: Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;*/
     font-family: et-book, Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
-    font-size: calc( var(--font-scale-factor) * 18px );
+    font-size: calc( var(--font-scale-factor) * 19px );
     line-height: 1.4;
     padding: 0;
     margin:0;
@@ -102,11 +102,10 @@ body {
     align-items: center;
     justify-content: center;
     position:fixed;
-    top: 1em;
-    left:1em;
+    top: 0.5em;
+    left:0.5em;
     z-index:100;
     cursor:pointer;
-    padding:0.25em;
     background-color:var(--color-background-main);
 }
 #btn-mobile.in-menu {
@@ -114,12 +113,15 @@ body {
 }
 
 #btn-burger {
+    padding:0.75em;
     height:25px;
     width:25px;
     stroke: #292929;
 }
 
 #btn-close {
+    padding:0.75em;
+    height:25px;
     display:none;
     fill: #292929;
     height:18px;
@@ -133,8 +135,13 @@ body {
 #text-body {
     /* enable grow/shrink */
     grid-area: main;
-    padding: 0 2em;
+    padding: 0 1em;
     padding-bottom:3em;
+}
+@media only screen and (min-width: 1024px) {
+    #text-body {
+        padding: 0 2em;
+    }
 }
 
 #text-bode:not(header) {
@@ -313,15 +320,15 @@ h1 {
 }
 
 h2 {
-    font-size: calc(1.9em * var(--heading-scale-factor));
+    font-size: calc(2.0em * var(--heading-scale-factor));
 }
 
 h3 {
-    font-size: calc(1.55em * var(--heading-scale-factor));
+    font-size: calc(1.65em * var(--heading-scale-factor));
 }
 
 h4 {
-    font-size: calc(1.25em * var(--heading-scale-factor));
+    font-size: minmax(1em, calc(1.25em * var(--heading-scale-factor)));
 }
 
 h5 {
@@ -584,6 +591,15 @@ table {
     border-right: 1px solid #ddd;
     border-spacing: 0;
     border-collapse: collapse;
+    overflow-x:scroll;
+    /*max-width:90vw;*/
+    font-size:0.9em;
+}
+
+@media only screen and (min-width: 1024px) {
+    table {
+        font-size:1em;
+    }
 }
 
 div:has(> caption) > table {
@@ -1007,7 +1023,7 @@ pre > code.sourceCode > span {
     display: inline-block;
     line-height: 1.25;
     /*max-width: 85vw;*/
-    max-width:75vw;
+    max-width:73vw; /* this depends on the font-size */
     /*overflow:auto;*/
 }
 @media only screen and (min-width: 1024px) {
