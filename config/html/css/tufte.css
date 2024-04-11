@@ -21,6 +21,7 @@
     --font-scale-factor-code: 0.95;
     */
     --sidebar-font-scale-factor: 1;
+    --padding-side-main: 1.25em;
     --rbar-width: 300px;
     --rbar-max-width: 300px;
     --main-max-width: 800px;
@@ -71,7 +72,7 @@ body {
 
 @media only screen and (min-width: 480px) {
     body {
-        font-size: calc( var(--font-scale-factor) * 16px );;
+        font-size: calc( var(--font-scale-factor) * 19px );;
         --heading-scale-factor: 0.7;
     }
 }
@@ -154,7 +155,7 @@ body {
 #text-body {
     /* enable grow/shrink */
     grid-area: main;
-    padding: 0 1.25em;
+    padding: 0 var(--padding-side-main);
     padding-bottom:3em;
 }
 @media only screen and (min-width: 1024px) {
@@ -608,17 +609,26 @@ figcaption {
 }
 
 table {
+    margin:0;
+    padding:0;
     display:block;
     margin-bottom: 1.6em;
     border-bottom: 1px solid #ddd;
     border-right: 1px solid #ddd;
     border-spacing: 0;
     border-collapse: collapse;
-    overflow-x:auto;
     /*width:90vw;*/
-    max-width:87vw !important;
+    /*max-width:88vw !important;*/
+    max-width:calc(99vw - 2 * var(--padding-side-main)) !important;
+    overflow-x:auto;
     font-size:0.9em;
 }
+
+/*div:has(> table) {*/
+    /*max-width:calc(100vw - var(--padding-side-main)) !important;*/
+    /*margin:0;*/
+    /*padding:0;*/
+/*}*/
 
 /* table cell widths */
 div.c75 td,  div.c75  th { min-width:75px; }
@@ -1058,7 +1068,7 @@ pre > code.sourceCode > span {
     display: inline-block;
     line-height: 1.25;
     /*max-width: 85vw;*/
-    max-width:73vw; /* this depends on the font-size */
+    max-width:73vw;
     /*overflow:auto;*/
 }
 @media only screen and (min-width: 1024px) {
