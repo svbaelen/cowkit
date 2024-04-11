@@ -5,20 +5,17 @@
  *   https://gist.github.com/killercup/5917178
  */
 
+/* the following works, or set in layout.yaml */
+/*@import url("./font_tufte.css");*/
+
 :root {
-    /* Default Tufte style */
-    --font-family-main: et-book, Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;*/
+    /* Set in separate font_* CSS */
+    /*
+    --font-family-main: et-book, Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
     --line-height-main: 1.4;
     --heading-scale-factor: 0.65;
-    --font-scale-factor: 1;         /* useful when switching between fonts */
-    --font-scale-factor-code: 0.75; /* useful for "odd" fonts with big diff from code */
-    /* Merriweather style */
-    /*
-    --font-family-main: 'Merriweather', serif;
-    --line-height-main: 1.6;
-    --heading-scale-factor: 0.65;
-    --font-scale-factor: 0.8;
-    --font-scale-factor-code: 0.95;
+    --font-scale-factor: 1;
+    --font-scale-factor-code: 0.75;
     */
     --sidebar-font-scale-factor: 1;
     --padding-side-main: 1.25em;
@@ -43,6 +40,8 @@ html {
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
     width:100%;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
 }
 /* Chrome 29+ */
 @media screen and (-webkit-min-device-pixel-ratio:0)
@@ -176,6 +175,7 @@ body {
     padding:0 0em 0 2em;
     align-self: start;
     top: 0;
+    bottom:0;
     left:0;
     overflow-y: auto;
     resize: horizontal;
@@ -184,6 +184,7 @@ body {
     max-width: 80%;
     scrollbar-width: thin;
     height:100vh;
+    min-height:100vh;
     z-index:50;
 }
 
@@ -391,9 +392,10 @@ header {
 }
 
 b, strong {
-    font-weight: bold;
+    /* see separate font files */
+    /*font-weight: bold;*/
     /*color:black;*/
-    color:#000;
+    /*color:#000;*/
     /* for more bold of similar font, uncomment next 2 lines */
     /*font-size:0.83em;*/
     /*font-family: 'Merriweather", serif';*/
@@ -619,7 +621,7 @@ table {
     border-collapse: collapse;
     /*width:90vw;*/
     /*max-width:88vw !important;*/
-    max-width:calc(99vw - 2 * var(--padding-side-main)) !important;
+    max-width:calc(98vw - 1.95 * var(--padding-side-main)) !important;
     overflow-x:auto;
     font-size:0.9em;
 }
@@ -1236,108 +1238,4 @@ div.sourceCode[data-caption]:after {
     margin: -0.8em auto 0 auto;
     font-style:italic;
     font-size: var(--font-size-caption);
-}
-
-
-
-/*********************
- * FONTS        #fonts
- *********************/
-
-/* path relative to pandoc root dir, which - if not specificied - is the projet
- * root */
-@font-face {
-    font-family: "et-book";
-    src: url("./et-book/et-book-roman-line-figures/et-book-roman-line-figures.eot");
-    src: url("./et-book/et-book-roman-line-figures/et-book-roman-line-figures.eot?#iefix") format("embedded-opentype"), url("./et-book/et-book-roman-line-figures/et-book-roman-line-figures.woff") format("woff"), url("./et-book/et-book-roman-line-figures/et-book-roman-line-figures.ttf") format("truetype"), url("./et-book/et-book-roman-line-figures/et-book-roman-line-figures.svg#etbookromanosf") format("svg");
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: "et-book";
-    src: url("./et-book/et-book-display-italic-old-style-figures/et-book-display-italic-old-style-figures.eot");
-    src: url("./et-book/et-book-display-italic-old-style-figures/et-book-display-italic-old-style-figures.eot?#iefix") format("embedded-opentype"), url("./et-book/et-book-display-italic-old-style-figures/et-book-display-italic-old-style-figures.woff") format("woff"), url("./et-book/et-book-display-italic-old-style-figures/et-book-display-italic-old-style-figures.ttf") format("truetype"), url("./et-book/et-book-display-italic-old-style-figures/et-book-display-italic-old-style-figures.svg#etbookromanosf") format("svg");
-    font-weight: normal;
-    font-style: italic;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: "et-book";
-    src: url("./et-book/et-book-bold-line-figures/et-book-bold-line-figures.eot");
-    src: url("./et-book/et-book-bold-line-figures/et-book-bold-line-figures.eot?#iefix") format("embedded-opentype"), url("./et-book/et-book-bold-line-figures/et-book-bold-line-figures.woff") format("woff"), url("./et-book/et-book-bold-line-figures/et-book-bold-line-figures.ttf") format("truetype"), url("./et-book/et-book-bold-line-figures/et-book-bold-line-figures.svg#etbookromanosf") format("svg");
-    font-weight: bold;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: "et-book-roman-old-style";
-    src: url("./et-book/et-book-roman-old-style-figures/et-book-roman-old-style-figures.eot");
-    src: url("./et-book/et-book-roman-old-style-figures/et-book-roman-old-style-figures.eot?#iefix") format("embedded-opentype"), url("./et-book/et-book-roman-old-style-figures/et-book-roman-old-style-figures.woff") format("woff"), url("./et-book/et-book-roman-old-style-figures/et-book-roman-old-style-figures.ttf") format("truetype"), url("./et-book/et-book-roman-old-style-figures/et-book-roman-old-style-figures.svg#etbookromanosf") format("svg");
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
-
-/* ================= */
-/* Merriweather font */
-/* ================= */
-@font-face {
-    font-family: 'Merriweather';
-    src: url("./font-merriweather/Merriweather-Regular.ttf") format("truetype");
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-}
-@font-face {
-    font-family: 'Merriweather';
-    src: url("./font-merriweather/Merriweather-Italic.ttf") format("truetype");
-    font-weight: normal;
-    font-style: italic;
-    font-display: swap;
-}
-@font-face {
-    font-family: 'Merriweather';
-    src: url("./font-merriweather/Merriweather-Bold.ttf") format("truetype");
-    font-weight: bold;
-    font-style: normal;
-    font-display: swap;
-}
-@font-face {
-    font-family: 'Merriweather';
-    src: url("./font-merriweather/Merriweather-BoldItalic.ttf") format("truetype");
-    font-weight: bold;
-    font-style: italic;
-    font-display: swap;
-}
-@font-face {
-    font-family: 'Merriweather';
-    src: url("./font-merriweather/Merriweather-Light.ttf") format("truetype");
-    font-weight: 300;
-    font-style: normal;
-    font-display: swap;
-}
-@font-face {
-    font-family: 'Merriweather';
-    src: url("./font-merriweather/Merriweather-LightItalic.ttf") format("truetype");
-    font-weight: 300;
-    font-style: italic;
-    font-display: swap;
-}
-@font-face {
-    font-family: 'Merriweather';
-    src: url("./font-merriweather/Merriweather-Black.ttf") format("truetype");
-    font-weight: 900;
-    font-style: normal;
-    font-display: swap;
-}
-@font-face {
-    font-family: 'Merriweather';
-    src: url("./font-merriweather/Merriweather-BlackItalic.ttf") format("truetype");
-    font-weight: 900;
-    font-style: italic;
-    font-display: swap;
 }

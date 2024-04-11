@@ -8,7 +8,7 @@
 
 filters:
   - pandoc-crossref
- #- src/filters/multiple-bibliographies.lua # comment out for quick build (no refs)
+  - src/filters/multiple-bibliographies.lua # comment out for quick build (no refs)
   #- src/filters/pandoc-quotes.lua
 input-files:
   - ./src/_base.md
@@ -23,8 +23,11 @@ input-files:
   #- ./src/list_of_figures.md
   #- ./src/list_of_listings.md
 css:
-  - ./config/html/css/tufte.css
+  - ./config/html/css/main.css
   - ./config/html/css/print.css
+  - ./config/html/css/font_tufte.css
+  #- ./config/html/css/font_poppins.css
+  #- ./config/html/css/font_merriweather.css
 log-file: build/html.log
 output-file: build/index.html
 to: html
