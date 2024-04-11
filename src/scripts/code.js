@@ -1,5 +1,7 @@
 /* Additional code block functionality */
 
+const metaTrueStrings = ["true", "True", "1"];
+
 const copyIconSvg = `<svg aria-hidden="true" height="16" viewBox="0 0 16 16"
     version="1.1" width="16" data-view-component="true">
     <path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0
@@ -38,62 +40,70 @@ function fallbackCopyTextToClipboard(text) {
 }
 
 function copyTextToClipboard(text, msgEl) {
-    if (!navigator.clipboard) {
-        fallbackCopyTextToClipboard(text);
-        return;
-    }
-    navigator.clipboard.writeText(text).then(function() {
-        msgEl.textContent = "Copied to clipboard!";
-        msgEl.style.display = "block";
-        setTimeout(() => {
-            msgEl.style.display = "none";
-        }, 1000);
-    }, function(err) {
-        msgEl.textContent = err;
-        msgEl.style.display = "block";
-        setTimeout(() => {
-            msgEl.style.display = "none";
-        }, 1000);
-    });
+  if (!navigator.clipboard) {
+    fallbackCopyTextToClipboard(text);
+    return;
+  }
+  navigator.clipboard.writeText(text).then(function() {
+    msgEl.textContent = "Copied to clipboard!";
+    msgEl.style.display = "block";
+    setTimeout(() => {
+      msgEl.style.display = "none";
+    }, 1000);
+  }, function(err) {
+    msgEl.textContent = err;
+    msgEl.style.display = "block";
+    setTimeout(() => {
+      msgEl.style.display = "none";
+    }, 1000);
+  });
 }
 
 function addCodeLanguageInBlock() {
+  const customMeta = document.head.querySelector('[data-code-lang]').dataset;
+
   const ignoreClasses = ["sourceCode", "numberSource", "numberLines"]
   const sourceCodeBlocks = document.querySelectorAll(`pre.sourceCode`);
 
   sourceCodeBlocks.forEach((block) => {
-      const cList = block.classList;
-      for (const cl of cList){
-          // ingore non-relevant classes
-          if (ignoreClasses.includes(cl)) continue;
+    const cList = block.classList;
+    for (const cl of cList){
+      // ingore non-relevant classes
+      if (ignoreClasses.includes(cl)) continue;
 
-          const blockMeta = document.createElement("div");
-          blockMeta.classList.add("code-meta");
-          const langEl = document.createElement("span");
-          langEl.classList.add("code-lang");
-          langEl.classList.add(cl);
-          langEl.textContent = cl;
+      const blockMeta = document.createElement("div");
+      blockMeta.classList.add("code-meta");
+      const langEl = document.createElement("span");
+      langEl.classList.add("code-lang");
+      langEl.classList.add(cl);
+      langEl.textContent = cl;
 
-          const copyIconEl = document.createElement("span");
-          copyIconEl.innerHTML = copyIconSvg;
-          copyIconEl.title = "Copy to clipboard";
-          copyIconEl.classList.add("copy-icon");
-          copyIconEl.classList.add("clipboard-icon");
-          block.insertBefore(blockMeta, block.firstChild);
-          blockMeta.appendChild(langEl);
-          blockMeta.appendChild(copyIconEl);
+      const copyIconEl = document.createElement("span");
+      copyIconEl.innerHTML = copyIconSvg;
+      copyIconEl.title = "Copy to clipboard";
+      copyIconEl.classList.add("copy-icon");
+      copyIconEl.classList.add("clipboard-icon");
+      block.insertBefore(blockMeta, block.firstChild);
 
-          const copyMsgEl = document.createElement("div")
-          copyMsgEl.classList.add("copy-msg");
-          //blockMeta.appendChild(copyMsgEl);
-          //block.insertBefore(copyMsgEl, block.firstChild);
-          block.parentNode.parentNode.insertBefore(copyMsgEl, block.parentNode);
-
-          copyIconEl.addEventListener('click', function () {
-              const code = block.querySelector(`code`);
-              copyTextToClipboard(code.textContent, copyMsgEl);
-          });
+      // TODO: better done outside loop
+      if (metaTrueStrings.includes(customMeta.codeLang)){
+        blockMeta.appendChild(langEl);
       }
+      if (metaTrueStrings.includes(customMeta.codeCopy)){
+        blockMeta.appendChild(copyIconEl);
+      }
+
+      const copyMsgEl = document.createElement("div")
+      copyMsgEl.classList.add("copy-msg");
+      //blockMeta.appendChild(copyMsgEl);
+      //block.insertBefore(copyMsgEl, block.firstChild);
+      block.parentNode.parentNode.insertBefore(copyMsgEl, block.parentNode);
+
+      copyIconEl.addEventListener('click', function () {
+        const code = block.querySelector(`code`);
+        copyTextToClipboard(code.textContent, copyMsgEl);
+      });
+    }
   });
 }
 
@@ -105,5 +115,5 @@ function addCodeLanguageInBlock() {
 /*==================================================================*/
 
 window.addEventListener('load', function () {
-    addCodeLanguageInBlock();
+  addCodeLanguageInBlock();
 })

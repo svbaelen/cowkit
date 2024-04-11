@@ -69,11 +69,13 @@ author-meta:
   - Senne Van Baelen
 date-meta: 2024
 
+# options
+code-lang: true  # show code language in code blocks
+code-copy: true  # add copy-to-clipboard button in code blocks
 # Download other outputs: requires a .pdf/.tex with this name in your server directory
 # (-> can be compiled with $ cowkit -s --format pdf|tex|all)
-# simply comment out to remove this button
-download-pdf: index.pdf
-download-tex: index.tex
+download-pdf: index.pdf  # comment out to remove button
+download-tex: index.tex  # comment out to remove button
 
 # Latex
 # ======
@@ -81,8 +83,8 @@ download-tex: index.tex
 # margin-right: 3cm  # can also set in templates
 
 # ListOfX (in html, make a dedicated .md, e.g., with \listoffigures inside)
-lof: false
-lot: false
+lof: false # we choose to manually set the location of the figure list via a .md file (appendix.md)
+lot: false # we choose to manually set the location of the table list via a .md file (appendix.md)
 #lofTitle: |
 #  # List of Figures
 # add {-} to skip section number

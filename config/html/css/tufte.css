@@ -6,8 +6,20 @@
  */
 
 :root {
+    /* Default Tufte style */
+    --font-family-main: et-book, Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;*/
+    --line-height-main: 1.4;
     --heading-scale-factor: 0.65;
-    --font-scale-factor: 1;
+    --font-scale-factor: 1;         /* useful when switching between fonts */
+    --font-scale-factor-code: 0.75; /* useful for "odd" fonts with big diff from code */
+    /* Merriweather style */
+    /*
+    --font-family-main: 'Merriweather', serif;
+    --line-height-main: 1.6;
+    --heading-scale-factor: 0.65;
+    --font-scale-factor: 0.8;
+    --font-scale-factor-code: 0.95;
+    */
     --sidebar-font-scale-factor: 1;
     --rbar-width: 300px;
     --rbar-max-width: 300px;
@@ -42,9 +54,9 @@ html {
 body {
     color: #444;
     /*font-family: Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;*/
-    font-family: et-book, Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
+    font-family: var(--font-family-main);
     font-size: calc( var(--font-scale-factor) * 19px );
-    line-height: 1.4;
+    line-height: var(--line-height-main);
     padding: 0;
     margin:0;
     width:100%;
@@ -106,36 +118,43 @@ body {
     left:0.5em;
     z-index:100;
     cursor:pointer;
-    background-color:var(--color-background-main);
-}
-#btn-mobile.in-menu {
-    background-color:var(--color-sidebar-gray);
 }
 
+
 #btn-burger {
-    padding:0.75em;
+    padding:1em;
     height:25px;
     width:25px;
     stroke: #292929;
 }
 
+#btn-burger-bg {
+   fill: var(--color-background-main);
+    stroke: none;
+}
+
 #btn-close {
-    padding:0.75em;
+    padding:1em;
     height:25px;
     display:none;
     fill: #292929;
-    height:18px;
-    width:18px;
+    margin-top:0.15em;
+    margin-left:0.15em;
+    height:20px;
+    width:20px;
 }
-
 #btn-close * {
     stroke-width: 2;
+}
+#btn-close-bg {
+    fill: var(--color-sidebar-gray);
+    stroke:none;
 }
 
 #text-body {
     /* enable grow/shrink */
     grid-area: main;
-    padding: 0 1em;
+    padding: 0 1.25em;
     padding-bottom:3em;
 }
 @media only screen and (min-width: 1024px) {
@@ -160,8 +179,8 @@ body {
     overflow-y: auto;
     resize: horizontal;
     max-height: 100vh;
-    min-width: 300px;
-    max-width: 100%
+    min-width: 80%;
+    max-width: 80%;
     scrollbar-width: thin;
     height:100vh;
     z-index:50;
@@ -401,7 +420,7 @@ pre {
 
 code {
     padding:0.25em;
-    font-size: 0.75em;
+    font-size: calc(1em * var(--font-scale-factor-code) );
     background-color: var(--color-background-code);
 }
 
@@ -419,14 +438,16 @@ pre code {
 pre .code-meta {
     /*display:none;*/
     float: right;
+    display:flex;
+    align-items: center;
+    justify-content: center;
     /*position:fixed;*/
     /*right:0;*/
     /*left: 50%;*/
     /*top: 0%;*/
-    /*transform: translateX(-50%);*/
     margin-top:-0.25em;
     margin-right:-1em;
-    font-size:0.65em;
+    font-size: calc(var(--font-scale-factor-code) * 0.80em);
     color: rgba(0,0,0,0.5);
     z-index:100;
 }
@@ -436,8 +457,9 @@ pre .code-meta > * {
 }
 pre .code-meta .code-lang {
     display:inline-block;
-    margin-top:-0.5em;
-    vertical-align: text-top;
+    /*margin-top:-0.5em;*/
+    /*margin-right:0.5em;*/
+    /*vertical-align: text-top;*/
 }
 pre .code-meta .clipboard-icon {
     margin-left: 0.65em;
@@ -586,15 +608,28 @@ figcaption {
 }
 
 table {
+    display:block;
     margin-bottom: 1.6em;
     border-bottom: 1px solid #ddd;
     border-right: 1px solid #ddd;
     border-spacing: 0;
     border-collapse: collapse;
-    overflow-x:scroll;
-    /*max-width:90vw;*/
+    overflow-x:auto;
+    /*width:90vw;*/
+    max-width:87vw !important;
     font-size:0.9em;
 }
+
+/* table cell widths */
+div.c75 td,  div.c75  th { min-width:75px; }
+div.c100 td, div.c100 th { min-width:100px; }
+div.c125 td, div.c125 th { min-width:125px; }
+div.c150 td, div.c150 th { min-width:150px; }
+div.c175 td, div.c175 th { min-width:175px; }
+div.c200 td, div.c200 th { min-width:200px; }
+div.c250 td, div.c250 th { min-width:250px; }
+div.c300 td, div.c300 th { min-width:300px; }
+div.cfull { white-space: nowrap; }
 
 @media only screen and (min-width: 1024px) {
     table {
@@ -1234,5 +1269,65 @@ div.sourceCode[data-caption]:after {
     src: url("./et-book/et-book-roman-old-style-figures/et-book-roman-old-style-figures.eot?#iefix") format("embedded-opentype"), url("./et-book/et-book-roman-old-style-figures/et-book-roman-old-style-figures.woff") format("woff"), url("./et-book/et-book-roman-old-style-figures/et-book-roman-old-style-figures.ttf") format("truetype"), url("./et-book/et-book-roman-old-style-figures/et-book-roman-old-style-figures.svg#etbookromanosf") format("svg");
     font-weight: normal;
     font-style: normal;
+    font-display: swap;
+}
+
+/* ================= */
+/* Merriweather font */
+/* ================= */
+@font-face {
+    font-family: 'Merriweather';
+    src: url("./font-merriweather/Merriweather-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Merriweather';
+    src: url("./font-merriweather/Merriweather-Italic.ttf") format("truetype");
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Merriweather';
+    src: url("./font-merriweather/Merriweather-Bold.ttf") format("truetype");
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Merriweather';
+    src: url("./font-merriweather/Merriweather-BoldItalic.ttf") format("truetype");
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Merriweather';
+    src: url("./font-merriweather/Merriweather-Light.ttf") format("truetype");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Merriweather';
+    src: url("./font-merriweather/Merriweather-LightItalic.ttf") format("truetype");
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Merriweather';
+    src: url("./font-merriweather/Merriweather-Black.ttf") format("truetype");
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Merriweather';
+    src: url("./font-merriweather/Merriweather-BlackItalic.ttf") format("truetype");
+    font-weight: 900;
+    font-style: italic;
     font-display: swap;
 }

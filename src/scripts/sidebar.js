@@ -1,19 +1,23 @@
 /* Additional sidebar functionality */
 
 function sidebarDownloadBtns() {
+  const location = window.location;
+  const fullUrl = location.protocol + '//' + location.host + location.pathname;
   const btnDownloadPdf = document.querySelector("#btn-download-pdf");
   btnDownloadPdf.style.display = "flex";
   btnDownloadPdf.addEventListener("click", (ev) => {
-    window.open(
-      `/${btnDownloadPdf.dataset.filename}`,
-      '_blank'
-    );
+      window.open(
+        `${fullUrl}/${btnDownloadPdf.dataset.filename}`,
+        '_blank'
+      );
   });
 
   const btnDownloadTex = document.querySelector("#btn-download-tex");
   btnDownloadTex.style.display = "flex";
   btnDownloadTex.addEventListener("click", (ev) => {
-    window.open(`/${btnDownloadTex.dataset.filename}`);
+    window.open(
+      `${fullUrl}/${btnDownloadTex.dataset.filename}`,
+    );
   });
 }
 

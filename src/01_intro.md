@@ -161,6 +161,20 @@ And a more simple table, with custom `HTML class` for styling. With the amount o
 All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights. All human beings are
 born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights.
 
+And here goes a rather wide table (scrollable in x). Optionally, we can add a HTML `div` wrapper to set minimal column widths, or some other styling
+spec. For `min-width`, the `class` options are: `c75`, `c100`,`c125`, `c150`, `c175`, `c200`, `c250`, `c300`, `cfull` (number corresponds to pixels). The
+last one sets each column to full width of it's content. Note that this styling only applies to the HTML output. LaTeX is styled via the corresponding
+LaTeX template.
+
+<div class="cfull">
+| column 1  | column 2           | column 3        | column 4    | column 5    | column 6         | column 7         |
+| ---       | ---                | ---             | ---         | ---         | ---              | ---              |
+| All human | beings are born    | free and equal  | in dignity  | and rights  | Period.          | Big row          |
+| All human | beings are born    | free and equal  | in dignity  | and rights  | End of sentence  | check mobile     |
+
+: A table with full column width (`class=cfull`)
+</div>
+
 A LaTeX table (other tex snippets also possible) that will be ignored in HTML, but allowed in `PDF` and `Tex` formats.
 
 ```{=tex}
