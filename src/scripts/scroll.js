@@ -34,6 +34,8 @@ function mainScrollBtns() {
     let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     if (scrollTop > LAST_SCROLL_TOP) {
       // downscroll code
+      if (newTimeout) clearTimeout(newTimeout);
+      btnScrollTop.style.display = 'none';
     } else if (scrollTop < LAST_SCROLL_TOP) {
       // upscroll code
       btnScrollTop.style.display = 'flex';

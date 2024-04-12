@@ -832,9 +832,14 @@ input:checked + .slider:before {
 #btn-scroll-bottom svg {
     transform: rotate(180deg);
 }
+
 #btn-scroll-bottom:hover svg,
 #btn-scroll-top:hover svg {
   stroke: var(--color-link);
+}
+#btn-scroll-bottom:focus svg,
+#btn-scroll-top:focus svg {
+  stroke: #aaa;
 }
 
 /*#sidebar-right:hover #btn-scroll-bottom,*/
