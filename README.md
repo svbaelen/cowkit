@@ -4,10 +4,10 @@
 
 ## Comfortable features
 
-Write and compose in markdown (or HTML) - publish to LaTeX, PDF, and HTML.
+Write and compose in markdown (or HTML) - [publish to HTML](https://svbaelen.github.io/cowkit/), LaTeX, and PDF.
 
 - Convenient, though [far from perfect](#caveats-and-known-limitations)
-- Can handle **interconnected content structures** (`tex`-like writing)
+- Can handle **interconnected content structures** (`tex`-like writing experience)
 - Zero setup, no frameworks (requires only [Docker](https://docs.docker.com/engine/install/) with [Pandoc](https://pandoc.org/)-based image)
 - Fully customizable (styling, metadata, layout, ...)
 - <b>Focus on writing</b> instead of compiling (file-watcher + auto build)
@@ -66,6 +66,8 @@ Set (different) config and/or template files via `cowkit` <b>[CLI arguments](#cl
 ## Examples
 
 See [here](./examples/README.md)
+
+For an <b>example output</b> document, check out [this webpage](https://svbaelen.github.io/cowkit/).
 
 ## More comfort
 
