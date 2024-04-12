@@ -53,13 +53,14 @@ ccsLabelSep: ": &nbsp;"
 #  @brown2016
 
 # headers for HTML and/or LaTeX
-header-includes: 
+header-includes:
   - <link rel="icon" type="image/x-icon" href="img/cowicon.svg"/>
   - <script src="./scripts/sidebar.js"></script>
   - <script src="./scripts/live_reload.js"></script>
   - <script src="./scripts/captions.js"></script>
   - <script src="./scripts/code.js"></script>
   - <script src="./scripts/subfigs.js"></script>
+  - <script src="./scripts/scroll.js"></script>
   - \definecolor{myhrefcolor}{HTML}{0645AD}
 
 # HTML

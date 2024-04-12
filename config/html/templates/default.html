@@ -66,10 +66,30 @@ $endfor$
       </svg>
     </div>
     <main id="main-content" class="main-content">
-      <!------------------>
-      <!-- sidebar left -->
-      <!------------------>
-      <nav id="sidebar-left" class="sidebar-left" role="doc-toc">
+        <div id="scroll-buttons">
+            <div id="btn-scroll-top" title="scroll to top">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 358.012 358.012" xml:space="preserve">
+                    <g>
+                    <path d="M179.006,358.012c98.865,0,179.006-80.141,179.006-179.006S277.871,0,179.006,0S0,80.141,0,179.006
+                                S80.141,358.012,179.006,358.012z
+                                M84.795,234.54l-8.437-8.437L179,123.455l102.66,102.66l-8.437,8.437L179,140.335L84.795,234.54z "/>
+                    </g>
+                </svg>
+            </div>
+            <div id="btn-scroll-bottom" title="scroll to bottom">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 358.012 358.012" xml:space="preserve">
+                    <g>
+                    <path d="M179.006,358.012c98.865,0,179.006-80.141,179.006-179.006S277.871,0,179.006,0S0,80.141,0,179.006
+                                S80.141,358.012,179.006,358.012z
+                                M84.795,234.54l-8.437-8.437L179,123.455l102.66,102.66l-8.437,8.437L179,140.335L84.795,234.54z "/>
+                    </g>
+                </svg>
+            </div>
+        </div>
+        <!------------------>
+        <!-- sidebar left -->
+        <!------------------>
+        <nav id="sidebar-left" class="sidebar-left" role="doc-toc">
         <div id="toc-content">
           <div id="lbar-buttons">
             <div id="btn-sticky">
@@ -105,26 +125,6 @@ $endfor$
               <div class="btn-text">TEX</div>
             </div>
             $endif$
-            <div id="scroll-buttons">
-              <div id="btn-scroll-top" title="scroll to top">
-                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 358.012 358.012" xml:space="preserve">
-                  <g>
-                  <path d="M179.006,358.012c98.865,0,179.006-80.141,179.006-179.006S277.871,0,179.006,0S0,80.141,0,179.006
-                              S80.141,358.012,179.006,358.012z
-                              M84.795,234.54l-8.437-8.437L179,123.455l102.66,102.66l-8.437,8.437L179,140.335L84.795,234.54z "/>
-                  </g>
-                </svg>
-              </div>
-              <div id="btn-scroll-bottom" title="scroll to bottom">
-                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 358.012 358.012" xml:space="preserve">
-                  <g>
-                  <path d="M179.006,358.012c98.865,0,179.006-80.141,179.006-179.006S277.871,0,179.006,0S0,80.141,0,179.006
-                              S80.141,358.012,179.006,358.012z
-                              M84.795,234.54l-8.437-8.437L179,123.455l102.66,102.66l-8.437,8.437L179,140.335L84.795,234.54z "/>
-                  </g>
-                </svg>
-              </div>
-            </div>
           </div>
           $if(toc)$
           $if(toc-title)$

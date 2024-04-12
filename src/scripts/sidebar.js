@@ -6,10 +6,10 @@ function sidebarDownloadBtns() {
   const btnDownloadPdf = document.querySelector("#btn-download-pdf");
   btnDownloadPdf.style.display = "flex";
   btnDownloadPdf.addEventListener("click", (ev) => {
-      window.open(
-        `${fullUrl}/${btnDownloadPdf.dataset.filename}`,
-        '_blank'
-      );
+    window.open(
+      `${fullUrl}/${btnDownloadPdf.dataset.filename}`,
+      '_blank'
+    );
   });
 
   const btnDownloadTex = document.querySelector("#btn-download-tex");
@@ -164,9 +164,9 @@ function sidebarMobileMenu() {
 /*==================================================================*/
 
 window.addEventListener('load', function () {
-    sidebarMobileMenu();
-    sidebarDropdown();
-    sidebarScrollBtns();
+  sidebarMobileMenu();
+  sidebarDropdown();
+  //sidebarScrollBtns();
   sidebarDownloadBtns();
   spacingAroundNumberedToc();
 })

@@ -17,8 +17,10 @@
     --font-scale-factor: 1;
     --font-scale-factor-code: 0.75;
     */
+    --color-text: #444;
     --sidebar-font-scale-factor: 1;
-    --padding-side-main: 1.25em;
+    --padding-side-main: 1.8em;
+    --padding-side-main-mobile: 1.5em;
     --rbar-width: 300px;
     --rbar-max-width: 300px;
     --main-max-width: 800px;
@@ -52,7 +54,7 @@ html {
 }
 
 body {
-    color: #444;
+    color: var(--color-text);
     /*font-family: Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;*/
     font-family: var(--font-family-main);
     font-size: calc( var(--font-scale-factor) * 19px );
@@ -154,12 +156,12 @@ body {
 #text-body {
     /* enable grow/shrink */
     grid-area: main;
-    padding: 0 var(--padding-side-main);
+    padding: 0 var(--padding-side-main-mobile);
     padding-bottom:3em;
 }
 @media only screen and (min-width: 1024px) {
     #text-body {
-        padding: 0 2em;
+        padding: 0 var(--padding-side-main);
     }
 }
 
@@ -209,9 +211,10 @@ li:focus-within a {
     background:var(--color-sidebar-gray);
 }
 
-.sidebar-right {
+#sidebar-right {
     display:none;
     grid-area: rbar;
+    height:100%;
 }
 
 /* 3 column doc */
@@ -237,7 +240,7 @@ li:focus-within a {
         min-width: var(--lbar-min-width);
         max-width: var(--lbar-max-width);
     }
-    .sidebar-right {
+    #sidebar-right {
         display:block;
     }
     #btn-mobile {
@@ -580,6 +583,7 @@ figure img {
     flex-flow: row wrap;
     flex-grow: 1;
     margin-top:-1em;
+    column-gap: 1em;
 }
 
 .subfigures figure {
@@ -597,7 +601,7 @@ figure img {
     min-width:250px;
     display:inline-block;
     position:relative;
-    padding: 0.5em 0.5em;
+    /*padding: 0.5em 0.5em;*/
 }
 
 
@@ -791,21 +795,58 @@ input:checked + .slider:before {
     margin:0.4em 0;
 }
 
+#scroll-buttons {
+    /*display:flex;*/
+    display:none; /* triggered by scroll.js load */
+    position:fixed;
+    bottom:0em;
+    right:0em;
+    column-gap: 0.7em;
+    row-gap: 0.2em;
+    z-index:1000;
+    /*flex-direction:column;*/
+}
+#btn-scroll-bottom,
+#btn-scroll-top {
+    display:none;
+    /* activate with script */
+    /*display:flex;*/
+    height:100%;
+    padding:2em;
+    align-items: center;
+    cursor:pointer;
+}
+#btn-scroll-bottom svg,
+#btn-scroll-top svg {
+  display: block;
+  height:1.75em;
+  width:1.75em;
+  /*stroke: var(--color-link);*/
+  stroke: #aaa;
+  /*stroke: var(--color-text);*/
+  stroke-width:25;
+  fill:var(--color-background-main);
+  overflow:visible;
+}
+
+#btn-scroll-bottom svg {
+    transform: rotate(180deg);
+}
+#btn-scroll-bottom:hover svg,
+#btn-scroll-top:hover svg {
+  stroke: var(--color-link);
+}
+
+/*#sidebar-right:hover #btn-scroll-bottom,*/
+#scroll-buttons:hover #btn-scroll-top {
+    display:flex !important;
+}
+
+
 /******************************
  * SIDEBAR LEFT #sidebar #lbar
  ******************************/
 
-@media only screen and (
-/*min-width: calc(var(--lbar-max-width) + var(--rbar-width) + var(--main-max-width))*/
-min-width:1500px
-) {
-    .footnotes {
-        position: absolute;
-        margin:-2em 4em 0 0em;
-        margin-left:var(--main-max-width);
-        max-width: var(--rbar-width);
-    }
-}
 
 #toc-content {
     font-size: calc( var(--sidebar-font-scale-factor) * 1em );
@@ -919,41 +960,6 @@ min-width:1500px
 }
 #lbar-buttons .btn-download:hover svg{
     stroke: var(--color-link);
-}
-
-#lbar-buttons #scroll-buttons {
-    /*display:flex;*/
-    display:none;
-    column-gap: 0.7em;
-    row-gap: 0.2em;
-    /*flex-direction:column;*/
-}
-#lbar-buttons #btn-scroll-bottom,
-#lbar-buttons #btn-scroll-top {
-    display:none;
-    /* activate with script */
-    /*display:flex;*/
-    height:100%;
-    align-items: center;
-    cursor:pointer;
-}
-#lbar-buttons #btn-scroll-bottom svg,
-#lbar-buttons #btn-scroll-top svg {
-  display: block;
-  height:1.2em;
-  width:1.2em;
-  stroke: rgba(0,0,0,0.3);
-  stroke-width:25;
-  fill:none;
-  overflow:visible;
-}
-
-#lbar-buttons #btn-scroll-bottom svg {
-    transform: rotate(180deg);
-}
-#lbar-buttons #btn-scroll-bottom:hover svg,
-#lbar-buttons #btn-scroll-top:hover svg {
-  stroke: var(--color-link);
 }
 
 /* toc */
