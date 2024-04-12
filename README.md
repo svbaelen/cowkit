@@ -4,10 +4,10 @@
 
 ## Comfortable features
 
-Write and compose with markdown - publish to Tex, PDF, and HTML.
+Write and compose in markdown (or HTML) - publish to LaTeX, PDF, and HTML.
 
 - Convenient, though [far from perfect](#caveats-and-known-limitations)
-- Can handle scientific, **tex-like content structure** 
+- Can handle **interconnected content structures** (`tex`-like writing)
 - Zero setup, no frameworks (requires only [Docker](https://docs.docker.com/engine/install/) with [Pandoc](https://pandoc.org/)-based image)
 - Fully customizable (styling, metadata, layout, ...)
 - <b>Focus on writing</b> instead of compiling (file-watcher + auto build)
@@ -94,7 +94,6 @@ filters</b> (which will skip bibliography rebuilds). If still too slow, uncommen
 
 ### General:
 
-- Designed to render on browser-desktop environments, <i>not</i> yet optimized for mobile
 - Tested only on
   - Ubuntu 22.04
 

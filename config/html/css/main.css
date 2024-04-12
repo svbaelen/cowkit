@@ -442,7 +442,7 @@ pre .code-meta {
     /*display:none;*/
     float: right;
     display:flex;
-    align-items: center;
+    /*align-items: center;*/
     justify-content: center;
     /*position:fixed;*/
     /*right:0;*/
@@ -623,6 +623,7 @@ table {
     /*max-width:88vw !important;*/
     max-width:calc(98vw - 1.95 * var(--padding-side-main)) !important;
     overflow-x:auto;
+    scrollbar-width: thin;
     font-size:0.9em;
 }
 
@@ -633,15 +634,18 @@ table {
 /*}*/
 
 /* table cell widths */
-div.c75 td,  div.c75  th { min-width:75px; }
-div.c100 td, div.c100 th { min-width:100px; }
-div.c125 td, div.c125 th { min-width:125px; }
-div.c150 td, div.c150 th { min-width:150px; }
-div.c175 td, div.c175 th { min-width:175px; }
-div.c200 td, div.c200 th { min-width:200px; }
-div.c250 td, div.c250 th { min-width:250px; }
-div.c300 td, div.c300 th { min-width:300px; }
-div.cfull { white-space: nowrap; }
+@media screen {
+    div.c75 td,  div.c75  th { min-width:75px; }
+    div.c100 td, div.c100 th { min-width:100px; }
+    div.c125 td, div.c125 th { min-width:125px; }
+    div.c150 td, div.c150 th { min-width:150px; }
+    div.c175 td, div.c175 th { min-width:175px; }
+    div.c200 td, div.c200 th { min-width:200px; }
+    div.c250 td, div.c250 th { min-width:250px; }
+    div.c300 td, div.c300 th { min-width:300px; }
+    div.cfull { white-space: nowrap; }
+}
+
 
 @media only screen and (min-width: 1024px) {
     table {
@@ -846,7 +850,8 @@ min-width:1500px
     align-content:center;
     min-height:60px;
     /*flex-wrap: wrap;*/
-    overflow-x:scroll;
+    overflow-x:auto;
+    scrollbar-width: thin;
     row-gap: 1em;
     font-size: 1em;
 }
@@ -1101,16 +1106,14 @@ div.sourceCode {
 }
 pre.sourceCode {
     margin: 0;
-    overflow-x:scroll;
+    /*overflow-x:scroll;*/
+    overflow-x:auto;
+    scrollbar-width: thin;
 }
 @media screen {
     div.sourceCode {
         overflow: visible;
     }
-}
-@media print {
-    pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code {
     counter-reset: source-line 0;

@@ -5,29 +5,36 @@
 @media print {
     * {
         background: transparent !important;
-        color: black !important;
+        /*color: black !important;*/
         filter: none !important;
         -ms-filter: none !important;
+        break-inside: avoid;
+        box-sizing: border-box;
+    }
+    @page :left {
+        /*margin: 15mm 20mm 15mm 10mm;*/
+        margin: 20mm 25mm 20mm 25mm;
+    }
+    @page :right {
+        /*margin: 15mm 10mm 15mm 20mm;*/
+        margin: 20mm 25mm 20mm 25mm;
     }
     body {
         font-size: 12pt;
         max-width: 100%;
-    }
-    a,
-    a:visited {
-        text-decoration: underline;
+        padding: 0 1em 0 1em;
     }
     hr {
         height: 1px;
         border: 0;
         border-bottom: 1px solid black;
     }
-    a[href]:after {
-        content: " (" attr(href) ")";
-    }
-    abbr[title]:after {
-        content: " (" attr(title) ")";
-    }
+    /*a[href]:after {*/
+        /*content: " (" attr(href) ")";*/
+    /*}*/
+    /*abbr[title]:after {*/
+        /*content: " (" attr(title) ")";*/
+    /*}*/
     .ir a:after,
     a[href^="javascript:"]:after,
     a[href^="#"]:after {
@@ -35,31 +42,68 @@
     }
     pre,
     blockquote {
-        border: 1px solid #999;
-        padding-right: 1em;
+        /*border: 1px solid #999;*/
+        /*padding-right: 1em;*/
         page-break-inside: avoid;
     }
-    tr,
+
+    figure,
+    table,
+    tr td,
+    tr th,
     img {
-        page-break-inside: avoid;
+        /*max-width: 100% !important;*/
+        page-break-inside: avoid !important; /* or 'auto' */
     }
-    img {
-        max-width: 100% !important;
-    }
-    @page :left {
-        margin: 15mm 20mm 15mm 10mm;
-    }
-    @page :right {
-        margin: 15mm 10mm 15mm 20mm;
-    }
+
     p,
     h2,
     h3 {
         orphans: 3;
         widows: 3;
     }
+
+    h1,
     h2,
     h3 {
-        page-break-after: avoid;
+        /*page-break-before: avoid; [> 'always,' 'avoid,' 'left,' 'inherit,' or 'right' <]*/
+        /*page-break-after: avoid; [> 'always,' 'avoid,' 'left,' 'inherit,' or 'right' <]*/
+        page-break-inside: avoid; /* or 'auto' */
     }
+
+    #btn-mobile {
+        display:none;
+    }
+
+    table {
+        /*max-width:100% !important;*/
+    }
+
+    pre {
+        /*margin:2em;*/
+        /*margin-right:5em;*/
+    }
+
+    pre > code.sourceCode {
+        white-space: pre-wrap;
+    }
+    pre > code.sourceCode > span {
+        text-indent: -5em;
+        padding-left: 5em;
+        /*max-width: 100%;*/
+    }
+    div.sourceCode {
+        /*max-width:100%;*/
+        overflow: auto;
+    }
+    pre.numberSource {
+        margin-left: 0;
+        border-left: 1px solid #aaaaaa;
+        padding-left: 0em;
+    }
+
+    pre .code-meta .clipboard-icon {
+        display:none;
+    }
+
 }

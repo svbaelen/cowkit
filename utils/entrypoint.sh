@@ -216,10 +216,10 @@ else
         # assumes -v "$(pwd):/app" in docker run
         # run once
         cd /app
-        echo "[INFO - main] running initial build... (takes several seconds)"
         for fmt in $L_FMT_OUT
         do
             config $fmt
+            echo "[INFO - main] running initial build... (takes several seconds)"
             run_pandoc $CONFIG_FORMAT $TEMPLATE
             echo "[INFO - main] finished - output in ${OUTPUT_DIR}"
         done
