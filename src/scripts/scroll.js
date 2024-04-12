@@ -10,15 +10,24 @@ function mainScrollBtns() {
   // container
   const scrollBtnContainer = document.querySelector("#scroll-buttons");
   scrollBtnContainer.style.display = "flex";
+  /* trigger on scroll */
+  let newTimeout = null;
 
   // up
   const btnScrollTop = document.querySelector("#btn-scroll-top");
   //btnScrollTop.style.display = "flex";
   btnScrollTop.addEventListener("click", (ev) => {
+    ev.preventDefault();
     window.scrollTo(0, 0);
+    if (newTimeout) clearTimeout(newTimeout);
     history.pushState(
       "", document.title, window.location.pathname + window.location.search
     );
+    // wait until scroll to top (very brute, should listen to event!!)
+    setTimeout(() => {
+      btnScrollTop.style.display = 'none';
+    }, 200);
+
   });
   // down
   /*const btnScrollBottom = document.querySelector("#lbar-buttons #btn-scroll-bottom");*/
@@ -26,9 +35,6 @@ function mainScrollBtns() {
   /*btnScrollBottom.addEventListener("click", (ev) => {*/
   /*window.scrollTo(0, document.body.scrollHeight);*/
   /*});*/
-
-  /* trigger on scroll */
-  let newTimeout = null;
 
   window.addEventListener('scroll', e => {
     let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
