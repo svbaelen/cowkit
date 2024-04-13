@@ -170,12 +170,12 @@ if [ $INIT = 1 ];then
     printf "[INFO - main] initializing new cowkit project...\n"
 
     if [ -d /app/config ];then
-        printf "\n[ERROR - main] './config' directory already exists here\n"
+        printf "[ERROR - main] './config' directory already exists here\n"
         printf "[ERROR - main] exiting (better safe than sorry)\n"
         exit 1
     fi
     if [ -d /app/src ];then
-        printf "\n[ERROR - main] './src' directory already exists here\n"
+        printf "[ERROR - main] './src' directory already exists here\n"
         echo "[ERROR - main] exiting (better safe than sorry)\n"
         exit 1
     fi
@@ -194,8 +194,14 @@ if [ $INIT = 1 ];then
         done
         exit 0
     else
-        echo "[INFO - main] some examples: $LAUNCH_EXAMPLES"
         echo "[INFO - main] Success. Next up: launch!"
+        echo "[INFO - main] ----------------------------------------------"
+        echo "[INFO - main] Default launch: build and serve HTML"
+        echo '[INFO - main] $ docker run -u $(id -u):$(id -g) --rm -v "$(pwd):/app" \'
+        echo '                -p 8000:8000 svbaelen/cowkit'
+        echo "[INFO - main] ----------------------------------------------"
+        echo "[INFO - main] More examples: $LAUNCH_EXAMPLES"
+        echo "[INFO - main] OK, let's go!"
     fi
 else
     # make build dir

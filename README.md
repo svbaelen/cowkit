@@ -19,7 +19,7 @@ Built on top of [Pandoc](https://pandoc.org/) (file format converter), and inspi
 ### Initialize new (example) project
 
 ```sh
-docker run -u $(id -u):$(id -g) --rm -v "$(pwd):/app" -p 8000:8000 cowkit --init
+docker run -u $(id -u):$(id -g) --rm -v "$(pwd):/app" -p 8000:8000 svbaelen/cowkit --init
 ```
 
 ### Run
@@ -27,7 +27,7 @@ docker run -u $(id -u):$(id -g) --rm -v "$(pwd):/app" -p 8000:8000 cowkit --init
 For default HTML output (and file watcher + HTTP server):
 
 ```sh
-docker run -u $(id -u):$(id -g) --rm -v "$(pwd):/app" -p 8000:8000 cowkit
+docker run -u $(id -u):$(id -g) --rm -v "$(pwd):/app" -p 8000:8000 svbaelen/cowkit
 ```
 
 See the [config section](#configuration) to find out where to put what.
@@ -41,13 +41,13 @@ section.
 Check <b>available options</b> for the `cowkit` utility with `--help`:
 
 ```sh
-docker run -u $(id -u):$(id -g) --rm -v "$(pwd):/app" -p 8000:8000 cowkit --help
+docker run -u $(id -u):$(id -g) --rm -v "$(pwd):/app" -p 8000:8000 svbaelen/cowkit --help
 ```
 
 ### Update to latest version
 
 ```sh
-docker image pull cowkit:latest
+docker image pull svbaelen/cowkit:latest
 ```
 
 ## Configuration
@@ -65,9 +65,8 @@ Set (different) config and/or template files via `cowkit` <b>[CLI arguments](#cl
 
 ## Examples
 
-See [here](./examples/README.md)
-
-For an <b>example output</b> document, check out [this webpage](https://svbaelen.github.io/cowkit/).
+- See [cowkit CLI examples here](./examples/examples_cli.md)
+- For an <b>example output</b> document, check out [this webpage](https://svbaelen.github.io/cowkit/).
 
 ## More comfort
 
@@ -77,7 +76,7 @@ Create an <b>alias</b> to one or more relevant docker commands. Note that you ca
 
 ```sh
 # map to `cowkit`
-CMD='docker run -u $(id -u):$(id -g) --rm -v "$(pwd):/app" -p 8000:8000 cowkit'
+CMD='docker run -u $(id -u):$(id -g) --rm -v "$(pwd):/app" -p 8000:8000 svbaelen/cowkit'
 echo "alias cowkit='$CMD'" >> ~/.bash_aliases && source ~/.bash_aliases
 ```
 
@@ -115,7 +114,13 @@ filters</b> (which will skip bibliography rebuilds). If still too slow, uncommen
 Example:
 
 ```sh
-docker build -t cowkit:latest -t cowkit:v0.1.0 .
+docker build -t svbaelen/cowkit:latest -t svbaelen/cowkit:v0.1.0 .
+```
+
+Push to repo:
+
+```sh
+docker push svbaelen/cowkit --all-tags
 ```
 
 ### Build HTML
