@@ -1,3 +1,7 @@
+-- SPDX-FileCopyrightText: 2024 Senne Van Baelen
+--
+-- SPDX-License-Identifier: MIT
+
 --[[-- Filter images with this function if the target format is LaTeX.]]
 --[[if FORMAT:match 'latex' then]]
   --[[function Image (elem)]]

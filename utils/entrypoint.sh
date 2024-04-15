@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# SPDX-FileCopyrightText: 2024 Senne Van Baelen
+#
+# SPDX-License-Identifier: Apache-2.0
+
 #---------------------------------------------------------
 # Author(s):    Senne Van Baelen
 # Contact:      senne@svbaelen.me
@@ -167,7 +171,7 @@ fi
 
 
 if [ $INIT = 1 ];then
-    printf "[INFO - main] initializing new cowkit project...\n"
+    printf "[INFO - main] Initializing new cowkit project...\n"
 
     if [ -d /app/config ];then
         printf "[ERROR - main] './config' directory already exists here\n"
@@ -196,11 +200,12 @@ if [ $INIT = 1 ];then
     else
         echo "[INFO - main] Success. Next up: launch!"
         echo "[INFO - main] ----------------------------------------------"
-        echo "[INFO - main] Default launch: build and serve HTML"
-        echo '[INFO - main] $ docker run -u $(id -u):$(id -g) --rm -v "$(pwd):/app" \'
-        echo '                -p 8000:8000 svbaelen/cowkit'
+        echo "[INFO - main] EXAMPLES:"
+        echo "[INFO - main] - default launch (build and serve HTML):"
+        echo '[INFO - main]   $ docker run -u $(id -u):$(id -g) --rm -v "$(pwd):/app" \'
+        echo '                  -p 8000:8000 svbaelen/cowkit'
+        echo "[INFO - main] - more examples: $LAUNCH_EXAMPLES"
         echo "[INFO - main] ----------------------------------------------"
-        echo "[INFO - main] More examples: $LAUNCH_EXAMPLES"
         echo "[INFO - main] OK, let's go!"
     fi
 else

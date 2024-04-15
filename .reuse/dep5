@@ -1,0 +1,54 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: Cowkit
+Upstream-Contact: Senne Van Baelen <senne@svbaelen.me>
+Source: https://github.com/svbaelen/cowkit
+
+# Sample paragraph, commented out:
+#
+# Files: src/*
+# Copyright: 2024 Senne Van Baelen <senne@svbaelen.me>
+# License: ...
+
+Files: src/*.md
+Copyright: 2024 Senne Van Baelen <senne@svbaelen.me>
+License: Apache-2.0
+
+Files: .git*
+Copyright: 2024 Senne Van Baelen <senne@svbaelen.me>
+License: Apache-2.0
+
+Files: assets/*
+Copyright: 2024 Senne Van Baelen <senne@svbaelen.me>
+License: Apache-2.0
+
+Files: config/config.yaml
+Copyright: 2024 Senne Van Baelen <senne@svbaelen.me>
+License: Apache-2.0
+
+Files: src/*.bib
+Copyright: 2024 Senne Van Baelen <senne@svbaelen.me>
+License: Apache-2.0
+
+Files: config/html/site.webmanifest
+Copyright: 2024 Senne Van Baelen <senne@svbaelen.me>
+License: Apache-2.0
+
+Files: config/**/layout.yaml
+Copyright: 2024 Senne Van Baelen <senne@svbaelen.me>
+License: Apache-2.0
+
+Files: config/html/css/et-book/*
+Copyright: 2014 Dave Liepmann
+License: MIT
+
+Files: config/html/css/font-*
+Copyright: 2024 Google
+License: Apache-2.0
+
+Files: config/tex/templates/customize/*
+Copyright: 2024 Senne Van Baelen <senne@svbaelen.me>
+License: Apache-2.0
+
+Files: src/img/*
+Copyright: 2024 Senne Van Baelen <senne@svbaelen.me>
+License: Apache-2.0

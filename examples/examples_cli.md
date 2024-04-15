@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2024 Senne Van Baelen
+
+SPDX-License-Identifier: Apache-2.0
+-->
+
 # Cowkit CLI examples
 
 ## Important remarks

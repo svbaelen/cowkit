@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2024 Senne Van Baelen
+//
+// SPDX-License-Identifier: Apache-2.0
+
 /* Additional subfig functionality, since CSS can't solve it and Pandoc is
  * buggy here */
 

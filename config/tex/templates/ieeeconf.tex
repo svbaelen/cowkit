@@ -1,3 +1,7 @@
+% SPDX-FileCopyrightText: 2024 Senne Van Baelen
+%
+% SPDX-License-Identifier: Apache-2.0
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Pandoc template IEEEConf style
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -404,6 +408,7 @@ $endif$
 $if(csquotes)$
 \usepackage{csquotes}
 $endif$
+\usepackage{float} %svbaelen (https://tex.stackexchange.com/a/380936)
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{$if(urlstyle)$$urlstyle$$else$same$endif$}

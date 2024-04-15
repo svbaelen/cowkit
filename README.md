@@ -1,13 +1,23 @@
+<!--
+SPDX-FileCopyrightText: 2024 Senne Van Baelen
+
+SPDX-License-Identifier: Apache-2.0
+-->
+
 # cowkit
+
+[![REUSE
+status](https://api.reuse.software/badge/github.com/svbaelen/cowkit)](https://api.reuse.software/info/github.com/svbaelen/cowkit)
 
 ![cowkit](./assets/img/cowkit_logo.svg)
 
 ## Comfortable features
 
-Write and compose in markdown (or HTML) - [publish to HTML](https://svbaelen.github.io/cowkit/), LaTeX, and PDF.
+Write and compose in markdown (or HTML) - [convert to HTML](https://svbaelen.github.io/cowkit/), LaTeX, and PDF.
 
 - Convenient, though [far from perfect](#caveats-and-known-limitations)
-- Can handle **interconnected content structures** (`tex`-like writing experience)
+- Can handle **interconnected content structures** (auto numbering of sections, tables, figures, etc.; `.bib`-based references and citations;
+  among many other things. Also see [example output](https://svbaelen.github.io/cowkit/))
 - Zero setup, no frameworks (requires only [Docker](https://docs.docker.com/engine/install/) with [Pandoc](https://pandoc.org/)-based image)
 - Fully customizable (styling, metadata, layout, ...)
 - <b>Focus on writing</b> instead of compiling (file-watcher + auto build)

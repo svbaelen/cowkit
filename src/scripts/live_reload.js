@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2024 Senne Van Baelen
+//
+// SPDX-License-Identifier: Apache-2.0
+
  /*
   Live.js - One script closer to Designing in the Browser
   Written for Handcraft.com by Martin Kool (@mrtnkl).

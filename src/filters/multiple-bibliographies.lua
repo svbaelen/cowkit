@@ -1,7 +1,9 @@
 --[[
 multiple-bibliographies – create multiple bibliographies
 
-Copyright © 2018-2021 Albert Krewinkel
+SPDX-FileCopyrightText: 2018-2021 Albert Krewinkel
+
+SPDX-License-Identifier: MIT
 
 Permission to use, copy, modify, and/or distribute this software for any
 purpose with or without fee is hereby granted, provided that the above

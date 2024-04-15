@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# SPDX-FileCopyrightText: 2024 Senne Van Baelen
+#
+# SPDX-License-Identifier: Apache-2.0
+
 #---------------------------------------------------------
 # Author(s):    Senne Van Baelen
 # Contact:      senne@svbaelen.me

@@ -1,3 +1,7 @@
+// SPDX-FileCopyrightText: 2024 Senne Van Baelen
+//
+// SPDX-License-Identifier: Apache-2.0
+
 /* Additional code block functionality */
 
 const metaTrueStrings = ["true", "True", "1"];

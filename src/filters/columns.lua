@@ -1,5 +1,9 @@
 --[[-- # Columns - multiple column support in Pandoc's markdown.
 
+SPDX-FileCopyrightText: 2021 Julien Dutant <julien.dutant@kcl.ac.uk>
+
+SPDX-License-Identifier: MIT
+
 This Lua filter provides support for multiple columns in
 latex and html outputs. For details, see README.md.
 

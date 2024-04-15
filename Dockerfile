@@ -1,7 +1,6 @@
 # SPDX-FileCopyrightText: 2024 Senne Van Baelen
-# SPDX-License-Identifier: Apache-2.0
 #
-# Built on top of: <https://hub.docker.com/r/pandoc/latex>
+# SPDX-License-Identifier: Apache-2.0
 
 ARG APP_NAME=cowkit
 ARG PANDOC_VERSION=latest-ubuntu
