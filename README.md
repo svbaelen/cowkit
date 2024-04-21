@@ -29,7 +29,7 @@ Built on top of [Pandoc](https://pandoc.org/) (file format converter), and inspi
 ### Initialize new (example) project
 
 ```sh
-docker run -u $(id -u):$(id -g) --rm -v "$(pwd):/app" -p 8000:8000 svbaelen/cowkit --init
+docker run -u $(id -u):$(id -g) --rm -v "$(pwd):/app" -p 8000:8000 svbaelen/config --init
 ```
 
 ### Run
