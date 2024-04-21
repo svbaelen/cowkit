@@ -27,7 +27,7 @@ FMT_OUT="<fmt>"
 FMT_OUT_DEFAULT="html"
 FMT_TMPL="${FMT_OUT}"
 CONFIG_MAIN="./config/config.yaml"
-CONFIG_FORMAT="./config/${FMT_OUT}/layout.yaml"
+CONFIG_FORMAT="./config/${FMT_OUT}/config.yaml"
 TEMPLATE="./config/${FMT_OUT}/templates/default.${FMT_TMPL}"
 TEMPLATE_IN=""
 CONFIG_FORMAT_IN=""
@@ -53,7 +53,7 @@ Options:
                             needs to match the output in '${CONFIG_FORMAT}'
     -t|--template FILE      template file (default: '${TEMPLATE}')
                             note: for the pdf format, use a .tex template
-    -l|--layout FILE        layout + config (default: '${CONFIG_FORMAT}')
+    -c|--config FILE        config (default: '${CONFIG_FORMAT}')
     -ns|--no-serve          no HTTP server
 EOF
 )
@@ -81,7 +81,7 @@ while [ -n "$1" ]; do
         -t|--template) TEMPLATE_IN=$2
             shift;
             ;;
-        -l|--layout) CONFIG_FORMAT_IN=$2
+        -c|--config) CONFIG_FORMAT_IN=$2
             shift;
             ;;
         -h|--help|--usage)
@@ -110,7 +110,7 @@ done
 config(){
     fmt_out=$1
     # update configs
-    CONFIG_FORMAT="./config/${fmt_out}/layout.yaml"
+    CONFIG_FORMAT="./config/${fmt_out}/config.yaml"
 
     # make latex stuff available
     #TEXDIR=$( kpsewhich -var-value=TEXMFLOCAL )
@@ -133,7 +133,7 @@ config(){
     fi
 
     if [ -z "${CONFIG_FORMAT_IN}" ];then
-        CONFIG_FORMAT="./config/${fmt_out}/layout.yaml"
+        CONFIG_FORMAT="./config/${fmt_out}/config.yaml"
     else
         CONFIG_FORMAT="${CONFIG_FORMAT_IN}"
     fi

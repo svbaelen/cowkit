@@ -1,0 +1,17 @@
+# ================================
+# Tex config (can overwrite main config.yaml)
+#
+# Notes:
+#   - <https://pandoc.org/MANUAL.html#general-writer-options-1>
+#   - <https://pandoc.org/MANUAL.html#options-affecting-specific-writers>
+# ================================
+#
+# add some input files
+input-files:
+  - ./src/appendix.md
+
+log-file: build/tex.log
+output-file: build/index.tex
+to: latex
+
+toc-depth: 3

@@ -4,8 +4,28 @@
 # Notes:
 #   - <https://pandoc.org/MANUAL.html#general-writer-options-1>
 #   - <https://pandoc.org/MANUAL.html#options-affecting-specific-writers>
-#   - all options can be overwritten in file-specific './config/<fmt>/layout.yaml'
+#   - all options can be overwritten in file-specific './config/<fmt>/config.yaml'
+#     (for `input-files`, file-specific additions are possible, but not a full
+#     overwrite)
 # ==================
+
+from: markdown
+filters:
+  - pandoc-crossref
+  - src/filters/multiple-bibliographies.lua # comment out for quick build (no refs)
+  #- src/filters/pandoc-quotes.lua
+
+# you can set input files in output-specific config files as well, if a
+# discrepancy is required
+input-files:
+  - ./src/_base.md
+  - ./src/abstract.md
+  - ./src/01_intro.md
+  - ./src/02_chapter_1.md
+  - ./src/03_conclusion.md
+  - ./src/04_acknowledgment.md
+  - ./src/05_references.md
+  #- ./src/appendix.md # add this per outpuf file (see ./<format>/config.yaml)
 
 cite-method: citeproc # citeproc, natbib, or biblatex
 embed-resources: true
@@ -13,7 +33,6 @@ file-scope: false # Parse each file individually before combining for multifile
                   # documents. This will allow footnotes in different files with
                   # the same identifiers to work as expected. If this option is
                   # set, footnotes and links will not work across files.
-from: markdown
 highlight-style: pygments
 reference-location: block # block, section, or document
 resource-path:
@@ -24,7 +43,7 @@ resource-path:
 standalone: false
 top-level-division: default # part, chapter, section, or default
 toc: true
+listings: true
 number-sections: true
 verbosity: WARNING # ERROR, WARNING, or INFO
-
-# MORE: output-specific configs (and outline) found in subdirs
+toc-depth: 3

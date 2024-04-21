@@ -1,35 +1,25 @@
 # ================================
-# HTML config and layout
+# HTML config (can overwrite main config.yaml)
 #
 # Notes:
 #   - <https://pandoc.org/MANUAL.html#general-writer-options-1>
 #   - <https://pandoc.org/MANUAL.html#options-affecting-specific-writers>
 # ================================
 
-filters:
-  - pandoc-crossref
-  - src/filters/multiple-bibliographies.lua # comment out for quick build (no refs)
-  #- src/filters/pandoc-quotes.lua
+
+# add some input files
 input-files:
-  - ./src/_base.md
-  - ./src/abstract.md
-  - ./src/01_intro.md
-  - ./src/02_chapter_1.md
-  - ./src/03_conclusion.md
-  - ./src/04_acknowledgment.md
-  - ./src/05_references.md
-  - ./src/appendix.md
-  #- ./src/list_of_tables.md
-  #- ./src/list_of_figures.md
-  #- ./src/list_of_listings.md
+  #- ./src/appendix.md
+
+# styling
 css:
   - ./config/html/css/main.css
   - ./config/html/css/print.css
   - ./config/html/css/font_tufte.css
   #- ./config/html/css/font_poppins.css
   #- ./config/html/css/font_merriweather.css
+
+# output
 log-file: build/html.log
 output-file: build/index.html
 to: html
-toc-depth: 3
-listings: true

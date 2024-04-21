@@ -1,28 +1,18 @@
 # ================================
-# PDF config and layout
+# PDF config (can overwrite main config.yaml)
 #
 # Notes:
 #   - <https://pandoc.org/MANUAL.html#general-writer-options-1>
 #   - <https://pandoc.org/MANUAL.html#options-affecting-specific-writers>
 # ================================
 
-filters:
-  - pandoc-crossref
-  - src/filters/multiple-bibliographies.lua # comment out for quick build (no refs)
-  #- src/filters/pandoc-quotes.lua
+# add some input files
 input-files:
-  - ./src/_base.md
-  - ./src/abstract.md
-  - ./src/01_intro.md
-  - ./src/02_chapter_1.md
-  - ./src/03_conclusion.md
-  - ./src/04_acknowledgment.md
-  - ./src/05_references.md
   - ./src/appendix.md
+
 log-file: build/pdf.log
 output-file: build/index.pdf
 pdf-engine: xelatex # wkhtmltopdf, weasyprint, prince, pdflatex, lualatex, xelatex, latexmk, pdfroff, context, tectonic
 to: pdf
 toc-depth: 3
 toc: false
-listings: true

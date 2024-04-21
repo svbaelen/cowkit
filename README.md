@@ -62,8 +62,8 @@ docker image pull svbaelen/cowkit:latest
 
 ## Configuration
 
-- `config/config.yaml`: main <b>pandoc config</b>
-- `config/<fmt>/layout.yaml`: output-specific <b>layout</b> (which input files to include) + config (can overwrite values set in `config.yaml`).
+- `config/config.yaml`: main (output-independent) <b>config</b>
+- `config/<fmt>/config.yaml`: output-specific <b>config</b> (can overwrite values set in main `config.yaml`).
 - `config/<fmt>/templates/<file>`: <b>templates</b> related to specific output formats
 - `src/<file>.md`: <b>content</b> files written in **markdown**. Every section, subsection, paragraph, figure, etc. *can*
   have a separate file. In the <b>metadata section</b> of each markdown file (between `---`) you can add all kinds of metadata and config options supported
@@ -98,7 +98,7 @@ Naturally, these commands can be updated or removed anytime in `~/.bash_aliases`
 
 ### Speed up building
 
-If re-running build process is too slow for you, open a `./config/<fmt>/layout.yaml` file and comment out stuff. Start with the <b>Lua-based
+If re-running build process is too slow for you, open a `./config/<fmt>/config.yaml` file and comment out stuff. Start with the <b>Lua-based
 filters</b> (which will skip bibliography rebuilds). If still too slow, uncomment sections/chapters etc.
 
 ## Caveats and known limitations
@@ -138,7 +138,7 @@ docker push svbaelen/cowkit --all-tags
 Native Pandoc:
 
 ```sh
-pandoc --defaults=./config/config.yaml --defaults=./config/html/layout.yaml \
+pandoc --defaults=./config/config.yaml --defaults=./config/html/config.yaml \
   --template ./config/html/templates/default.html
 ```
 
@@ -148,13 +148,13 @@ With docker:
 docker run --rm --volume "$(pwd):/data" \
   --user $(id -u):$(id -g)  pandoc/latex:latest \
   --defaults=./config/config.yaml \
-  --defaults=./config/html/layout.yaml --template ./config/html/templates/default.html
+  --defaults=./config/html/config.yaml --template ./config/html/templates/default.html
 ```
 
 ### Build PDF
 
 ```sh
-pandoc --defaults=./config/config.yaml --defaults=./config/pdf/layout.yaml
+pandoc --defaults=./config/config.yaml --defaults=./config/pdf/config.yaml
 ```
 
 With docker:
@@ -162,7 +162,7 @@ With docker:
 ```sh
 docker run --rm --volume "$(pwd):/data" \
   --user $(id -u):$(id -g)  pandoc/latex:latest \
-  --defaults=./config/config.yaml   --defaults=./config/pdf/layout.yaml
+  --defaults=./config/config.yaml   --defaults=./config/pdf/config.yaml
 ```
 ## Acknowledgements
 

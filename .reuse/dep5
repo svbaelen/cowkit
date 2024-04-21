@@ -33,7 +33,7 @@ Files: config/html/site.webmanifest
 Copyright: 2024 Senne Van Baelen <senne@svbaelen.me>
 License: Apache-2.0
 
-Files: config/**/layout.yaml
+Files: config/**/config.yaml
 Copyright: 2024 Senne Van Baelen <senne@svbaelen.me>
 License: Apache-2.0
 
