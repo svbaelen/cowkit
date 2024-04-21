@@ -1,22 +1,28 @@
-# ==================
-# Pandoc base config
+# =========================================================================
+# Pandoc main config
 #
 # Notes:
 #   - <https://pandoc.org/MANUAL.html#general-writer-options-1>
 #   - <https://pandoc.org/MANUAL.html#options-affecting-specific-writers>
+#   - metadata (and other configs) is set in `src/_base.md`
 #   - all options can be overwritten in file-specific './config/<fmt>/config.yaml'
 #     (for `input-files`, file-specific additions are possible, but not a full
 #     overwrite)
-# ==================
+# =========================================================================
 
 from: markdown
+verbosity: WARNING # ERROR, WARNING, or INFO
+
 filters:
   - pandoc-crossref
   - src/filters/multiple-bibliographies.lua # comment out for quick build (no refs)
   #- src/filters/pandoc-quotes.lua
 
-# you can set input files in output-specific config files as well, if a
-# discrepancy is required
+# -------------------------------------------------------------------------
+# Layout
+# -------------------------------------------------------------------------
+
+# you can extend the input-files in the output-specific configs
 input-files:
   - ./src/_base.md
   - ./src/abstract.md
@@ -26,6 +32,8 @@ input-files:
   - ./src/04_acknowledgment.md
   - ./src/05_references.md
   #- ./src/appendix.md # add this per outpuf file (see ./<format>/config.yaml)
+
+# -------------------------------------------------------------------------
 
 cite-method: citeproc # citeproc, natbib, or biblatex
 embed-resources: true
@@ -45,5 +53,4 @@ top-level-division: default # part, chapter, section, or default
 toc: true
 listings: true
 number-sections: true
-verbosity: WARNING # ERROR, WARNING, or INFO
 toc-depth: 3
