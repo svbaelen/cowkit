@@ -17,6 +17,7 @@ css:
   - ./config/html/css/print.css         # print to pdf styling
   - ./config/html/css/font_tufte.css    # font-related
   # different font-styles (uncomment):
+  #- ./config/html/css/font_notosans.css
   #- ./config/html/css/font_poppins.css
   #- ./config/html/css/font_merriweather.css
 
