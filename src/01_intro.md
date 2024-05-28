@@ -56,8 +56,9 @@ All human beings are born free and equal in dignity and rights. All human beings
 
 ## Mixed lists
 
-- All human beings are born free and equal in dignity and rights.
-    1. All human beings are born free and equal in dignity and rights.
+- All human beings are born free and equal in `dignity and rights`.
+    1. All human beings are born free and equal in `dignity and rights`.
+        - All human beings are born free and equal in `dignity and rights`.
     2. All human beings are born free and equal in dignity and rights.
 - All human beings are born free and equal in dignity and rights.
 
@@ -205,6 +206,8 @@ born free and equal in dignity and rights. All human beings are born free and eq
 All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights.
 
 ## Scientific citations
+
+Syntax: `[@<ref-in-bibfile>`].
 
 > All human beings are born free and equal in dignity and rights. They are endowed with reason and conscience and should act towards one another in a
 > spirit of brotherhood [@unitednations1948].

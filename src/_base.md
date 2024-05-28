@@ -10,6 +10,10 @@
 #   - <http://lierdakil.github.io/pandoc-crossref/#settings-file>
 #==============================================================
 
+# ----------
+# Main
+# ----------
+
 author:
   - Senne Van Baelen
   - "[Pandoc Contributors](https://github.com/jgm/pandoc/graphs/contributors)"
@@ -19,24 +23,46 @@ title: '[cowkit](https://github.com/svbaelen/cowkit)'
 subtitle: 'A Comfortable Open Writing Kit<br> (example document)'
 toc-title: 'Contents'
 
-bibliography_main: ./src/references.bib
-bibliography_sources: ./src/sources.bib
-#csl: https://www.zotero.org/styles/chicago-note-bibliography
-csl: https://www.zotero.org/styles/ieee
-
-endnote: false
 keywords:
   - cowkit
   - academic writing
-
+endnote: false
 lang: en_GB
+
+# HTML-only
+author-meta:
+  - Senne Van Baelen
+date-meta: 2024
+
+
+# ----------
+# Citations
+# ----------
+bibliography_main: ./src/bibliography/references.bib
+<!--bibliography_sources: ./src/bibliography/sources.bib-->
+<!-- Link your style: <https://www.zotero.org/styles> (not possibly local!) -->
+#csl: https://www.zotero.org/styles/chicago-note-bibliography
+<!-- DOWNLOAD your style: <https://www.zotero.org/styles> -->
+csl: ./src/bibliography/ieee.csl
 link-citations: true
 link-bibliography: true
+
 suppress-bibliography: false
+
+# nocite (best not combined with numeric IEEE citation styles; it messes with the order)
+#nocite: |
+#  @brown2016
+
+# ----------
+# Listings
+# ----------
 listings: true                   # needed together with listings: true in yaml config
                                  # (for default pandoc crossref listing style, simply
                                  #  set both to false)
 
+# ----------
+# Prefixes
+# ----------
 # http://lierdakil.github.io/pandoc-crossref/#reference-format
 eqnPrefix: Eq.
 figPrefix: Fig.
@@ -63,14 +89,10 @@ header-includes:
   - <script src="./scripts/scroll.js"></script>
   - \definecolor{myhrefcolor}{HTML}{0645AD}
 
-# HTML
-# ======
 
-author-meta:
-  - Senne Van Baelen
-date-meta: 2024
-
-# options
+# --------------
+# Custom options
+# --------------
 code-lang: true  # show code language in code blocks
 code-copy: true  # add copy-to-clipboard button in code blocks
 # Download other outputs: requires a .pdf/.tex with this name in your server directory

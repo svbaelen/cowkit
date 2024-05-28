@@ -431,6 +431,7 @@ code {
 }
 
 a > code,
+li > code,
 p > code {
     padding:0.25em;
     background-color: var(--color-background-code-inline);

@@ -30,7 +30,7 @@ input-files:
   - ./src/02_chapter_1.md
   - ./src/03_conclusion.md
   - ./src/04_acknowledgment.md
-  - ./src/05_references.md
+  - ./src/bibliography/references.md
   #- ./src/appendix.md # add this per outpuf file (see ./<format>/config.yaml)
 
 # -------------------------------------------------------------------------

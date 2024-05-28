@@ -8,7 +8,7 @@
 #
 # add some input files
 input-files:
-  - ./src/appendix.md
+  - ./src/appendix/appendix.md
 
 log-file: build/tex.log
 output-file: build/index.tex
