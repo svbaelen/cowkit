@@ -1,0 +1,81 @@
+/*
+ * SPDX-FileCopyrightText: 2024 Senne Van Baelen
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+:root {
+    --color-background-main:#ffffff;
+    --font-family-main:  "Ubuntu", sans-serif;
+    --font-family-code:  "Liberation Mono", monospace;
+    --line-height-main: 1.5;
+    --heading-scale-factor: 0.65;
+    --font-scale-factor: 0.85;
+    --font-scale-factor-code: 0.88;
+    --padding-codeblock: 0.5em 0.9em 0.3em 0.9em;
+    --font-weight-heading:600;
+}
+
+b, strong {
+    font-weight: 700;
+}
+
+/* ================= */
+/* NotoSans font      */
+/* ================= */
+@font-face {
+    font-family: 'Ubuntu';
+    src: url("./font-ubuntu/static/Ubuntu-Regular.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Ubuntu';
+    src: url("./font-ubuntu/static/Ubuntu-Italic.ttf") format("truetype");
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Ubuntu';
+    src: url("./font-ubuntu/static/Ubuntu-Bold.ttf") format("truetype");
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Ubuntu';
+    src: url("./font-ubuntu/static/Ubuntu-BoldItalic.ttf") format("truetype");
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Ubuntu';
+    src: url("./font-ubuntu/static/Ubuntu-Light.ttf") format("truetype");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Ubuntu';
+    src: url("./font-ubuntu/static/Ubuntu-LightItalic.ttf") format("truetype");
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Ubuntu';
+    src: url("./font-ubuntu/static/Ubuntu-Medium.ttf") format("truetype");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: 'Ubuntu';
+    src: url("./font-ubuntu/static/Ubuntu-MediumItalic.ttf") format("truetype");
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
