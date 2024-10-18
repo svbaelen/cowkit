@@ -34,7 +34,8 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           # Upload outputs in build
-          path: './build'
+          path: './build/html' # in case of chunked
+          #path: './build'  # single HTML
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
