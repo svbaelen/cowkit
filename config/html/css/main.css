@@ -1496,20 +1496,20 @@ div.sourceCode[data-caption]:after {
 }
 
 /* Sitenav */
-#sitenav-top {
-    margin-top:1em;
-    margin-bottom:3em;
+#sitenav-top,
+#sitenav-bottom {
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+#sitenav-top {
+    margin:3em 0 3em 0;
 }
 #sitenav-bottom {
-    margin-top:5em;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    margin:5em 0 0 1em;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
-    margin-bottom:1em;
 }
+
 .sitenav {
-    margin: 0.5em 0;
+    margin: 0em 0;
     width:100%;
     /*border: 1px solid rgba(0, 0, 0, 0.1);*/
     display:flex;
@@ -1517,6 +1517,22 @@ div.sourceCode[data-caption]:after {
     /*align-items: center;*/
     align-items: stretch;
     padding: 1em 0;
+}
+
+@media only screen and (min-width: 768px) {
+    #sitenav-top {
+        border-top: 1px solid rgba(0, 0, 0, 0.1);
+    }
+    #sitenav-top {
+        margin:1em 0 3em 0;
+    }
+    #sitenav-bottom {
+        margin:5em 0 0 1em;
+    }
+
+    .sitenav {
+        margin: 0.1em 0; /* does not really make a diff at the moment */
+    }
 }
 
 .navlink {

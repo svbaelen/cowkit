@@ -292,8 +292,8 @@ else
         cd /app/$servedir
         # move everything from build dir to chunked html dir
         if [ $CHUNKED_HTML = 1 ];then
-            mv -f ../*.tex .
-            mv -f ../*.pdf .
+            cp -f ../*.tex . 2>/dev/null
+            cp -f ../*.pdf . 2>/dev/null
         fi
 
         exit 0
@@ -313,8 +313,8 @@ else
         cd /app/$servedir
         # move everything from build dir to chunked html dir
         if [ $CHUNKED_HTML = 1 ];then
-            mv -f ../*.tex .
-            mv -f ../*.pdf .
+            cp -f ../*.tex . 2>/dev/null
+            cp -f ../*.pdf . 2>/dev/null
         fi
 
 
