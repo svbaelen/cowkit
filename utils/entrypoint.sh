@@ -302,8 +302,16 @@ else
         done
 
         if [ $HTTP_SERVE = 1 ];then
+
             servedir="$OUTPUT_DIR$SUBPATH" # subpath by default = ""
             cd /app/$servedir
+
+            # move everything from build dir to chunked html dir
+            if [ $CHUNKED_HTML = 1 ];then
+                mv -f ../*.tex .
+                mv -f ../*.pdf .
+            fi
+
             printf "[INFO - main] "
             printf "=> ----------------------------------------------\n"
             echo "[INFO - main] => serving at http://localhost:$HTTP_PORT (in $servedir)"

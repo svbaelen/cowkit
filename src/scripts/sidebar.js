@@ -34,9 +34,7 @@ function sidebarBtns() {
   const btnHome = document.querySelector("#btn-home");
   btnHome.style.display = "flex";
   btnHome.addEventListener("click", (ev) => {
-    window.open(
-      `${baseUrl}`
-    );
+    window.location.href = baseUrl;
   });
 
 }
