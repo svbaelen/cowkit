@@ -60,3 +60,8 @@ License: MIT
 Files: src/scripts/minisearch.js
 Copyright:  Luca Ongaro  <https://github.com/lucaong>
 License: MIT
+
+Files: src/assets/search.json
+Copyright: 2024 Senne Van Baelen <senne@svbaelen.me>
+License: Apache-2.0
+
