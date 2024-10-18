@@ -4,6 +4,10 @@
 
 ARG APP_NAME=cowkit
 ARG PANDOC_VERSION=latest-ubuntu
+# there are issues with later versions for building the PDF!
+# (svg images are not found)
+#ARG PANDOC_VERSION=3.0-ubuntu
+
 #ARG PANDOC_VERSION=latest
 #FROM rust:${RUST_VERSION}-slim-bullseye AS build
 

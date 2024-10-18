@@ -23,13 +23,14 @@ RUN_ONCE=0
 HTTP_SERVE=1
 HTTP_PORT=8000
 OUTPUT_DIR="./build"
-SUBDIR_CHUNKED_HTML='./html' # default: `./build/html`
+SUBDIR_CHUNKED_HTML='html' # default: `./build/html`
 SCRIPTS_DIR='./src/scripts'
 ASSETS_DIR='./src/assets/'
 FMT_OUT="<fmt>"
 FMT_OUT_DEFAULT="html"
 FMT_TMPL="${FMT_OUT}"
 CHUNKED_HTML=0
+SUBPATH=""
 CONFIG_MAIN_DIR="./config"
 CONFIG_MAIN="$CONFIG_MAIN_DIR/config.yaml"
 CONFIG_FORMAT="$CONFIG_MAIN_DIR/${FMT_OUT}/config.yaml"
@@ -137,6 +138,7 @@ config(){
         if [ $chunkedhtml = 0 ]; then
             CHUNKED_HTML=1
             FMT_TMPL='chunked.html'
+            SUBPATH="/$SUBDIR_CHUNKED_HTML"
         fi
     else
         FMT_TMPL=$fmt_out
@@ -223,7 +225,7 @@ esac
 
 # create list of formats (generally just one)
 if [ "$FMT_OUT" = "all" ];then
-    L_FMT_OUT="html tex pdf"
+    L_FMT_OUT="tex pdf html"
 else
     L_FMT_OUT="${FMT_OUT}"
 fi
@@ -300,10 +302,11 @@ else
         done
 
         if [ $HTTP_SERVE = 1 ];then
-            cd /app/$OUTPUT_DIR
+            servedir="$OUTPUT_DIR$SUBPATH" # subpath by default = ""
+            cd /app/$servedir
             printf "[INFO - main] "
             printf "=> ----------------------------------------------\n"
-            echo "[INFO - main] => serving at http://localhost:$HTTP_PORT (in $OUTPUT_DIR)"
+            echo "[INFO - main] => serving at http://localhost:$HTTP_PORT (in $servedir)"
             printf "[INFO - main] "
             printf "=> ----------------------------------------------\n"
 
