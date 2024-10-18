@@ -288,6 +288,14 @@ else
             echo "[INFO - main] finished - output in ${OUTPUT_DIR}"
         done
 
+        servedir="$OUTPUT_DIR$SUBPATH" # subpath by default = ""
+        cd /app/$servedir
+        # move everything from build dir to chunked html dir
+        if [ $CHUNKED_HTML = 1 ];then
+            mv -f ../*.tex .
+            mv -f ../*.pdf .
+        fi
+
         exit 0
     else
         # assumes -v "$(pwd):/app" in docker run
@@ -301,16 +309,18 @@ else
             echo "[INFO - main] finished - output in ${OUTPUT_DIR}"
         done
 
+        servedir="$OUTPUT_DIR$SUBPATH" # subpath by default = ""
+        cd /app/$servedir
+        # move everything from build dir to chunked html dir
+        if [ $CHUNKED_HTML = 1 ];then
+            mv -f ../*.tex .
+            mv -f ../*.pdf .
+        fi
+
+
         if [ $HTTP_SERVE = 1 ];then
 
-            servedir="$OUTPUT_DIR$SUBPATH" # subpath by default = ""
             cd /app/$servedir
-
-            # move everything from build dir to chunked html dir
-            if [ $CHUNKED_HTML = 1 ];then
-                mv -f ../*.tex .
-                mv -f ../*.pdf .
-            fi
 
             printf "[INFO - main] "
             printf "=> ----------------------------------------------\n"
