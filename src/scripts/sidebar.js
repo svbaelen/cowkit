@@ -4,14 +4,21 @@
 
 /* Additional sidebar functionality */
 
-function sidebarDownloadBtns() {
+function sidebarBtns() {
   const location = window.location;
+
+
   const fullUrl = location.protocol + '//' + location.host + location.pathname;
+  const locationSplit = location.pathname.split("/");
+  const locationPathMain = locationSplit.slice(0, locationSplit.length - 1).join('/');
+
+  const baseUrl = location.protocol + '//' + location.host + locationPathMain;
+
   const btnDownloadPdf = document.querySelector("#btn-download-pdf");
   btnDownloadPdf.style.display = "flex";
   btnDownloadPdf.addEventListener("click", (ev) => {
     window.open(
-      `${fullUrl}/${btnDownloadPdf.dataset.filename}`,
+      `${baseUrl}/${btnDownloadPdf.dataset.filename}`,
       '_blank'
     );
   });
@@ -20,9 +27,18 @@ function sidebarDownloadBtns() {
   btnDownloadTex.style.display = "flex";
   btnDownloadTex.addEventListener("click", (ev) => {
     window.open(
-      `${fullUrl}/${btnDownloadTex.dataset.filename}`,
+      `${baseUrl}/${btnDownloadTex.dataset.filename}`,
     );
   });
+
+  const btnHome = document.querySelector("#btn-home");
+  btnHome.style.display = "flex";
+  btnHome.addEventListener("click", (ev) => {
+    window.open(
+      `${baseUrl}`
+    );
+  });
+
 }
 
 function sidebarDropdown() {
@@ -171,6 +187,20 @@ window.addEventListener('load', function () {
   sidebarMobileMenu();
   sidebarDropdown();
   //sidebarScrollBtns();
-  sidebarDownloadBtns();
+  sidebarBtns();
   spacingAroundNumberedToc();
+
+    const urlPathArray = window.location.pathname.split('/');
+    const urlLast = urlPathArray[urlPathArray.length - 1];
+
+    const allTocLis = document.querySelectorAll(`#toc-content > ul > li`);
+    allTocLis.forEach((tocElLi) => {
+        const currentTocLink = tocElLi.querySelector(`[href*="${urlLast}"]`)
+        if (currentTocLink){
+            tocElLi.firstChild.classList.add("toc-li-current");
+        } else {
+            tocElLi.firstChild.classList.remove("toc-li-current");
+        }
+    })
+
 })

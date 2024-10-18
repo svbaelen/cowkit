@@ -1,4 +1,4 @@
-Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: Cowkit
 Upstream-Contact: Senne Van Baelen <senne@svbaelen.me>
 Source: https://github.com/svbaelen/cowkit
@@ -52,3 +52,11 @@ License: Apache-2.0
 Files: src/img/*
 Copyright: 2024 Senne Van Baelen <senne@svbaelen.me>
 License: Apache-2.0
+
+Files: src/bibliography/ieee.csl
+Copyright: Michael Berkowitz <mberkowi@gmu.edu>
+License: MIT
+
+Files: src/scripts/minisearch.js
+Copyright:  Luca Ongaro  <https://github.com/lucaong>
+License: MIT

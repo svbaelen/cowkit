@@ -15,12 +15,23 @@ input-files:
 css:
   - ./config/html/css/main.css          # use :root here for easy customization
   - ./config/html/css/print.css         # print to pdf styling
-  - ./config/html/css/font_tufte.css    # font-related
+  #- ./config/html/css/font_tufte.css    # font-related
   # different font-styles (uncomment):
-  #- ./config/html/css/font_ubuntu.css
+  - ./config/html/css/font_ubuntu.css
   #- ./config/html/css/font_merriweather.css
 
-# output
+##########
+# Output #
+##########
+
 log-file: build/html.log
-output-file: build/index.html
-to: html
+
+# 1. Single HTML:
+#to: html
+#output-file: build/index.html
+
+# 2. Chunked HTML
+embed-resources: false
+to: chunkedhtml
+# no extension to output file, do not change (!)
+output-file: build/html

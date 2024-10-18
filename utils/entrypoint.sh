@@ -23,15 +23,24 @@ RUN_ONCE=0
 HTTP_SERVE=1
 HTTP_PORT=8000
 OUTPUT_DIR="./build"
+SUBDIR_CHUNKED_HTML='./html' # default: `./build/html`
+SCRIPTS_DIR='./src/scripts'
+ASSETS_DIR='./src/assets/'
 FMT_OUT="<fmt>"
 FMT_OUT_DEFAULT="html"
 FMT_TMPL="${FMT_OUT}"
-CONFIG_MAIN="./config/config.yaml"
-CONFIG_FORMAT="./config/${FMT_OUT}/config.yaml"
-TEMPLATE="./config/${FMT_OUT}/templates/default.${FMT_TMPL}"
+CHUNKED_HTML=0
+CONFIG_MAIN_DIR="./config"
+CONFIG_MAIN="$CONFIG_MAIN_DIR/config.yaml"
+CONFIG_FORMAT="$CONFIG_MAIN_DIR/${FMT_OUT}/config.yaml"
+TEMPLATE="$CONFIG_MAIN_DIR/${FMT_OUT}/templates/default.${FMT_TMPL}"
 TEMPLATE_IN=""
+TEMPLATE_CHUNKEDHTML="default.chunked.html"
 CONFIG_FORMAT_IN=""
 LAUNCH_EXAMPLES="https://github.com/svbaelen/cowkit#examples"
+
+# chunked
+#csplit -z somefile /ABC/ '{*}'
 
 #=========================================================
 # Options and positional arugments
@@ -122,6 +131,13 @@ config(){
         # https://github.com/pandoc/dockerfiles/blob/master/ubuntu/Dockerfile#L191
         #TEMPLATE="./config/${fmt_out}/templates/default.${FMT_TMPL}"
         #cp "$TEMPLATE" /.pandoc/templates/default.latex
+    elif [ "${fmt_out}" = "html" ];then
+        # 0 = found, 1 not found
+        chunkedhtml=$( cat $config_format | grep "^to: chunkedhtml" | echo $? )
+        if [ $chunkedhtml = 0 ]; then
+            CHUNKED_HTML=1
+            FMT_TMPL='chunked.html'
+        fi
     else
         FMT_TMPL=$fmt_out
     fi
@@ -143,19 +159,67 @@ config(){
     echo "[INFO - main] use ${fmt_out} template '$TEMPLATE'"
 }
 
+process_html_files() {
+    file=$1
+    echo $file
+}
+
 run_pandoc () {
     config_format=$1
     template=$2
+
+    if [ $CHUNKED_HTML = 1 ]; then
+        html_chunkdir="$OUTPUT_DIR/$SUBDIR_CHUNKED_HTML"
+        # make sure it's empty
+        rm -rf $html_chunkdir
+    fi
+
     pandoc \
-      --defaults=${CONFIG_MAIN} \
-      --defaults=${config_format} \
-      --template=${template}
+        --defaults=${CONFIG_MAIN} \
+        --defaults=${config_format} \
+        --template=${template}
+
+    # check if unzipping chunked HTML is necessary
+    # unzipping is not necessary as it can be done through pandoc too, however,
+    # the copying still is
+    if [ $CHUNKED_HTML = 1 ]; then
+
+        # unzip if chunked html
+        html_chunkdir="$OUTPUT_DIR/$SUBDIR_CHUNKED_HTML"
+        htmlcnfdir="$html_chunkdir/$CONFIG_MAIN_DIR/html"
+        html_assetsdir="$html_chunkdir/assets"
+        mkdir -p $htmlcnfdir
+        mkdir -p $html_assetsdir
+
+        cp -rf $CONFIG_MAIN_DIR/html/*  $htmlcnfdir
+        cp -rf $SCRIPTS_DIR $html_chunkdir
+
+        # create search index
+        # html_parsers <file-in> <file-out> <jstemplate>
+        node /usr/local/bin/html_parser.js \
+            "$html_chunkdir/index.html" \
+            "$ASSETS_DIR/search.json"
+
+        cp -rf "$ASSETS_DIR/search.json" $html_assetsdir/
+
+        #find $html_chunkdir -name "*.html" | while read file; do
+            #process_html_files "$file";
+        #done
+    fi
 }
+
 
 
 #=========================================================
 # Main
 #=========================================================
+
+# global NPM modules
+NPM_GLOBAL_NM=$( npm root -g)
+case ":$NODE_PATH:" in
+  *":$NPM_GLOBAL_NM:"*) ;;
+  *) export NODE_PATH="$NODE_PATH:$NPM_GLOBAL_NM" ;;
+esac
 
 # create list of formats (generally just one)
 if [ "$FMT_OUT" = "all" ];then
