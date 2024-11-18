@@ -26,6 +26,9 @@ RUN apt-get install -y \
     npm \
     python3
 
+RUN apt-get update
+RUN apt-get install -y rsync
+
 # install global node modues
 # Note: npm adds about 0.5 GB, which is rather significant
 # (including node_modules, etc.)

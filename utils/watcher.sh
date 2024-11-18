@@ -25,6 +25,8 @@ LAST_EVENT=
 LAST_EVENT_TIME=0
 VIM_FILE="4913"
 TIME_UNTIL_RERUN=3
+BUILD_DIR="build"               # TODO: make this configurable
+BUILD_DIR_CHUNKED="build/html"  # TODO: make this configurable
 
 #=========================================================
 # Options and positional arugments
@@ -69,11 +71,14 @@ done
 #=========================================================
 
 run_docker () {
+    echo "AA"
+    rm -rf $BUILD_DIR_CHUNKED
+
     docker run --rm --volume "$(pwd):/data" \
       --user $(id -u):$(id -g)  pandoc/latex:latest \
       --defaults=./config/config.yaml \
       --defaults=./config/html/html.yaml \
-      --template ./config/html/templates/default.html
+      --template ./config/html/templates/default.chunked.html
 }
 
 

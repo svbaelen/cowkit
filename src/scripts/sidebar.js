@@ -195,9 +195,11 @@ window.addEventListener('load', function () {
     allTocLis.forEach((tocElLi) => {
         const currentTocLink = tocElLi.querySelector(`[href*="${urlLast}"]`)
         if (currentTocLink){
+            tocElLi.classList.add("toc-a-current");
             tocElLi.firstChild.classList.add("toc-li-current");
         } else {
             tocElLi.firstChild.classList.remove("toc-li-current");
+            tocElLi.classList.remove("toc-a-current");
         }
     })
 

@@ -343,7 +343,7 @@ else
             cd /app
             echo "[INFO - main] launching file watcher..."
             # run ./utils/watcher_docker.sh in docker container
-            watcher.sh "$CONFIG_MAIN" "$CONFIG_FORMAT" "$TEMPLATE" "$OUTPUT_DIR"
+            watcher.sh "$CONFIG_MAIN" "$CONFIG_FORMAT" "$TEMPLATE" "$servedir" "$HTTP_PORT"
         fi
     fi
 fi

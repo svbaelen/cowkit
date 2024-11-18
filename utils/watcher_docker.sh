@@ -46,10 +46,14 @@ OUTPUT_DIR=$4
 #=========================================================
 
 run_pandoc () {
+
+    #rm -rf "$OUTPUT_DIR"
+
     pandoc \
       --defaults=${CONFIG_MAIN} \
       --defaults=${CONFIG_FORMAT} \
-      --template=${TEMPLATE}
+      --template=${TEMPLATE} \
+      --output="${OUTPUT_DIR}_tmp"
 }
 
 #=========================================================
@@ -101,6 +105,10 @@ do
         run_pandoc
         echo "[INFO - watcher] done - build output updated"
 
+        # next two lines are to avoid pandoc error "createDirectory" failed (alreayd exist)
+        rsync --remove-source-files  --include "*.html" -a ${OUTPUT_DIR}_tmp/* $OUTPUT_DIR/
+        rm -rf ${OUTPUT_DIR}_tmp
+
         # reload
         # first arg, or default to firefox if not set
         #if [ $DO_BROWSER_RELOAD = 1 ];then
@@ -114,7 +122,10 @@ do
             echo "[INFO - watcher] skipping rerun (timediff set to $TIME_UNTIL_RERUN sec)"
             sleep $TIME_DIFF
             echo "[INFO - watcher] running pandoc"
+            # next two lines are to avoid pandoc error "createDirectory" failed (alreayd exist)
             run_pandoc
+            rsync --remove-source-files  --include "*.html" -a ${OUTPUT_DIR}_tmp/* $OUTPUT_DIR/
+            rm -rf ${OUTPUT_DIR}_tmp
         else
             echo "[INFO - watcher] skipping rerun (timediff set to $TIME_UNTIL_RERUN sec)"
         fi

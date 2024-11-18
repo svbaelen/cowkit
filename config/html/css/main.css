@@ -206,8 +206,11 @@ li:focus-within a {
   outline: none;
 }
 
+.toc-a-current {
+    /*color: white;*/
+}
 .toc-li-current {
-    background-color: #90d5ff;
+    background-color: #bad9fc;
 }
 
 #sidebar-left:hover,
