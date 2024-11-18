@@ -1,7 +1,7 @@
 # Introduction {#sec:introduction}
 
 This could be your intro. Let's start with an image (see [@fig:logo](#fig:logo)). Check [the github project](https://github.com/svbaelen/cowkit) for
-more info.
+more info. A **raw version** of this content is available [here](https://github.com/svbaelen/cowkit/raw/refs/heads/main/src/01_intro.md).
 
 ![The cowkit logo](img/cowkit_logo.svg){#fig:logo}
 
