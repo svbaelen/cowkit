@@ -40,6 +40,12 @@ CONFIG_MAIN=$1
 CONFIG_FORMAT=$2
 TEMPLATE=$3
 OUTPUT_DIR=$4
+CHUNKED_HTML=$5
+SUBDIR_CHUNKED_HTML=$6
+ASSETS_DIR=$7
+CONFIG_MAIN_DIR=$8
+SCRIPTS_DIR=$9
+SERVER_DIR=${10}
 
 #=========================================================
 # Functions
@@ -47,14 +53,62 @@ OUTPUT_DIR=$4
 
 run_pandoc () {
 
-    #rm -rf "$OUTPUT_DIR"
-
     pandoc \
       --defaults=${CONFIG_MAIN} \
       --defaults=${CONFIG_FORMAT} \
       --template=${TEMPLATE} \
-      --output="${OUTPUT_DIR}_tmp"
+      --output="${SERVER_DIR}_tmp"
+
+    # html_modify <file-in> <file-out> <jstemplate>
+    node /usr/local/bin/html_modify.js \
+            "${SERVER_DIR}_tmp/index.html"
 }
+
+#run_pandoc () {
+    #config_format=$1
+    #template=$2
+
+    #if [ $CHUNKED_HTML = 1 ]; then
+        #html_chunkdir="$OUTPUT_DIR/$SUBDIR_CHUNKED_HTML"
+        #echo $html_chunkdir
+        ## make sure it's empty
+        #rm -rf $html_chunkdir
+    #fi
+
+    #pandoc \
+        #--defaults=${CONFIG_MAIN} \
+        #--defaults=${config_format} \
+        #--template=${template}
+
+    ## check if unzipping chunked HTML is necessary
+    ## unzipping is not necessary as it can be done through pandoc too, however,
+    ## the copying still is
+    #if [ $CHUNKED_HTML = 1 ]; then
+
+        ## unzip if chunked html
+        #html_chunkdir="$OUTPUT_DIR/$SUBDIR_CHUNKED_HTML"
+        #htmlcnfdir="$html_chunkdir/$CONFIG_MAIN_DIR/html"
+        #html_assetsdir="$html_chunkdir/assets"
+        #mkdir -p $htmlcnfdir
+        #mkdir -p $html_assetsdir
+
+        #cp -rf $CONFIG_MAIN_DIR/html/*  $htmlcnfdir
+        #cp -rf $SCRIPTS_DIR $html_chunkdir
+
+        ## create search index
+        ## html_search_index <file-in> <file-out> <jstemplate>
+        #node /usr/local/bin/html_search_index.js \
+            #"$html_chunkdir/index.html" \
+            #"$ASSETS_DIR/search.json"
+
+        ## html_modify <file-in> <file-out> <jstemplate>
+        #node /usr/local/bin/html_modify.js \
+            #"$html_chunkdir/index.html"
+
+        #cp -rf "$ASSETS_DIR/search.json" $html_assetsdir/
+    #fi
+#}
+
 
 #=========================================================
 # Main
@@ -102,12 +156,14 @@ do
 
         LAST_EVENT_TIME=$EVENT_TIME
         echo "[INFO - watcher] running pandoc"
-        run_pandoc
+        #run_pandoc
+        run_pandoc $CONFIG_FORMAT $TEMPLATE
+
         echo "[INFO - watcher] done - build output updated"
 
         # next two lines are to avoid pandoc error "createDirectory" failed (alreayd exist)
-        rsync --remove-source-files  --include "*.html" -a ${OUTPUT_DIR}_tmp/* $OUTPUT_DIR/
-        rm -rf ${OUTPUT_DIR}_tmp
+        rsync --remove-source-files  --include "*.html" -a ${SERVER_DIR}_tmp/* $SERVER_DIR/
+        rm -rf ${SERVER_DIR}_tmp
 
         # reload
         # first arg, or default to firefox if not set
@@ -123,9 +179,10 @@ do
             sleep $TIME_DIFF
             echo "[INFO - watcher] running pandoc"
             # next two lines are to avoid pandoc error "createDirectory" failed (alreayd exist)
-            run_pandoc
-            rsync --remove-source-files  --include "*.html" -a ${OUTPUT_DIR}_tmp/* $OUTPUT_DIR/
-            rm -rf ${OUTPUT_DIR}_tmp
+            #run_pandoc
+            run_pandoc $CONFIG_FORMAT $TEMPLATE
+            rsync --remove-source-files  --include "*.html" -a ${SERVER_DIR}_tmp/* $SERVER_DIR/
+            rm -rf ${SERVER_DIR}_tmp
         else
             echo "[INFO - watcher] skipping rerun (timediff set to $TIME_UNTIL_RERUN sec)"
         fi

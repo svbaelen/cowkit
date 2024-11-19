@@ -42,7 +42,7 @@ COPY . /data/example/
 # move executables to PATH
 RUN mv /data/example/utils/watcher_docker.sh /usr/local/bin/watcher.sh
 RUN mv /data/example/utils/entrypoint.sh /usr/local/bin/cowkit.sh
-RUN mv /data/example/utils/html_parser.js /usr/local/bin/html_parser.js
+RUN mv /data/example/utils/html_* /usr/local/bin/
 
 ## install other latex engine
 #RUN curl --proto '=https' --tlsv1.2 -fsSL https://drop-sh.fullyjustified.net | sh

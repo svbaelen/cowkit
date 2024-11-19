@@ -19,8 +19,13 @@ function addSubfigCaption() {
       figcap.textContent = `(${img.alt})`;
       figure.style.width = img.style.width;
       img.style.width = "100%";
-      subfig.insertBefore(figure, img);
-      figure.appendChild(img);
+      let oldNode = img;
+      // use parentNode on img in case of "hyperlinked" img
+      if (img.parentNode.tagName == "A"){
+        oldNode = img.parentNode
+      }
+      subfig.insertBefore(figure, oldNode);
+      figure.appendChild(oldNode);
       figure.appendChild(figcap);
     })
   });

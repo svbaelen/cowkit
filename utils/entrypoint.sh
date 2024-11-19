@@ -197,10 +197,14 @@ run_pandoc () {
         cp -rf $SCRIPTS_DIR $html_chunkdir
 
         # create search index
-        # html_parsers <file-in> <file-out> <jstemplate>
-        node /usr/local/bin/html_parser.js \
+        # html_search_index <file-in> <file-out> <jstemplate>
+        node /usr/local/bin/html_search_index.js \
             "$html_chunkdir/index.html" \
             "$ASSETS_DIR/search.json"
+
+        # html_modify <file-in> <file-out> <jstemplate>
+        node /usr/local/bin/html_modify.js \
+            "$html_chunkdir/index.html"
 
         cp -rf "$ASSETS_DIR/search.json" $html_assetsdir/
 
@@ -343,7 +347,11 @@ else
             cd /app
             echo "[INFO - main] launching file watcher..."
             # run ./utils/watcher_docker.sh in docker container
-            watcher.sh "$CONFIG_MAIN" "$CONFIG_FORMAT" "$TEMPLATE" "$servedir" "$HTTP_PORT"
+            watcher.sh "$CONFIG_MAIN" "$CONFIG_FORMAT" "$TEMPLATE" \
+                "$OUTPUT_DIR" $CHUNKED_HTML "$SUBDIR_CHUNKED_HTML" \
+                            "$ASSETS_DIR" "$CONFIG_MAIN_DIR" "$SCRIPTS_DIR" \
+                            "$servedir"
+
         fi
     fi
 fi
