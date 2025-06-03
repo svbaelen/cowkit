@@ -51,4 +51,5 @@ RUN mv /data/example/utils/html_* /usr/local/bin/
 #CMD ["app"]
 #ENTRYPOINT ["pandoc", "--version"]
 #ENTRYPOINT ["/usr/bin/tini", "-g", "--"]
+RUN chmod +x /usr/local/bin/*.sh
 ENTRYPOINT ["/usr/bin/tini", "-g", "--", "cowkit.sh"]

@@ -1,7 +1,6 @@
 pandoc-*
 build
 test
-instructions.txt
 
 ### dotenv ###
 .env

@@ -32,6 +32,11 @@ Built on top of [Pandoc](https://pandoc.org/) (file format converter), and inspi
 docker run -u $(id -u):$(id -g) --rm -v "$(pwd):/app" -p 8000:8000 svbaelen/cowkit --init
 ```
 
+**Custom port example:**
+```sh
+docker run -u $(id -u):$(id -g) --rm -v "$(pwd):/app" -p 9500:8000 -e HOST_PORT=9500 svbaelen/cowkit --init
+```
+
 ### Run
 
 For default HTML output (and file watcher + HTTP server):
@@ -40,11 +45,17 @@ For default HTML output (and file watcher + HTTP server):
 docker run -u $(id -u):$(id -g) --rm -v "$(pwd):/app" -p 8000:8000 svbaelen/cowkit
 ```
 
+**Custom port example:**
+```sh
+docker run -u $(id -u):$(id -g) --rm -v "$(pwd):/app" -p 9500:8000 -e HOST_PORT=9500 svbaelen/cowkit
+```
+
 See the [config section](#configuration) to find out where to put what.
 <b>Other examples</b> can be [found here](./examples/examples_cli.md).
 
-You can specify a `cowkit` <b>version</b> with the image tag, e.g., `cowkit:latest`.  For a non-docker runtime environment, see [development](#development)
-section.
+You can specify a `cowkit` <b>version</b> with the image tag, e.g.,
+`cowkit:latest`.  For a non-docker runtime environment, see
+[development](#development) section.
 
 ### CLI options
 
@@ -106,7 +117,7 @@ filters</b> (which will skip bibliography rebuilds). If still too slow, uncommen
 ### General:
 
 - Tested only on
-  - Ubuntu 22.04
+  - Ubuntu 22.04 and 24.04
 
 ### CLI utility
 
@@ -114,10 +125,40 @@ filters</b> (which will skip bibliography rebuilds). If still too slow, uncommen
 
 ### HTML output
 
-- browser auto-reload after rebuild is based on [LiveJS](https://livejs.com/), however, sometimes a manual refresh is necessary on the browser tab
-  to re-initialize this script. This seems to occur on layout changes (not always). Need to inspect!
+- browser auto-reload after rebuild is based on [LiveJS](https://livejs.com/),
+  however, sometimes a manual refresh is necessary on the browser tab to
+  re-initialize this script. This seems to occur on layout changes (not always).
+  Need to inspect!
 
 ## Development
+
+### Test with one command (host port 9500)
+
+#### Initially
+
+```sh
+docker build -t svbaelen/cowkit:latest -t svbaelen/cowkit:v0.1.0 . \
+    && mkdir -p test && cd test \
+    && rm -rf * \
+    && docker run -u $(id -u):$(id -g) --rm -v "$(pwd):/app" \
+        -p 9500:8000 -e HOST_PORT=9500 svbaelen/cowkit --init \
+    && docker run -u $(id -u):$(id -g) --rm \
+        -v "$(pwd):/app" -p 9500:8000 -e HOST_PORT=9500 svbaelen/cowkit
+```
+
+#### When already in `test` dir
+
+```sh
+cd ../ \
+    && docker build -t svbaelen/cowkit:latest -t svbaelen/cowkit:v0.1.0 . \
+    && cd test \
+    && rm -rf * \
+    && docker run -u $(id -u):$(id -g) --rm -v "$(pwd):/app" \
+        -p 9500:8000 -e HOST_PORT=9500 svbaelen/cowkit --init \
+    && docker run -u $(id -u):$(id -g) --rm \
+        -v "$(pwd):/app" -p 9500:8000 -e HOST_PORT=9500 svbaelen/cowkit
+```
+
 
 ### Build docker image
 

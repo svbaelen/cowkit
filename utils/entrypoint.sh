@@ -21,7 +21,8 @@
 INIT=0
 RUN_ONCE=0
 HTTP_SERVE=1
-HTTP_PORT=8000
+HTTP_PORT=${HTTP_PORT:-8000}
+HOST_PORT=${HOST_PORT:-$HTTP_PORT}
 OUTPUT_DIR="./build"
 SUBDIR_CHUNKED_HTML='html' # default: `./build/html`
 SCRIPTS_DIR='./src/scripts'
@@ -273,7 +274,7 @@ if [ $INIT = 1 ];then
         echo "[INFO - main] EXAMPLES:"
         echo "[INFO - main] - default launch (build and serve HTML):"
         echo '[INFO - main]   $ docker run -u $(id -u):$(id -g) --rm -v "$(pwd):/app" \'
-        echo '                  -p 8000:8000 svbaelen/cowkit'
+        echo "                  -p $HOST_PORT:$HTTP_PORT svbaelen/cowkit"
         echo "[INFO - main] - more examples: $LAUNCH_EXAMPLES"
         echo "[INFO - main] ----------------------------------------------"
         echo "[INFO - main] OK, let's go!"
@@ -328,7 +329,7 @@ else
 
             printf "[INFO - main] "
             printf "=> ----------------------------------------------\n"
-            echo "[INFO - main] => serving at http://localhost:$HTTP_PORT (in $servedir)"
+            echo "[INFO - main] => serving at http://localhost:$HOST_PORT (in $servedir)"
             printf "[INFO - main] "
             printf "=> ----------------------------------------------\n"
 
@@ -346,6 +347,8 @@ else
         if [ "$FMT_OUT" != "all" ];then
             cd /app
             echo "[INFO - main] launching file watcher..."
+            echo "[INFO - main] Note that the search index does not get \
+on watches"
             # run ./utils/watcher_docker.sh in docker container
             watcher.sh "$CONFIG_MAIN" "$CONFIG_FORMAT" "$TEMPLATE" \
                 "$OUTPUT_DIR" $CHUNKED_HTML "$SUBDIR_CHUNKED_HTML" \

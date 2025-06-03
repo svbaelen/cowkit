@@ -87,6 +87,7 @@ header-includes:
   - <script src="./scripts/code.js"></script>
   - <script src="./scripts/subfigs.js"></script>
   - <script src="./scripts/scroll.js"></script>
+  - <script src="./scripts/toc-right.js"></script>
   - <script src="./scripts/minisearch.js"></script>
   - <script src="./scripts/search.js"></script>
   - \definecolor{myhrefcolor}{HTML}{0645AD}

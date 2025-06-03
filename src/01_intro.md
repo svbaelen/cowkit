@@ -1,41 +1,66 @@
 # Introduction {#sec:introduction}
 
-This could be your intro. Let's start with an image (see [@fig:logo](#fig:logo)). Check [the github project](https://github.com/svbaelen/cowkit) for
-more info. A **raw version** of this content is available [here](https://github.com/svbaelen/cowkit/raw/refs/heads/main/src/01_intro.md).
+This could be your intro. Let's start with an image (see
+[@fig:logo](#fig:logo)). Check [the github
+project](https://github.com/svbaelen/cowkit) for more info. A **raw version** of
+this content is available
+[here](https://github.com/svbaelen/cowkit/raw/refs/heads/main/src/01_intro.md).
 
 ![The cowkit logo](img/cowkit_logo.svg){#fig:logo}
 
 ## Heading 2
 
-All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights. All human beings are
-born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights.
+All human beings are born free and equal in dignity and rights. All human beings
+are born free and equal in dignity and rights. All human beings are born free
+and equal in dignity and rights. All human beings are born free and equal in
+dignity and rights.
 
-All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights. All human beings are
-born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights.
+All human beings are born free and equal in dignity and rights. All human beings
+are born free and equal in dignity and rights. All human beings are born free
+and equal in dignity and rights. All human beings are born free and equal in
+dignity and rights.
 
 ### Heading 3
 
-All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights.
+All human beings are born free and equal in dignity and rights. All human beings
+are born free and equal in dignity and rights. All human beings are born free
+and equal in dignity and rights. All human beings are born free and equal in
+dignity and rights.
 
 #### Heading 4
 
-All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights.
+All human beings are born free and equal in dignity and rights. All human beings
+are born free and equal in dignity and rights. All human beings are born free
+and equal in dignity and rights. All human beings are born free and equal in
+dignity and rights.
 
 ## Bold
 
-**All human beings are born free and equal in dignity and rights.** All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights.
+**All human beings are born free and equal in dignity and rights.** All human
+beings are born free and equal in dignity and rights. All human beings are born
+free and equal in dignity and rights. All human beings are born free and equal
+in dignity and rights.
 
 ## Italic
 
-_All human beings are born free and equal in dignity and rights._ All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights.
+_All human beings are born free and equal in dignity and rights._ All human
+beings are born free and equal in dignity and rights. All human beings are born
+free and equal in dignity and rights. All human beings are born free and equal
+in dignity and rights.
 
 ## Bold and italic
 
-**_All human beings are born free and equal in dignity and rights._** All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights.
+**_All human beings are born free and equal in dignity and rights._** All human
+beings are born free and equal in dignity and rights. All human beings are born
+free and equal in dignity and rights. All human beings are born free and equal
+in dignity and rights.
 
 ## Struck through
 
-~~All human beings are born free and equal in dignity and rights.~~ All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights.
+~~All human beings are born free and equal in dignity and rights.~~ All human
+beings are born free and equal in dignity and rights. All human beings are born
+free and equal in dignity and rights. All human beings are born free and equal
+in dignity and rights.
 
 ## Numbered lists
 
@@ -69,8 +94,10 @@ All human beings are born free and equal in dignity and rights. All human beings
 ![Eleanor Roosevelt hält die englische Version der Allgemeinen Erklärung der Menschenrechte (FDR Presidential Library & Museum, CC BY 2.0
 <https://creativecommons.org/licenses/by/2.0>, via Wikimedia Commons)](img/eleanor.jpeg){#fig:eleanor}
 
-All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights. All human beings are
-born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights.
+All human beings are born free and equal in dignity and rights. All human beings
+are born free and equal in dignity and rights. All human beings are born free
+and equal in dignity and rights. All human beings are born free and equal in
+dignity and rights.
 
 We can also generate subfigures (within `div` element):
 
@@ -134,7 +161,11 @@ int main()
 
 ## URLs and email addresses
 
-[wikipedia.org](https://www.wikipedia.org/), [info@wikipedia.org](mailto:info@wikipedia.org). All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights.
+[wikipedia.org](https://www.wikipedia.org/),
+[info@wikipedia.org](mailto:info@wikipedia.org). All human beings are born free
+and equal in dignity and rights. All human beings are born free and equal in
+dignity and rights. All human beings are born free and equal in dignity and
+rights. All human beings are born free and equal in dignity and rights.
 
 ## Tables
 
@@ -203,16 +234,21 @@ born free and equal in dignity and rights. All human beings are born free and eq
 
 :::
 
-All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights. All human beings are born free and equal in dignity and rights.
+All human beings are born free and equal in dignity and rights. All human beings
+are born free and equal in dignity and rights. All human beings are born free
+and equal in dignity and rights. All human beings are born free and equal in
+dignity and rights.
 
 ## Scientific citations
 
 Syntax: `[@<ref-in-bibfile>`].
 
-> All human beings are born free and equal in dignity and rights. They are endowed with reason and conscience and should act towards one another in a
+> All human beings are born free and equal in dignity and rights. They are
+> endowed with reason and conscience and should act towards one another in a
 > spirit of brotherhood [@unitednations1948].
 
-All human beings are born free and equal in dignity and rights, and we can combine multiple citations [@unitednations1948; @brown2016].
+All human beings are born free and equal in dignity and rights, and we can
+combine multiple citations [@unitednations1948; @brown2016].
 
 And let's try another one [@brown2016].
 
@@ -222,8 +258,10 @@ $$x^2 + y^2 = z^2$$ {#eq:pythagoras}
 
 ## Cross-references
 
-Thanks to [pandoc-crossref](https://lierdakil.github.io/pandoc-crossref/) you can crossreference equations [@eq:pythagoras], figures
-([@fig:eleanor]) and tables ([@tbl:example_tbl]). We can also refer to sections in different files, such as [@sec:conclusion].
+Thanks to [pandoc-crossref](https://lierdakil.github.io/pandoc-crossref/) you
+can crossreference equations [@eq:pythagoras], figures ([@fig:eleanor]) and
+tables ([@tbl:example_tbl]). We can also refer to sections in different files,
+such as [@sec:conclusion].
 
 Or, you can also do [@eq:pythagoras](#eq:pythagoras) to actually link it.
 
@@ -231,5 +269,7 @@ It is also possible to refer to a codeblock, e.g., [@Lst:code](#lst:code).
 
 ## Section with custom metadata {#sec:customsection}
 
-Here, instead of the default `#section-with-custom-metadata`, the ID becomes `#sec:customsection`).
-Now you can refer to it like [@sec:customsection](#sec:customsection), with pre-configured prefixes like in LaTeX.
+Here, instead of the default `#section-with-custom-metadata`, the ID becomes
+`#sec:customsection`). Now you can refer to it like
+[@sec:customsection](#sec:customsection), with pre-configured prefixes like in
+LaTeX.

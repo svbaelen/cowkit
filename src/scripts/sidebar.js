@@ -15,28 +15,138 @@ function sidebarBtns() {
   const baseUrl = location.protocol + '//' + location.host + locationPathMain;
 
   const btnDownloadPdf = document.querySelector("#btn-download-pdf");
-  btnDownloadPdf.style.display = "flex";
-  btnDownloadPdf.addEventListener("click", (ev) => {
-    window.open(
-      `${baseUrl}/${btnDownloadPdf.dataset.filename}`,
-      '_blank'
-    );
-  });
+  if (btnDownloadPdf) {
+    btnDownloadPdf.style.display = "flex";
+    btnDownloadPdf.addEventListener("click", (ev) => {
+      window.open(
+        `${baseUrl}/${btnDownloadPdf.dataset.filename}`,
+        '_blank'
+      );
+    });
+  }
 
   const btnDownloadTex = document.querySelector("#btn-download-tex");
-  btnDownloadTex.style.display = "flex";
-  btnDownloadTex.addEventListener("click", (ev) => {
-    window.open(
-      `${baseUrl}/${btnDownloadTex.dataset.filename}`,
-    );
-  });
+  if (btnDownloadTex) {
+    btnDownloadTex.style.display = "flex";
+    btnDownloadTex.addEventListener("click", (ev) => {
+      window.open(
+        `${baseUrl}/${btnDownloadTex.dataset.filename}`,
+      );
+    });
+  }
 
+  // Find existing home button and add click handler
   const btnHome = document.querySelector("#btn-home");
-  btnHome.style.display = "flex";
-  btnHome.addEventListener("click", (ev) => {
-    window.location.href = baseUrl;
-  });
+  if (btnHome) {
+    btnHome.style.display = "flex";
+    btnHome.addEventListener("click", (ev) => {
+      window.location.href = baseUrl;
+    });
+  }
 
+  // Add click handler to existing help button
+  const btnHelp = document.querySelector("#btn-help");
+  console.log("Help button found:", btnHelp);
+  if (btnHelp) {
+    btnHelp.style.display = "flex";
+    console.log("Help button display set to flex");
+
+    // Toggle help tooltip on click
+    btnHelp.addEventListener("click", (ev) => {
+      ev.preventDefault();
+      btnHelp.classList.toggle("show-help");
+    });
+
+    // Close help when clicking outside
+    document.addEventListener("click", (ev) => {
+      if (!btnHelp.contains(ev.target)) {
+        btnHelp.classList.remove("show-help");
+      }
+    });
+  }
+
+}
+
+function setupWidthControl() {
+  // Skip width control setup on mobile devices
+  if (window.innerWidth < 1024) {
+    console.log("Width control skipped on mobile");
+    return;
+  }
+  
+  const widthControl = document.querySelector('#width-control');
+  const widthSlider = document.querySelector('#width-slider');
+  const widthValue = document.querySelector('#width-value');
+  const mainContent = document.querySelector('#main-content');
+
+  console.log("Width control elements:", {widthControl, widthSlider, widthValue, mainContent});
+  if (!widthControl || !widthSlider || !widthValue || !mainContent) return;
+
+  // Only show width control on desktop (let CSS media query handle it)
+  // Remove the forced display:block so CSS media queries work properly
+  console.log("Width control initialized, display controlled by CSS media queries");
+
+  // Load saved width from localStorage
+  const savedWidth = localStorage.getItem('cowkit-content-width');
+  if (savedWidth) {
+    widthSlider.value = savedWidth;
+    widthValue.textContent = savedWidth;
+    updateContentWidth(savedWidth);
+  } else {
+    // Initialize with default value
+    updateContentWidth(800);
+  }
+
+  // Update width when slider changes
+  widthSlider.addEventListener('input', function() {
+    const newWidth = this.value;
+    widthValue.textContent = newWidth;
+    updateContentWidth(newWidth);
+    localStorage.setItem('cowkit-content-width', newWidth);
+    
+    // Add visual feedback when at default value
+    const defaultIndicator = document.querySelector('.width-default-indicator');
+    if (newWidth === '800') {
+      widthSlider.classList.add('at-default');
+      if (defaultIndicator) defaultIndicator.style.display = 'inline';
+    } else {
+      widthSlider.classList.remove('at-default');
+      if (defaultIndicator) defaultIndicator.style.display = 'none';
+    }
+  });
+  
+  // Check if initially at default
+  const defaultIndicator = document.querySelector('.width-default-indicator');
+  if (widthSlider.value === '800') {
+    widthSlider.classList.add('at-default');
+    if (defaultIndicator) defaultIndicator.style.display = 'inline';
+  }
+
+  function updateContentWidth(width) {
+    // Update CSS custom property for main content max-width
+    document.documentElement.style.setProperty('--main-max-width', width + 'px');
+    
+    // Adjust sidebar width when content width changes
+    const maxContentWidth = 1200;
+    const defaultSidebarWidth = 350;
+    const minSidebarWidth = 150; // Using the CSS variable value
+    
+    // Start shrinking sidebar earlier (at 900px) for smoother transition
+    if (width > 900) {
+      // Use an easing function for smoother transition
+      const t = (width - 900) / (maxContentWidth - 900); // 0 to 1
+      // Ease-in-out cubic function for smooth acceleration/deceleration
+      const easedT = t < 0.5 
+        ? 4 * t * t * t 
+        : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      
+      const sidebarWidth = defaultSidebarWidth - (easedT * (defaultSidebarWidth - minSidebarWidth));
+      document.documentElement.style.setProperty('--lbar-max-width', Math.round(sidebarWidth) + 'px');
+    } else {
+      // Reset to default sidebar width
+      document.documentElement.style.setProperty('--lbar-max-width', defaultSidebarWidth + 'px');
+    }
+  }
 }
 
 function sidebarDropdown() {
@@ -121,6 +231,163 @@ function spacingAroundNumberedToc(){
   lastTocWithNr.style.marginBottom = "12px";
 }
 
+function persistStickyToggle() {
+  const stickyToggle = document.querySelector('#input-toggle-sidebar');
+  if (!stickyToggle) return;
+
+  // Load saved state from localStorage
+  const savedState = localStorage.getItem('cowkit-sidebar-sticky');
+  if (savedState !== null) {
+    stickyToggle.checked = savedState === 'true';
+  }
+
+  // Save state when changed
+  stickyToggle.addEventListener('change', function() {
+    localStorage.setItem('cowkit-sidebar-sticky', this.checked);
+  });
+}
+
+function showSidebarOnSearch() {
+  const sidebarLeft = document.querySelector('#sidebar-left');
+
+  if (!sidebarLeft) {
+    console.log('Sidebar not found');
+    return;
+  }
+
+  // Listen for keyboard shortcuts
+  document.addEventListener('keydown', function(e) {
+    console.log('Key pressed:', e.key);
+
+    // Only trigger if not already in an input field
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') {
+      console.log('Ignoring key in input field');
+      return;
+    }
+
+    // '/' key - show sidebar and focus search
+    if (e.key === '/') {
+      console.log('Slash key detected, showing sidebar');
+      e.preventDefault();
+
+      // Show sidebar on mobile
+      if (window.innerWidth <= 1023) {
+        console.log('Mobile detected, adding show class');
+        sidebarLeft.classList.add('show');
+
+        // Also update mobile menu buttons
+        const btnBurger = document.querySelector('#btn-burger');
+        const btnClose = document.querySelector('#btn-close');
+        const btnMobile = document.querySelector('#btn-mobile');
+
+        if (btnBurger && btnClose && btnMobile) {
+          btnBurger.style.display = "none";
+          btnClose.style.display = "block";
+          btnMobile.classList.add("in-menu");
+        }
+      } else {
+        console.log('Desktop detected, making sidebar sticky');
+        // On desktop, make sidebar sticky so it stays visible for search
+        const stickyToggle = document.querySelector('#input-toggle-sidebar');
+        if (stickyToggle && !stickyToggle.checked) {
+          stickyToggle.checked = true;
+          localStorage.setItem('cowkit-sidebar-sticky', 'true');
+          stickyToggle.dispatchEvent(new Event('change'));
+          console.log('Made sidebar sticky for search');
+        }
+      }
+
+      // Focus search input if it exists
+      const searchInput = document.querySelector('#toc-content input[type="text"]') ||
+                         document.querySelector('input[placeholder*="Search"]') ||
+                         document.querySelector('.Search input');
+
+      if (searchInput) {
+        console.log('Search input found, focusing');
+        setTimeout(() => {
+          searchInput.focus();
+        }, 150); // Small delay to ensure sidebar is visible
+      } else {
+        console.log('Search input not found');
+      }
+    }
+
+    // 's' key - toggle sidebar (and make non-sticky if sticky)
+    if (e.key === 's' || e.key === 'S') {
+      console.log('S key detected, toggling sidebar');
+      e.preventDefault();
+
+      const stickyToggle = document.querySelector('#input-toggle-sidebar');
+
+      if (window.innerWidth <= 1023) {
+        // Mobile: toggle sidebar visibility
+        console.log('Mobile: toggling sidebar visibility');
+        if (sidebarLeft.classList.contains('show')) {
+          // Hide sidebar
+          sidebarLeft.classList.remove('show');
+          const btnBurger = document.querySelector('#btn-burger');
+          const btnClose = document.querySelector('#btn-close');
+          const btnMobile = document.querySelector('#btn-mobile');
+
+          if (btnBurger && btnClose && btnMobile) {
+            btnBurger.style.display = "block";
+            btnClose.style.display = "none";
+            btnMobile.classList.remove("in-menu");
+          }
+        } else {
+          // Show sidebar
+          sidebarLeft.classList.add('show');
+          const btnBurger = document.querySelector('#btn-burger');
+          const btnClose = document.querySelector('#btn-close');
+          const btnMobile = document.querySelector('#btn-mobile');
+
+          if (btnBurger && btnClose && btnMobile) {
+            btnBurger.style.display = "none";
+            btnClose.style.display = "block";
+            btnMobile.classList.add("in-menu");
+          }
+        }
+      } else {
+        // Desktop: toggle sticky mode (turn off if on, turn on if off)
+        console.log('Desktop: toggling sticky mode');
+        if (stickyToggle) {
+          const wasSticky = stickyToggle.checked;
+          stickyToggle.checked = !wasSticky;
+
+          // Save state
+          localStorage.setItem('cowkit-sidebar-sticky', stickyToggle.checked);
+
+          // Trigger change event to ensure CSS updates
+          stickyToggle.dispatchEvent(new Event('change'));
+
+          console.log('Sticky toggled to:', stickyToggle.checked);
+        }
+      }
+    }
+
+    // '?' key - toggle help
+    if (e.key === '?') {
+      console.log('? key detected, toggling help');
+      e.preventDefault();
+
+      const btnHelp = document.querySelector('#btn-help');
+      if (btnHelp) {
+        btnHelp.classList.toggle('show-help');
+      }
+    }
+
+    // 'Escape' key - close help if open
+    if (e.key === 'Escape') {
+      const btnHelp = document.querySelector('#btn-help');
+      if (btnHelp && btnHelp.classList.contains('show-help')) {
+        console.log('Escape key detected, closing help');
+        e.preventDefault();
+        btnHelp.classList.remove('show-help');
+      }
+    }
+  });
+}
+
 
 function hideMenu()  {
   const btnMobile = document.querySelector(`#btn-mobile`);
@@ -131,7 +398,7 @@ function hideMenu()  {
   if (btnBurger.style.display === "none" || !btnBurger.style.display) {
     btnBurger.style.display = "block";
     btnClose.style.display = "none";
-    sidebarLeft.style.display = "none";
+    sidebarLeft.classList.remove("show");
     btnMobile.classList.remove("in-menu");
   }
 }
@@ -153,7 +420,7 @@ function sidebarMobileMenu() {
     if (btnClose.style.display === "none" || !btnClose.style.display) {
       btnClose.style.display = "block";
       btnBurger.style.display = "none";
-      sidebarLeft.style.display = "block";
+      sidebarLeft.classList.add("show");
       btnMobile.classList.add("in-menu");
     }
   });
@@ -182,11 +449,25 @@ function sidebarMobileMenu() {
 /*==================================================================*/
 
 window.addEventListener('load', function () {
+  console.log("DOM loaded, running sidebar functions");
+  console.log("All elements in lbar-buttons:", document.querySelectorAll("#lbar-buttons > *"));
+  console.log("All elements in toc-content:", document.querySelectorAll("#toc-content > *"));
+
   sidebarMobileMenu();
   sidebarDropdown();
   //sidebarScrollBtns();
   sidebarBtns();
   spacingAroundNumberedToc();
+  persistStickyToggle();
+  showSidebarOnSearch();
+  setupWidthControl();
+
+  // Try again after a delay in case elements are created by other scripts
+  setTimeout(() => {
+    console.log("Trying again after delay...");
+    console.log("Help button (delayed):", document.querySelector("#btn-help"));
+    console.log("Width control (delayed):", document.querySelector("#width-control"));
+  }, 1000);
 
     const urlPathArray = window.location.pathname.split('/');
     const urlLast = urlPathArray[urlPathArray.length - 1];

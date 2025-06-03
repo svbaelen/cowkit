@@ -87,7 +87,14 @@ function addCodeLanguageInBlock() {
       copyIconEl.title = "Copy to clipboard";
       copyIconEl.classList.add("copy-icon");
       copyIconEl.classList.add("clipboard-icon");
-      block.insertBefore(blockMeta, block.firstChild);
+      // Insert into parent div.sourceCode instead of pre element
+      const sourceCodeDiv = block.parentElement;
+      if (sourceCodeDiv && sourceCodeDiv.classList.contains('sourceCode')) {
+        sourceCodeDiv.insertBefore(blockMeta, sourceCodeDiv.firstChild);
+      } else {
+        // Fallback to original behavior if structure is different
+        block.insertBefore(blockMeta, block.firstChild);
+      }
 
       // TODO: better done outside loop
       if (metaTrueStrings.includes(customMeta.codeLang)){
