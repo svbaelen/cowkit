@@ -137,7 +137,7 @@ filters</b> (which will skip bibliography rebuilds). If still too slow, uncommen
 #### Initially
 
 ```sh
-docker build -t svbaelen/cowkit:latest -t svbaelen/cowkit:v0.1.0 . \
+docker build -t svbaelen/cowkit:latest -t svbaelen/cowkit:v0.2.0 . \
     && mkdir -p test && cd test \
     && rm -rf * \
     && docker run -u $(id -u):$(id -g) --rm -v "$(pwd):/app" \
@@ -150,7 +150,7 @@ docker build -t svbaelen/cowkit:latest -t svbaelen/cowkit:v0.1.0 . \
 
 ```sh
 cd ../ \
-    && docker build -t svbaelen/cowkit:latest -t svbaelen/cowkit:v0.1.0 . \
+    && docker build -t svbaelen/cowkit:latest -t svbaelen/cowkit:v0.2.0 . \
     && cd test \
     && rm -rf * \
     && docker run -u $(id -u):$(id -g) --rm -v "$(pwd):/app" \
@@ -165,7 +165,7 @@ cd ../ \
 Example:
 
 ```sh
-docker build -t svbaelen/cowkit:latest -t svbaelen/cowkit:v0.1.0 .
+docker build -t svbaelen/cowkit:latest -t svbaelen/cowkit:v0.2.0 .
 ```
 
 Push to repo:
