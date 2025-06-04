@@ -291,6 +291,13 @@ li:focus-within a {
     height:100%;
 }
 
+/* Show right sidebar on desktop */
+@media only screen and (min-width: 1024px) {
+    #sidebar-right {
+        display: block;
+    }
+}
+
 /* 3 column doc */
 @media only screen and ( min-width:1024px ) {
     #main-content {
@@ -352,9 +359,6 @@ li:focus-within a {
         max-width: var(--lbar-max-width);
         transition: max-width 0.3s ease-in-out;
     }
-    }
-    #sidebar-right {
-        display:block;
     }
     #btn-mobile {
         display:none;
@@ -1043,11 +1047,12 @@ h3#toc-title {
     align-content:center;
     min-height:60px;
     background: transparent;
-    /*flex-wrap: wrap;*/
+    flex-wrap: nowrap;
     overflow-x:auto;
     scrollbar-width: thin;
     row-gap: 1em;
     font-size: 1em;
+    white-space: nowrap;
 }
 
 @media only screen and (min-width: 1024px) {
@@ -1070,8 +1075,9 @@ h3#toc-title {
 
 
 #lbar-buttons > div {
-    padding: 0 1.25em;
+    padding: 0 1em;
     border-right: 1px solid rgba(0,0,0,0.1);
+    flex-shrink: 0;
 }
 #lbar-buttons > div:first-child {
     padding-left:0px;
@@ -1162,49 +1168,73 @@ h3#toc-title {
     font-size: 0.85em;
 }
 
+.width-slider-wrapper {
+    position: relative;
+    margin-bottom: 0.5em;
+}
+
 .width-slider {
     width: 100%;
     height: 4px;
-    background: linear-gradient(to right, 
-        #ddd 0%, 
-        #ddd 33%, 
-        #d0d0d0 33.33%, 
-        #d0d0d0 33.66%, 
-        #ddd 34%, 
-        #ddd 100%);
+    background: transparent;
     outline: none;
     border-radius: 2px;
     -webkit-appearance: none;
     appearance: none;
-    margin-bottom: 0.5em;
     position: relative;
+    z-index: 2;
+}
+
+/* Slider track background */
+.width-slider-track {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 4px;
+    transform: translateY(-50%);
+    background: #ddd;
+    border-radius: 2px;
+    pointer-events: none;
 }
 
 /* Default marker indicator - visual tick mark at 800px */
-.width-slider::after {
-    content: '';
+.width-slider-default-marker {
     position: absolute;
     /* Calculate position: (800-600)/(1200-600) = 200/600 = 33.33% */
-    left: 33.33%;
-    top: -6px;
+    left: calc(33.33% + 1px);
+    top: 50%;
     width: 2px;
-    height: 16px;
-    background: rgba(0, 0, 0, 0.25);
+    height: 19px;
+    background: rgba(0, 0, 0, 0.3);
+    transform: translate(-50%, -50%);
     pointer-events: none;
     border-radius: 1px;
 }
 
-/* Additional vertical bar above the slider for default position */
-.width-control::after {
+/* Additional visual emphasis on the default marker */
+.width-slider-default-marker::before {
     content: '';
     position: absolute;
-    left: calc(33.33% - 1px);
-    bottom: 35px;
-    width: 2px;
-    height: 12px;
-    background: rgba(0, 0, 0, 0.15);
-    pointer-events: none;
-    border-radius: 1px;
+    left: 50%;
+    top: -2px;
+    width: 6px;
+    height: 6px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    transform: translateX(-50%);
+}
+
+.width-slider-default-marker::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -2px;
+    width: 6px;
+    height: 6px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    transform: translateX(-50%);
 }
 
 /* Highlight the thumb when at default value */
@@ -1395,8 +1425,6 @@ h3#toc-title {
     border-bottom: none;
 }
 
-
-
 /* toc */
 #toc-content > ul  {
     padding-left:0;
@@ -1582,11 +1610,97 @@ h3#toc-title {
     display: inline;
 }
 
-/* Hide on smaller screens */
-@media only screen and (max-width: 1400px) {
+/* RHS toggle button */
+.btn-toggle-rbar {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    background: var(--color-background-main);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-right: none;
+    border-radius: 4px 0 0 4px;
+    padding: 8px 4px;
+    cursor: pointer;
+    z-index: 1000;
+    transition: all 0.2s ease;
+    box-shadow: -1px 0 3px rgba(0, 0, 0, 0.1);
+    font-size: 12px;
+    line-height: 1;
+    color: #666;
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Show button when hovering over right sidebar area or the button itself */
+#sidebar-right:hover + .btn-toggle-rbar,
+.btn-toggle-rbar:hover {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.btn-toggle-rbar:hover {
+    background: var(--color-link);
+    color: white;
+    transform: translateY(-50%) translateX(-2px);
+}
+
+.btn-toggle-rbar .toggle-text {
+    display: block;
+    font-family: monospace;
+    font-weight: bold;
+}
+
+/* Hide toggle button on smaller screens where sidebar is already hidden */
+@media only screen and (max-width: 1200px) {
+    .btn-toggle-rbar {
+        display: none;
+    }
     #sidebar-right {
         display: none !important;
     }
+}
+
+/* Only show toggle button on desktop */
+@media only screen and (min-width: 1024px) {
+    .btn-toggle-rbar {
+        display: block;
+    }
+}
+
+/* Hide toggle button on mobile */
+@media only screen and (max-width: 1023px) {
+    .btn-toggle-rbar {
+        display: none;
+    }
+}
+
+/* When sidebar is hidden, always show button and update text/position */
+#sidebar-right.hidden + .btn-toggle-rbar {
+    opacity: 1;
+    pointer-events: auto;
+    right: -1px;
+}
+
+#sidebar-right.hidden + .btn-toggle-rbar .toggle-text {
+    transform: rotate(180deg);
+}
+
+/* Add hover area to the right of the screen to show toggle button */
+#sidebar-right::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 999;
+}
+
+/* Expand hover area when sidebar is visible */
+#sidebar-right:not(.hidden)::after {
+    pointer-events: auto;
 }
 
 /* not really nested inside sidebar */
@@ -1622,7 +1736,7 @@ min-width:1500px
         opacity: 1 !important;
         transition: opacity 0.2s ease;
     }
-    
+
     /* Handle focus separately for footnotes case */
     #sidebar-right.footnotes-transparent:focus-within:not(:hover) {
         opacity: 0.25 !important;
@@ -1720,7 +1834,8 @@ pre.numberSource code > span > a:first-child::before {
     color: #aaaaaa;
     border-right:1px solid rgba(0,0,0,0.25);
 }
-/*pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }*/
+/*pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;
+* padding-left: 4px; }*/
 /* svbaelen custom */
 pre.numberSource {
     /*margin-left: 1em;*/

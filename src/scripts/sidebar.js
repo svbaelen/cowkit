@@ -65,6 +65,96 @@ function sidebarBtns() {
     });
   }
 
+  // Add click handler to reset defaults button
+  const btnResetDefaults = document.querySelector("#btn-reset-defaults");
+  console.log("Reset defaults button found:", btnResetDefaults);
+  if (btnResetDefaults) {
+    btnResetDefaults.style.display = "flex";
+    console.log("Reset defaults button display set to flex");
+
+    btnResetDefaults.addEventListener("click", (ev) => {
+      ev.preventDefault();
+      
+      // Confirm with user before resetting
+      if (confirm("Reset all settings to defaults? This will:\n• Reset content width to 800px\n• Show left sidebar (sticky)\n• Show right sidebar\n• Clear all cached preferences\n\nThis action cannot be undone.")) {
+        resetToDefaults();
+      }
+    });
+  }
+
+}
+
+function resetToDefaults() {
+  console.log("Resetting all settings to defaults...");
+  
+  // Clear all cowkit-related localStorage items
+  const keysToRemove = [];
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    if (key && key.startsWith('cowkit-')) {
+      keysToRemove.push(key);
+    }
+  }
+  
+  keysToRemove.forEach(key => {
+    console.log("Removing localStorage key:", key);
+    localStorage.removeItem(key);
+  });
+  
+  // Reset content width slider to default (800px)
+  const widthSlider = document.querySelector('#width-slider');
+  const widthValue = document.querySelector('#width-value');
+  if (widthSlider && widthValue) {
+    widthSlider.value = '800';
+    widthValue.textContent = '800';
+    document.documentElement.style.setProperty('--main-max-width', '800px');
+    document.documentElement.style.setProperty('--lbar-max-width', '350px');
+    
+    // Update visual indicators
+    const defaultIndicator = document.querySelector('.width-default-indicator');
+    widthSlider.classList.add('at-default');
+    if (defaultIndicator) defaultIndicator.style.display = 'inline';
+  }
+  
+  // Reset left sidebar to sticky (default)
+  const stickyToggle = document.querySelector('#input-toggle-sidebar');
+  if (stickyToggle) {
+    stickyToggle.checked = true;
+  }
+  
+  // Show right sidebar
+  const sidebarRight = document.querySelector('#sidebar-right');
+  if (sidebarRight) {
+    sidebarRight.classList.remove('hidden');
+    sidebarRight.style.display = 'block';
+  }
+  
+  // Hide left sidebar on mobile if it's showing
+  const sidebarLeft = document.querySelector('#sidebar-left');
+  if (sidebarLeft && window.innerWidth <= 1023) {
+    sidebarLeft.classList.remove('show');
+    const btnBurger = document.querySelector('#btn-burger');
+    const btnClose = document.querySelector('#btn-close');
+    const btnMobile = document.querySelector('#btn-mobile');
+    
+    if (btnBurger && btnClose && btnMobile) {
+      btnBurger.style.display = "block";
+      btnClose.style.display = "none";
+      btnMobile.classList.remove("in-menu");
+    }
+  }
+  
+  console.log("All settings reset to defaults");
+  
+  // Show a brief confirmation
+  const resetBtn = document.querySelector("#btn-reset-defaults");
+  if (resetBtn) {
+    const originalText = resetBtn.querySelector('.btn-text').textContent;
+    resetBtn.querySelector('.btn-text').textContent = 'Reset!';
+    setTimeout(() => {
+      resetBtn.querySelector('.btn-text').textContent = originalText;
+    }, 1500);
+  }
 }
 
 function setupWidthControl() {
@@ -244,6 +334,48 @@ function persistStickyToggle() {
   // Save state when changed
   stickyToggle.addEventListener('change', function() {
     localStorage.setItem('cowkit-sidebar-sticky', this.checked);
+  });
+}
+
+function setupRightSidebarToggle() {
+  // Skip on smaller screens where RHS sidebar is hidden
+  if (window.innerWidth <= 1200) {
+    return;
+  }
+
+  const btnToggleRbar = document.querySelector('#btn-toggle-rbar');
+  const sidebarRight = document.querySelector('#sidebar-right');
+  
+  if (!btnToggleRbar || !sidebarRight) return;
+
+  // Load saved state from localStorage
+  const savedState = localStorage.getItem('cowkit-rbar-hidden');
+  const isHidden = savedState === 'true';
+  
+  if (isHidden) {
+    sidebarRight.classList.add('hidden');
+    sidebarRight.style.display = 'none';
+  } else {
+    // Ensure sidebar is visible by default (in case CSS or other factors hide it)
+    sidebarRight.classList.remove('hidden');
+    sidebarRight.style.display = 'block';
+  }
+
+  // Toggle functionality
+  btnToggleRbar.addEventListener('click', function() {
+    const isCurrentlyHidden = sidebarRight.classList.contains('hidden');
+    
+    if (isCurrentlyHidden) {
+      // Show sidebar
+      sidebarRight.classList.remove('hidden');
+      sidebarRight.style.display = 'block';
+      localStorage.setItem('cowkit-rbar-hidden', 'false');
+    } else {
+      // Hide sidebar
+      sidebarRight.classList.add('hidden');
+      sidebarRight.style.display = 'none';
+      localStorage.setItem('cowkit-rbar-hidden', 'true');
+    }
   });
 }
 
@@ -461,6 +593,7 @@ window.addEventListener('load', function () {
   persistStickyToggle();
   showSidebarOnSearch();
   setupWidthControl();
+  setupRightSidebarToggle();
 
   // Try again after a delay in case elements are created by other scripts
   setTimeout(() => {

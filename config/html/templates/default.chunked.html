@@ -113,17 +113,6 @@ $endif$
                 </svg>
                 <div class="btn-text">PDF</div>
               </div>
-              <div id="btn-download-tex" class="btn-svg" data-filename="index.tex" title="download LaTeX">
-                <svg width="800px" height="800px" viewBox="0 0 24 24" fill="none"
-                                                                      xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12 3V16M12 16L16 11.625M12 16L8 11.625" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M15 21H9C6.17157 21 4.75736 21 3.87868 20.1213C3 19.2426 3
-                                17.8284 3 15M21 15C21 17.8284 21 19.2426 20.1213 20.1213C19.8215
-                                20.4211 19.4594 20.6186 19 20.7487" stroke-width="1.5"
-                                                                    stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <div class="btn-text">TEX</div>
-              </div>
               <div id="btn-home" class="btn-svg">
                 <svg fill="#000000" xmlns="http://www.w3.org/2000/svg" width="800px" height="800px" viewBox="0 0 495.398 495.398" >
                   <g>
@@ -158,12 +147,22 @@ $endif$
                   </table>
                 </div>
               </div>
+              <div id="btn-reset-defaults" class="btn-svg" title="Reset to defaults">
+                <svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4.06189 13C4.02104 12.6724 4 12.3387 4 12C4 7.58172 7.58172 4 12 4C14.5006 4 16.7332 5.14727 18.2002 6.94416M19.9381 11C19.979 11.3276 20 11.6613 20 12C20 16.4183 16.4183 20 12 20C9.61061 20 7.46589 18.9525 6 17.2916M9 17H6V17.2916M18.2002 4V6.94416M18.2002 6.94416V6.99993L15.2002 7M4.5 12L7 9.5L9.5 12" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <div class="btn-text">Reset</div>
+              </div>
             </div>
 
           <div id="width-control" class="width-control">
             <label for="width-slider" class="width-label">Content Width</label>
-            <input type="range" id="width-slider" class="width-slider" 
-                   min="600" max="1200" value="800" step="50">
+            <div class="width-slider-wrapper">
+              <input type="range" id="width-slider" class="width-slider" 
+                     min="600" max="1200" value="800" step="50">
+              <div class="width-slider-track"></div>
+              <div class="width-slider-default-marker"></div>
+            </div>
             <div class="width-display">
               <span id="width-value">800</span>px
               <span class="width-default-indicator" style="display: none;">(default)</span>
@@ -354,6 +353,11 @@ $endif$
       <!-- sidebar right -->
       <!------------------->
       <div id="sidebar-right" class="sidebar-right"></div>
+      
+      <!-- RHS toggle button (outside sidebar so it stays visible when sidebar is hidden) -->
+      <button id="btn-toggle-rbar" class="btn-toggle-rbar" title="Toggle right sidebar">
+        <span class="toggle-text">&gt;&gt;</span>
+      </button>
     </main>
 
 </body>
