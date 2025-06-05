@@ -7,7 +7,6 @@ Welcome to the Cowkit documentation. This directory contains user guides and ref
 - [Getting Started](getting-started.md) - Quick start guide for new users
 - [Configuration](configuration.md) - Detailed configuration options
 - [Templates](templates.md) - Customizing output templates
-- [Filters](filters.md) - Using and creating custom Pandoc filters
 - [FAQ](faq.md) - Frequently asked questions
 
 ## Quick Links

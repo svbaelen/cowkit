@@ -24,6 +24,10 @@ Write and compose in markdown (or HTML) - [convert to HTML](https://svbaelen.git
 
 Built on top of [Pandoc](https://pandoc.org/) (file format converter), and inspired by this [pandoc book template](https://github.com/wikiti/pandoc-book-template).
 
+## Documentation
+
+📚 **[View the full documentation](docs/README.md)** for detailed guides on configuration, templates, filters, and more.
+
 ## Get started
 
 ### Initialize new (example) project
